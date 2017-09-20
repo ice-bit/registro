@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>registro_main_guiClass</class>
+ <widget class="QMainWindow" name="registro_main_guiClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>731</width>
+    <height>461</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Registro - v1.0</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Resources/registro_icon_application.png</normaloff>Resources/registro_icon_application.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="2" column="0">
+       <widget class="QGroupBox" name="dbBox">
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QTextEdit" name="txtShow">
+           <property name="styleSheet">
+            <string notr="true">#txtShow {
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	margin: 0;
+}</string>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QGroupBox" name="createBox">
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QPushButton" name="btnNewElement">
+           <property name="styleSheet">
+            <string notr="true">#btnNewElement {
+	background-color: transparent;
+	border: none;
+	background: none;
+}
+#btnNewElement:pressed {
+	background-color: #b3e6ff;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>Resources/add.png</normaloff>Resources/add.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnEditRecord">
+           <property name="styleSheet">
+            <string notr="true">#btnEditRecord {
+	background: none;
+	border: none;
+}
+#btnEditRecord::pressed {
+	background-color: #b3e6ff
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>Resources/edit.png</normaloff>Resources/edit.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnLoadElements">
+           <property name="styleSheet">
+            <string notr="true">#btnLoadElements {
+	background-color: transparent;
+	border: none;
+	background: none;
+}
+#btnLoadElements:pressed {
+	background-color: #b3e6ff;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>Resources/load.png</normaloff>Resources/load.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnLoadBadVotes">
+           <property name="styleSheet">
+            <string notr="true">#btnLoadBadVotes {
+	background-color: transparent;
+	border: none;
+    background: none;
+}
+#btnLoadBadVotes:pressed {
+	background-color: #b3e6ff;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>Resources/less_than_five.png</normaloff>Resources/less_than_five.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QComboBox" name="cbnSearchBy"/>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lnSearch">
+           <property name="placeholderText">
+            <string>Search</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnSearchElement">
+           <property name="styleSheet">
+            <string notr="true">#btnSearchElement {
+	background-color: transparent;
+	border: none;
+	background: none;
+}
+#btnSearchElement:pressed {
+	background-color: #b3e6ff;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>Resources/search.png</normaloff>Resources/search.png</iconset>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>731</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="ActionAddDB"/>
+    <addaction name="ActionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>?</string>
+    </property>
+    <addaction name="ActionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuAbout"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="ActionAddDB">
+   <property name="text">
+    <string>New Database</string>
+   </property>
+  </action>
+  <action name="ActionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="ActionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="registro_main_gui.qrc"/>
+ </resources>
+ <connections/>
+</ui>
