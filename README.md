@@ -1,4 +1,4 @@
-# Registro - v1.0 - [![Build Status](https://travis-ci.org/ice-bit/Registro.svg?branch=master)](https://travis-ci.org/ice-bit/Registro)
+# Registro - v1.0
 QT application to store and save your school marks.
 
 # Features
