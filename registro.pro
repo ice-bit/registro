@@ -16,8 +16,7 @@ SOURCES += main.cpp\
 		editrecord.cpp \
 	registro_main_gui.cpp 
 	
-HEADERS += main.h\
-		about.h \
+HEADERS += about.h \
 		adddb.h \
 		addrecord.h \
 		db_connection.h \
