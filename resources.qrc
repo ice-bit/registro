@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/png_files"/>
+    <qresource prefix="/">
+        <file>Resources/add.png</file>
+        <file>Resources/edit.png</file>
+        <file>Resources/less_than_five.png</file>
+        <file>Resources/load.png</file>
+        <file>Resources/registro_icon.png</file>
+        <file>Resources/registro_icon_application.png</file>
+        <file>Resources/search.png</file>
+    </qresource>
+</RCC>

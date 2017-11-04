@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>533</width>
-    <height>302</height>
+    <width>568</width>
+    <height>331</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,21 +21,21 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>80</x>
       <y>80</y>
-      <width>291</width>
-      <height>71</height>
+      <width>391</width>
+      <height>81</height>
      </rect>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The database file will be installed in your home directory&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;NOTE&lt;/span&gt;: ANY FILE NAMED &lt;span style=&quot; font-weight:600; color:#ff0066;&quot;&gt;registro.db&lt;/span&gt; WILL BE ERASED!!!&lt;/p&gt;&lt;p&gt;(&lt;span style=&quot; text-decoration: underline;&quot;&gt;under %appdata%/Registro&lt;/span&gt;)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;The database file will be installed in your home directory&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;NOTE&lt;/span&gt;: ANY FILE NAMED &lt;span style=&quot; font-weight:600; color:#ff0066;&quot;&gt;registro.db&lt;/span&gt; WILL BE ERASED!!!&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;(&lt;span style=&quot; text-decoration: underline;&quot;&gt;under $HOME/.registro.db&lt;/span&gt;)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btnNewDB">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>160</y>
+      <x>150</x>
+      <y>180</y>
       <width>271</width>
       <height>23</height>
      </rect>
@@ -72,8 +72,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>533</width>
-     <height>21</height>
+     <width>568</width>
+     <height>25</height>
     </rect>
    </property>
   </widget>

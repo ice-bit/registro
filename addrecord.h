@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ADDRECORD_H
+#define ADDRECORD_H
 /*MIT License
 
 Copyright(c) 2016 - 2017 Marco 'icebit' Cetica
@@ -20,27 +21,28 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
-#include <QtWidgets\QMainWindow>
+#include <QtWidgets/QMainWindow>
 #include "ui_addrecord.h"
 #include "db_connection.h"
 
 class addrecord : public QMainWindow, public connection {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	addrecord(QWidget *parent = Q_NULLPTR);
-	~addrecord();
+    addrecord(QWidget *parent = Q_NULLPTR);
+    ~addrecord();
 private slots:
-	void on_btnSaveVote_clicked();
-	void on_btnDelRecord_clicked();
+    void on_btnSaveVote_clicked();
+    void on_btnDelRecord_clicked();
 private:
-	Ui::addrecord *ui;
+    Ui::addrecord *ui;
 
-	void get_all_elements(int op); //If operation is equal to 0 then set all the 'add' variables 
-								   //else if operation is equal to 1 then set only the 'del' variable.
-	const char * sqlQuery;
-	int vote;
-	std::string subject;
-	std::string date;
-	std::string description;
-	std::string delid;
+    void get_all_elements(int op); //If operation is equal to 0 then set all the 'add' variables
+                                   //else if operation is equal to 1 then set only the 'del' variable.
+    const char * sqlQuery;
+    int vote;
+    std::string subject;
+    std::string date;
+    std::string description;
+    std::string delid;
 };
+#endif // ADDRECORD_H

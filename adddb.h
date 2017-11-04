@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ADDDB_H
+#define ADDDB_H
 /*MIT License
 
 Copyright(c) 2016 - 2017 Marco 'icebit' Cetica
@@ -20,17 +21,18 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
-#include <QtWidgets\QMainWindow>
+#include <QtWidgets/QMainWindow>
 #include "ui_adddb.h"
 #include "db_connection.h"
 class adddb : public QMainWindow, protected connection {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	adddb(QWidget *parent = Q_NULLPTR);
-	~adddb();
+    adddb(QWidget *parent = Q_NULLPTR);
+    ~adddb();
 private slots:
-	void on_btnNewDB_clicked();
+    void on_btnNewDB_clicked();
 
 private:
-	Ui::adddb *ui;
+    Ui::adddb *ui;
 };
+#endif // ADDDB_H

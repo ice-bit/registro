@@ -1,4 +1,10 @@
-#pragma once
+#ifndef DB_CONNECTION_H
+#define DB_CONNECTION_H
+#define OS 1 //1 : UNIX; 2 : Windows
+#define PRODUCT_INFO " - Build with QT5 and SQLITE3" //Change these directives
+#define PLATFORM " - GNU/Linux" //with
+#define AUTHOR " - Marco 'icebit' Cetica" //correct
+#define VERSION " - 1.0" //values
 /*MIT License
 
 Copyright(c) 2016 - 2017 Marco 'icebit' Cetica
@@ -28,12 +34,14 @@ SOFTWARE.*/
 
 class connection {
 protected:
-	int init_db();
+    int init_db();
+    std::string define_path();
 public:
-	//db variables
-	sqlite3 *db;
-	int rc;
-	char *ErrMsg = 0;
-	sqlite3_stmt *res;
-	int step;
+    //db variables
+    sqlite3 *db;
+    int rc;
+    char *ErrMsg = 0;
+    sqlite3_stmt *res;
+    int step;
 };
+#endif // DB_CONNECTION_H

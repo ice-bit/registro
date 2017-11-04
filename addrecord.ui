@@ -41,7 +41,7 @@
      <rect>
       <x>20</x>
       <y>40</y>
-      <width>31</width>
+      <width>41</width>
       <height>16</height>
      </rect>
     </property>
@@ -79,8 +79,8 @@
      <rect>
       <x>180</x>
       <y>40</y>
-      <width>47</width>
-      <height>13</height>
+      <width>61</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="font">
@@ -116,9 +116,9 @@
    <widget class="QComboBox" name="cbnSubject">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>140</x>
       <y>60</y>
-      <width>91</width>
+      <width>131</width>
       <height>22</height>
      </rect>
     </property>
@@ -157,7 +157,7 @@
      <rect>
       <x>190</x>
       <y>120</y>
-      <width>71</width>
+      <width>91</width>
       <height>16</height>
      </rect>
     </property>
@@ -215,7 +215,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Delete An Element</string>
+     <string>Delete An Element:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_7">
@@ -267,7 +267,7 @@
      <x>0</x>
      <y>0</y>
      <width>469</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
