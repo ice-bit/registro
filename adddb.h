@@ -24,6 +24,7 @@ SOFTWARE.*/
 #include <QtWidgets/QMainWindow>
 #include "ui_adddb.h"
 #include "db_connection.h"
+#include "subjects.h"
 class adddb : public QMainWindow, protected connection {
     Q_OBJECT
 public:
@@ -31,8 +32,12 @@ public:
     ~adddb();
 private slots:
     void on_btnNewDB_clicked();
-
+    void on_btnAddNewSub_clicked();
+public slots:
+    void on_actionEditSubjects_triggered();
 private:
     Ui::adddb *ui;
+    subjects *sub;
+    std::string subject;
 };
 #endif // ADDDB_H

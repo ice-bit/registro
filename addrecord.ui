@@ -52,26 +52,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Vote:</string>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="spnVote">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>60</y>
-      <width>42</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="minimum">
-     <number>2</number>
-    </property>
-    <property name="maximum">
-     <number>10</number>
-    </property>
-    <property name="value">
-     <number>6</number>
+     <string>Mark:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -237,16 +218,6 @@
      <string>ID:</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lnDelById">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>340</y>
-      <width>41</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btnDelRecord">
     <property name="geometry">
      <rect>
@@ -258,6 +229,35 @@
     </property>
     <property name="text">
      <string>Delete By ID</string>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="spnMark">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>60</y>
+      <width>71</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="decimals">
+     <number>2</number>
+    </property>
+    <property name="minimum">
+     <double>2.000000000000000</double>
+    </property>
+    <property name="maximum">
+     <double>10.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spnDelById">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>340</y>
+      <width>49</width>
+      <height>29</height>
+     </rect>
     </property>
    </widget>
   </widget>

@@ -36,9 +36,9 @@ private:
     Ui::editrecord *ui;
     void get_all_elements();
     const char * sqlQuery;
-    int vote;
+    double mark;
     std::string subject;
-    std::string date;
+    std::string markd;
     std::string description;
     int id;
 };

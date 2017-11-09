@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>568</width>
-    <height>331</height>
+    <width>818</width>
+    <height>573</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,21 +21,21 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>80</y>
+      <x>230</x>
+      <y>260</y>
       <width>391</width>
-      <height>81</height>
+      <height>171</height>
      </rect>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;The database file will be installed in your home directory&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;NOTE&lt;/span&gt;: ANY FILE NAMED &lt;span style=&quot; font-weight:600; color:#ff0066;&quot;&gt;registro.db&lt;/span&gt; WILL BE ERASED!!!&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;(&lt;span style=&quot; text-decoration: underline;&quot;&gt;under $HOME/.registro.db&lt;/span&gt;)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;NOTE&lt;/span&gt;: ANY FILE NAMED &lt;span style=&quot; font-weight:600; color:#ff0066;&quot;&gt;registro.db&lt;/span&gt; WILL BE ERASED!!!&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;(&lt;span style=&quot; text-decoration: underline;&quot;&gt;under $HOME/.registro.db&lt;/span&gt;)&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;OR&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;(&lt;span style=&quot; text-decoration: underline;&quot;&gt;under %APPDATA%/Registro&lt;/span&gt;)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btnNewDB">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>180</y>
+      <x>300</x>
+      <y>450</y>
       <width>271</width>
       <height>23</height>
      </rect>
@@ -47,8 +47,8 @@
    <widget class="QLabel" name="lblStatusDb">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>200</y>
+      <x>300</x>
+      <y>490</y>
       <width>271</width>
       <height>20</height>
      </rect>
@@ -66,18 +66,79 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>20</y>
+      <width>171</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Import your subjects:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lnSub">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>70</y>
+      <width>221</width>
+      <height>28</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>172</x>
+      <y>70</y>
+      <width>131</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Name of Subject:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnAddNewSub">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>110</y>
+      <width>371</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add this subject</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>568</width>
+     <width>818</width>
      <height>25</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuDBs">
+    <property name="title">
+     <string>DBs</string>
+    </property>
+    <addaction name="actionEditSubjects"/>
+   </widget>
+   <addaction name="menuDBs"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionEditSubjects">
+   <property name="text">
+    <string>Delete/Edit subjects</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

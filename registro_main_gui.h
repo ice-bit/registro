@@ -43,8 +43,8 @@ private slots:
     void on_btnNewElement_clicked();
     void on_btnEditRecord_clicked();
     void on_btnLoadElements_clicked();
-    void on_btnSearchElement_clicked();
-    void on_btnLoadBadVotes_clicked();
+    void on_btnSearchElements_clicked();
+    void on_btnLoadBadElements_clicked();
 private:
     Ui::registro_main_guiClass *ui;
     adddb *addDB;

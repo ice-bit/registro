@@ -3,7 +3,7 @@
 registro_main_gui::registro_main_gui(QWidget *parent) : QMainWindow(parent), ui(new Ui::registro_main_guiClass)
 {
     ui->setupUi(this);
-    ui->cbnSearchBy->addItem("Vote");
+    ui->cbnSearchBy->addItem("Mark");
     ui->cbnSearchBy->addItem("Subject");
     ui->cbnSearchBy->addItem("Date");
     ui->cbnSearchBy->addItem("Description");
@@ -12,25 +12,24 @@ void registro_main_gui::setHeader(int type) {
     if (type == 0) {
         ui->txtShow->setFontWeight(QFont::Bold);
         ui->txtShow->setTextColor(QColor("red"));
-        ui->txtShow->insertPlainText("BAD VOTES LIST: ");
+        ui->txtShow->insertPlainText("BAD MARKS LIST: ");
         ui->txtShow->setTextColor(QColor("black"));
         ui->txtShow->setFontWeight(QFont::Normal);
     }
     else if (type == 1) {
         ui->txtShow->setFontWeight(QFont::Bold);
         ui->txtShow->setTextColor(QColor("green"));
-        ui->txtShow->insertPlainText("LIST OF VOTES: ");
+        ui->txtShow->insertPlainText("LIST OF MARKS: ");
         ui->txtShow->setTextColor(QColor("black"));
         ui->txtShow->setFontWeight(QFont::Normal);
     }
     else if (type == 3) {
         ui->txtShow->setFontWeight(QFont::Bold);
         ui->txtShow->setTextColor(QColor("cyan"));
-        ui->txtShow->insertPlainText("SORTED VOTES: ");
+        ui->txtShow->insertPlainText("SORTED MARKS: ");
         ui->txtShow->setTextColor(QColor("black"));
         ui->txtShow->setFontWeight(QFont::Normal);
     }
-
     else {
         std::cerr << "unhandled exception" << std::endl;
     }
@@ -97,14 +96,14 @@ void registro_main_gui::on_btnLoadElements_clicked() {
     sqlite3_free(ErrMsg);
     sqlite3_close(db);
 }
-void registro_main_gui::on_btnSearchElement_clicked() {
+void registro_main_gui::on_btnSearchElements_clicked() {
     ui->txtShow->clear();
     std::string adPath = define_path();
     std::string rootDir = adPath + "/.registro.db";
     this->searchType = ui->cbnSearchBy->currentText().toLocal8Bit().constData();
     setHeader(3);
-    if (this->searchType == "Vote") {
-        this->sqlQuerySearch = "SELECT * FROM REGISTRO WHERE VOTE LIKE '%";
+    if (this->searchType == "Mark") {
+        this->sqlQuerySearch = "SELECT * FROM REGISTRO WHERE MARK LIKE '%";
         this->search = ui->lnSearch->text().toLocal8Bit().constData();
         sqlQuerySearch += search + "%';";
     }
@@ -114,7 +113,7 @@ void registro_main_gui::on_btnSearchElement_clicked() {
         sqlQuerySearch += search + "%';";
     }
     else if (this->searchType == "Date") {
-        this->sqlQuerySearch = "SELECT * FROM REGISTRO WHERE DATE LIKE '%";
+        this->sqlQuerySearch = "SELECT * FROM REGISTRO WHERE DAY LIKE '%";
         this->search = ui->lnSearch->text().toLocal8Bit().constData();
         sqlQuerySearch += search + "%';";
     }
@@ -141,9 +140,9 @@ void registro_main_gui::on_btnSearchElement_clicked() {
     sqlite3_free(ErrMsg);
     sqlite3_close(db);
 }
-void registro_main_gui::on_btnLoadBadVotes_clicked() {
+void registro_main_gui::on_btnLoadBadElements_clicked() {
     ui->txtShow->clear();
-    std::string SqlQuerybadVotes = "SELECT * FROM REGISTRO WHERE VOTE <= 5";
+    std::string SqlQuerybadVotes = "SELECT * FROM REGISTRO WHERE MARK <= 6";
     std::string adPath = define_path();
     std::string rootDir = adPath + "/.registro.db";
     setHeader(0); //Set title

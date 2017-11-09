@@ -34,7 +34,7 @@
      </font>
     </property>
     <property name="text">
-     <string>New Vote:</string>
+     <string>New Mark:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -92,25 +92,6 @@
     </property>
     <property name="text">
      <string>New Description:</string>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="spnNewVote">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>70</y>
-      <width>42</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="minimum">
-     <number>2</number>
-    </property>
-    <property name="maximum">
-     <number>10</number>
     </property>
    </widget>
    <widget class="QComboBox" name="cbnNewSubject">
@@ -230,6 +211,22 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="spnNewVote">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>70</y>
+      <width>71</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <double>2.000000000000000</double>
+    </property>
+    <property name="maximum">
+     <double>10.000000000000000</double>
     </property>
    </widget>
   </widget>

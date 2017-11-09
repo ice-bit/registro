@@ -31,7 +31,8 @@ SOURCES += \
     editrecord.cpp \
     about.cpp \
     db_connection.cpp \
-    adddb.cpp
+    adddb.cpp \
+    subjects.cpp
 
 HEADERS += \
         registro_main_gui.h \
@@ -39,7 +40,8 @@ HEADERS += \
     addrecord.h \
     editrecord.h \
     about.h \
-    db_connection.h 
+    db_connection.h \ 
+    subjects.h
 
 FORMS += \
         registro_main_gui.ui \
@@ -47,7 +49,8 @@ FORMS += \
     adddb.ui \
     addrecord.ui \
     editrecord.ui \
-    registro_main_gui.ui
+    registro_main_gui.ui \
+    subjects.ui
 
 RESOURCES += \
     resources.qrc
