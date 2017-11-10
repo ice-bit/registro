@@ -142,7 +142,7 @@ void registro_main_gui::on_btnSearchElements_clicked() {
 }
 void registro_main_gui::on_btnLoadBadElements_clicked() {
     ui->txtShow->clear();
-    std::string SqlQuerybadVotes = "SELECT * FROM REGISTRO WHERE MARK <= 6";
+    std::string SqlQuerybadVotes = "SELECT * FROM REGISTRO WHERE MARK < 6";
     std::string adPath = define_path();
     std::string rootDir = adPath + "/.registro.db";
     setHeader(0); //Set title
