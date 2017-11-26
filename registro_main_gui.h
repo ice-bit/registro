@@ -1,8 +1,7 @@
-#ifndef REGISTRO_MAIN_GUI_H
-#define REGISTRO_MAIN_GUI_H
+#pragma once
 /*MIT License
 
-Copyright(c) 2016 - 2017 Marco 'icebit' Cetica
+Copyright(c) 2016 - 2018 Marco 'icebit' Cetica
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -31,32 +30,31 @@ SOFTWARE.*/
 
 class registro_main_gui : public QMainWindow, public connection
 {
-    Q_OBJECT
+	Q_OBJECT
 public:
-    registro_main_gui(QWidget *parent = Q_NULLPTR);
-    ~registro_main_gui();
-public slots:
-    void on_ActionAddDB_triggered();
-    void on_ActionAbout_triggered();
-    void on_ActionExit_triggered();
-private slots:
-    void on_btnNewElement_clicked();
-    void on_btnEditRecord_clicked();
-    void on_btnLoadElements_clicked();
-    void on_btnSearchElements_clicked();
-    void on_btnLoadBadElements_clicked();
+	registro_main_gui(QWidget *parent = Q_NULLPTR);
+	~registro_main_gui();
+	public slots:
+	void on_ActionAddDB_triggered();
+	void on_ActionAbout_triggered();
+	void on_ActionExit_triggered();
+	private slots:
+	void on_btnNewElement_clicked();
+	void on_btnEditRecord_clicked();
+	void on_btnLoadElements_clicked();
+	void on_btnSearchElements_clicked();
+	void on_btnLoadBadElements_clicked();
 private:
-    Ui::registro_main_guiClass *ui;
-    adddb *addDB;
-    addrecord *addRC;
-    editrecord *editRC;
-    about *aboutWin;
-    const char * sqlQuery = "SELECT * FROM REGISTRO";
-    std::string searchType; //Get type from QComboBox
-    std::string sqlQuerySearch; //needed for searchElement function
-    std::string search;//
-    static int addLoadResult(void *qTextAppend, int argc, char **argv, char **azColName);
-    static int addBadResult(void *qTextAppend, int argc,  char **argv, char **azColName);
-    void setHeader(int type);
+	Ui::registro_main_guiClass *ui;
+	adddb *addDB;
+	addrecord *addRC;
+	editrecord *editRC;
+	about *aboutWin;
+	const char * sqlQuery = "SELECT * FROM REGISTRO";
+	std::string searchType; //Get type from QComboBox
+	std::string sqlQuerySearch; //needed for searchElement function
+	std::string search;//
+	static int addLoadResult(void *qTextAppend, int argc, char **argv, char **azColName);
+	static int addBadResult(void *qTextAppend, int argc, char **argv, char **azColName);
+	void setHeader(int type);
 };
-#endif // REGISTRO_MAIN_GUI_H

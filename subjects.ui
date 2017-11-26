@@ -14,7 +14,7 @@
    <string>delete/Edit a subject</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset>
     <normaloff>:/Resources/registro_icon.png</normaloff>:/Resources/registro_icon.png</iconset>
   </property>
   <widget class="QLabel" name="label">
@@ -40,12 +40,14 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">#txtSub {
-	background-color: transparent;
-	border: none;
-	padding: 0;
-	margin: 0;
-}</string>
+    <string notr="true">
+          #txtSub {
+          background-color: transparent;
+          border: none;
+          padding: 0;
+          margin: 0;
+          }
+        </string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -193,7 +195,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="Resource.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -1,16 +1,15 @@
-#ifndef DB_CONNECTION_H
-#define DB_CONNECTION_H
-#define OS 1 //1 : UNIX; 2 : Windows
-#define PRODUCT_INFO " - Build with QT5 and SQLITE3" //Change these directives
-#define PLATFORM " - GNU/Linux" //with
-#define AUTHOR " - Marco 'icebit' Cetica" //correct
-#define VERSION " - 1.1" //values
+#pragma once
+#define OS 2 //1 : UNIX; 2 : Windows
+#define BUILD_INFO "Build with QT5 and Sqlite3"
+#define PLATFORM " - Windows"
+#define AUTHOR " - © 2016-2018 Marco Cetica"
+#define VERSION " - 1.1"
 /*MIT License
 
-Copyright(c) 2016 - 2017 Marco 'icebit' Cetica
+Copyright(c) 2016 - 2018 Marco 'icebit' Cetica
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files(the "Software"), to deal
+of this software and associated documentation files(the "Software"), to deal 
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
@@ -35,16 +34,15 @@ SOFTWARE.*/
 
 class connection {
 protected:
-    int init_db();
-    std::string define_path();
-    static int appendSub(void *qCbnAppend, int argc, char **argv, char **azColName);
+	int init_db();
+	std::string define_path();
+	static int appendSub(void *qCbnAppend, int argc, char **argv, char **azColName);
 public:
-    //db variables
-    sqlite3 *db;
-    int rc;
-    char *ErrMsg = 0;
-    sqlite3_stmt *res;
-    int step;
-    std::string sqlAppend = "SELECT NAME FROM SUBJECTS";
+	//db variables
+	sqlite3 *db;
+	int rc;
+	char *ErrMsg = 0;
+	sqlite3_stmt *res;
+	int step;
+	std::string sqlAppend = "SELECT NAME FROM SUBJECTS";
 };
-#endif // DB_CONNECTION_H

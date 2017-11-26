@@ -1,8 +1,7 @@
-#ifndef ABOUT_H
-#define ABOUT_H
+#pragma once
 /*MIT License
 
-Copyright(c) 2016 - 2017 Marco 'icebit' Cetica
+Copyright(c) 2016 - 2018 Marco 'icebit' Cetica
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -22,15 +21,15 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 #include <QtWidgets/QMainWindow>
+#include <ctime>
 #include "ui_about.h"
 #include "db_connection.h"
 
 class about : public QMainWindow {
-    Q_OBJECT
+	Q_OBJECT
 public:
-    about(QWidget *parent = Q_NULLPTR);
-    ~about();
+	about(QWidget *parent = Q_NULLPTR);
+	~about();
 private:
-    Ui::aboutWindow *ui;
+	Ui::aboutWindow *ui;
 };
-#endif // ABOUT_H

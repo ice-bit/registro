@@ -22,7 +22,7 @@ If you want to compile this software perform the following steps:
 - ```qmake -j[core_of_your_cpu+1]```
 
 # Download
-[Registro Download](https://github.com/ice-bit/Registro/blob/master/Windows/registro_installer_v1.0_release_windows.exe?raw=true)
+[Registro Download](https://github.com/ice-bit/Registro/blob/master/Windows/registro_installer_v1.1_release_windows.exe?raw=true)
 
 # Screenshot
 ![Registro main window](https://github.com/ice-bit/Registro/blob/master/Windows/registro_screenshot.png)

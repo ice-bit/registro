@@ -1,8 +1,7 @@
-#ifndef ADDDB_H
-#define ADDDB_H
+#pragma once
 /*MIT License
 
-Copyright(c) 2016 - 2017 Marco 'icebit' Cetica
+Copyright(c) 2016 - 2018 Marco 'icebit' Cetica
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -26,18 +25,17 @@ SOFTWARE.*/
 #include "db_connection.h"
 #include "subjects.h"
 class adddb : public QMainWindow, protected connection {
-    Q_OBJECT
+	Q_OBJECT
 public:
-    adddb(QWidget *parent = Q_NULLPTR);
-    ~adddb();
-private slots:
-    void on_btnNewDB_clicked();
-    void on_btnAddNewSub_clicked();
-public slots:
-    void on_actionEditSubjects_triggered();
+	adddb(QWidget *parent = Q_NULLPTR);
+	~adddb();
+	private slots:
+	void on_btnNewDB_clicked();
+	void on_btnAddNewSub_clicked();
+	public slots:
+	void on_actionEditSubjects_triggered();
 private:
-    Ui::adddb *ui;
-    subjects *sub;
-    std::string subject;
+	Ui::adddb *ui;
+	subjects *sub;
+	std::string subject;
 };
-#endif // ADDDB_H

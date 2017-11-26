@@ -1,7 +1,6 @@
-#ifndef SUBJECTS_H
-#define SUBJECTS_H
+#pragma once
 /*MIT License
-Copyright(c) 2016 - 2017 Marco 'icebit' Cetica
+Copyright(c) 2016 - 2018 Marco 'icebit' Cetica
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -21,20 +20,19 @@ SOFTWARE.*/
 #include "ui_subjects.h"
 #include "db_connection.h"
 
-class subjects : public QMainWindow, public connection{
-    Q_OBJECT
+class subjects : public QMainWindow, public connection {
+	Q_OBJECT
 public:
-    subjects(QWidget *parent = Q_NULLPTR);
-    ~subjects();
-private slots:
-    void on_btnUpdate_clicked();
-    void on_btnDel_clicked();
-    void on_btnRefresh_clicked();
+	subjects(QWidget *parent = Q_NULLPTR);
+	~subjects();
+	private slots:
+	void on_btnUpdate_clicked();
+	void on_btnDel_clicked();
+	void on_btnRefresh_clicked();
 private:
-    Ui::subjects *ui;
-    int id;
-    std::string subjectName;
-    std::string sqlQuery;
-    static int addSubjects(void *qTextAppend, int argc, char **argv, char **azColName);
+	Ui::subjects *ui;
+	int id;
+	std::string subjectName;
+	std::string sqlQuery;
+	static int addSubjects(void *qTextAppend, int argc, char **argv, char **azColName);
 };
-#endif // SUBJECTS_H

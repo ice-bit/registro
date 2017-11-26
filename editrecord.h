@@ -1,8 +1,7 @@
-#ifndef EDITRECORD_H
-#define EDITRECORD_H
+#pragma once
 /*MIT License
 
-Copyright(c) 2016 - 2017 Marco 'icebit' Cetica
+Copyright(c) 2016 - 2018 Marco 'icebit' Cetica
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -26,20 +25,19 @@ SOFTWARE.*/
 #include "db_connection.h"
 
 class editrecord : public QMainWindow, public connection {
-    Q_OBJECT
+	Q_OBJECT
 public:
-    editrecord(QWidget *parent = Q_NULLPTR);
-    ~editrecord();
-private slots:
-    void on_btnUpdateRecord_clicked();
+	editrecord(QWidget *parent = Q_NULLPTR);
+	~editrecord();
+	private slots:
+	void on_btnUpdateRecord_clicked();
 private:
-    Ui::editrecord *ui;
-    void get_all_elements();
-    const char * sqlQuery;
-    double mark;
-    std::string subject;
-    std::string markd;
-    std::string description;
-    int id;
+	Ui::editrecord *ui;
+	void get_all_elements();
+	const char * sqlQuery;
+	double mark;
+	std::string subject;
+	std::string markd;
+	std::string description;
+	int id;
 };
-#endif // EDITRECORD_H

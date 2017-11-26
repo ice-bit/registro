@@ -1,8 +1,7 @@
-#ifndef ADDRECORD_H
-#define ADDRECORD_H
+#pragma once
 /*MIT License
 
-Copyright(c) 2016 - 2017 Marco 'icebit' Cetica
+Copyright(c) 2016 - 2018 Marco 'icebit' Cetica
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -26,23 +25,22 @@ SOFTWARE.*/
 #include "db_connection.h"
 
 class addrecord : public QMainWindow, public connection {
-    Q_OBJECT
+	Q_OBJECT
 public:
-    addrecord(QWidget *parent = Q_NULLPTR);
-    ~addrecord();
-private slots:
-    void on_btnSaveVote_clicked();
-    void on_btnDelRecord_clicked();
+	addrecord(QWidget *parent = Q_NULLPTR);
+	~addrecord();
+	private slots:
+	void on_btnSaveVote_clicked();
+	void on_btnDelRecord_clicked();
 private:
-    Ui::addrecord *ui;
+	Ui::addrecord *ui;
 
-    void get_all_elements(int op); //If operation is equal to 0 then set all the 'add' variables
-                                   //else if operation is equal to 1 set only the 'del' variable.
-    const char * sqlQuery;
-    double mark;
-    std::string subject;
-    std::string markd;
-    std::string description;
-    std::string delid;
+	void get_all_elements(int op); //If operation is equal to 0 then set all the 'add' variables
+								   //else if operation is equal to 1 set only the 'del' variable.
+	const char * sqlQuery;
+	double mark;
+	std::string subject;
+	std::string markd;
+	std::string description;
+	std::string delid;
 };
-#endif // ADDRECORD_H

@@ -1,247 +1,248 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ui version="4.0">
- <class>editrecord</class>
- <widget class="QMainWindow" name="editrecord">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>469</width>
-    <height>487</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>Edit A Record</string>
-  </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>Resources/registro_icon_application.png</normaloff>Resources/registro_icon_application.png</iconset>
-  </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
+  <class>editrecord</class>
+  <widget class="QMainWindow" name="editrecord">
     <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>40</y>
-      <width>81</width>
-      <height>20</height>
-     </rect>
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>469</width>
+        <height>487</height>
+      </rect>
     </property>
-    <property name="font">
-     <font>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
+    <property name="windowTitle">
+      <string>Edit A Record</string>
     </property>
-    <property name="text">
-     <string>New Mark:</string>
+    <property name="windowIcon">
+      <iconset>
+        <normaloff>Resources/registro_icon_application.png</normaloff>Resources/registro_icon_application.png
+      </iconset>
     </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
-      <y>40</y>
-      <width>101</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>New Subject:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>40</y>
-      <width>81</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>New Date:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>150</y>
-      <width>121</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>New Description:</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="cbnNewSubject">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>70</y>
-      <width>131</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDateEdit" name="dtNewDate">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>70</y>
-      <width>110</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="calendarPopup">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lnNewDesc">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>170</y>
-      <width>431</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnUpdateRecord">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>200</y>
-      <width>451</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Edit This vote</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>40</y>
-      <width>21</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>ID:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>270</y>
-      <width>421</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Set the old value if you wont change something</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="spnNewId">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>70</y>
-      <width>42</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="minimum">
-     <number>1</number>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lblDebug">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>410</y>
-      <width>451</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="spnNewVote">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>70</y>
-      <width>71</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="minimum">
-     <double>2.000000000000000</double>
-    </property>
-    <property name="maximum">
-     <double>10.000000000000000</double>
-    </property>
-   </widget>
+    <widget class="QWidget" name="centralwidget">
+      <widget class="QLabel" name="label">
+        <property name="geometry">
+          <rect>
+            <x>70</x>
+            <y>40</y>
+            <width>81</width>
+            <height>20</height>
+          </rect>
+        </property>
+        <property name="font">
+          <font>
+            <weight>75</weight>
+            <bold>true</bold>
+          </font>
+        </property>
+        <property name="text">
+          <string>New Mark:</string>
+        </property>
+      </widget>
+      <widget class="QLabel" name="label_2">
+        <property name="geometry">
+          <rect>
+            <x>190</x>
+            <y>40</y>
+            <width>101</width>
+            <height>16</height>
+          </rect>
+        </property>
+        <property name="font">
+          <font>
+            <weight>75</weight>
+            <bold>true</bold>
+          </font>
+        </property>
+        <property name="text">
+          <string>New Subject:</string>
+        </property>
+      </widget>
+      <widget class="QLabel" name="label_3">
+        <property name="geometry">
+          <rect>
+            <x>330</x>
+            <y>40</y>
+            <width>81</width>
+            <height>20</height>
+          </rect>
+        </property>
+        <property name="font">
+          <font>
+            <weight>75</weight>
+            <bold>true</bold>
+          </font>
+        </property>
+        <property name="text">
+          <string>New Date:</string>
+        </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+        <property name="geometry">
+          <rect>
+            <x>180</x>
+            <y>150</y>
+            <width>121</width>
+            <height>16</height>
+          </rect>
+        </property>
+        <property name="font">
+          <font>
+            <weight>75</weight>
+            <bold>true</bold>
+          </font>
+        </property>
+        <property name="text">
+          <string>New Description:</string>
+        </property>
+      </widget>
+      <widget class="QComboBox" name="cbnNewSubject">
+        <property name="enabled">
+          <bool>true</bool>
+        </property>
+        <property name="geometry">
+          <rect>
+            <x>160</x>
+            <y>70</y>
+            <width>131</width>
+            <height>22</height>
+          </rect>
+        </property>
+      </widget>
+      <widget class="QDateEdit" name="dtNewDate">
+        <property name="enabled">
+          <bool>true</bool>
+        </property>
+        <property name="geometry">
+          <rect>
+            <x>330</x>
+            <y>70</y>
+            <width>110</width>
+            <height>22</height>
+          </rect>
+        </property>
+        <property name="calendarPopup">
+          <bool>true</bool>
+        </property>
+      </widget>
+      <widget class="QLineEdit" name="lnNewDesc">
+        <property name="enabled">
+          <bool>true</bool>
+        </property>
+        <property name="geometry">
+          <rect>
+            <x>20</x>
+            <y>170</y>
+            <width>431</width>
+            <height>20</height>
+          </rect>
+        </property>
+      </widget>
+      <widget class="QPushButton" name="btnUpdateRecord">
+        <property name="geometry">
+          <rect>
+            <x>10</x>
+            <y>200</y>
+            <width>451</width>
+            <height>23</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string>Edit This vote</string>
+        </property>
+      </widget>
+      <widget class="QLabel" name="label_5">
+        <property name="geometry">
+          <rect>
+            <x>20</x>
+            <y>40</y>
+            <width>21</width>
+            <height>16</height>
+          </rect>
+        </property>
+        <property name="font">
+          <font>
+            <weight>75</weight>
+            <bold>true</bold>
+          </font>
+        </property>
+        <property name="text">
+          <string>ID:</string>
+        </property>
+      </widget>
+      <widget class="QLabel" name="label_6">
+        <property name="geometry">
+          <rect>
+            <x>30</x>
+            <y>270</y>
+            <width>421</width>
+            <height>16</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string>Set the old value if you wont change something</string>
+        </property>
+        <property name="alignment">
+          <set>Qt::AlignCenter</set>
+        </property>
+      </widget>
+      <widget class="QSpinBox" name="spnNewId">
+        <property name="geometry">
+          <rect>
+            <x>10</x>
+            <y>70</y>
+            <width>42</width>
+            <height>22</height>
+          </rect>
+        </property>
+        <property name="minimum">
+          <number>1</number>
+        </property>
+      </widget>
+      <widget class="QLabel" name="lblDebug">
+        <property name="geometry">
+          <rect>
+            <x>10</x>
+            <y>410</y>
+            <width>451</width>
+            <height>20</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string/>
+        </property>
+        <property name="alignment">
+          <set>Qt::AlignCenter</set>
+        </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="spnNewVote">
+        <property name="geometry">
+          <rect>
+            <x>70</x>
+            <y>70</y>
+            <width>71</width>
+            <height>29</height>
+          </rect>
+        </property>
+        <property name="minimum">
+          <double>2.000000000000000</double>
+        </property>
+        <property name="maximum">
+          <double>10.000000000000000</double>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QMenuBar" name="menubar">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>469</width>
+          <height>25</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QStatusBar" name="statusbar"/>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>469</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
- </widget>
- <resources/>
- <connections/>
+  <resources/>
+  <connections/>
 </ui>
