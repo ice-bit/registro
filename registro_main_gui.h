@@ -44,17 +44,19 @@ public:
 	void on_btnLoadElements_clicked();
 	void on_btnSearchElements_clicked();
 	void on_btnLoadBadElements_clicked();
+	void on_btnDeleteRecord_clicked();
 private:
 	Ui::registro_main_guiClass *ui;
 	adddb *addDB;
 	addrecord *addRC;
 	editrecord *editRC;
 	about *aboutWin;
-	const char * sqlQuery = "SELECT * FROM REGISTRO";
+	std::string sqlQuery = "SELECT ID, MARK, SUBJECT, DAY, DESCRIPTION FROM REGISTRO";
+	std::string delid;
 	std::string searchType; //Get type from QComboBox
 	std::string sqlQuerySearch; //needed for searchElement function
 	std::string search;//
-	static int addLoadResult(void *qTextAppend, int argc, char **argv, char **azColName);
-	static int addBadResult(void *qTextAppend, int argc, char **argv, char **azColName);
-	void setHeader(int type);
+	static int row;
+	static int dynamic_rows;
+	static int addLoadResult(void *qTableAppend, int argc, char **argv, char **azColName);
 };

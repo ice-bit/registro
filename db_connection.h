@@ -1,9 +1,9 @@
 #pragma once
 #define OS 2 //1 : UNIX; 2 : Windows
-#define BUILD_INFO "Build with QT5 and Sqlite3"
-#define PLATFORM " - Windows"
-#define AUTHOR " - © 2016-2018 Marco Cetica"
-#define VERSION " - 1.1"
+#define BUILD_INFO " Built with QT5 and sqlite3"
+#define PLATFORM " Windows"
+#define AUTHOR " © 2016-2018 Marco Cetica"
+#define VERSION " 1.2"
 /*MIT License
 
 Copyright(c) 2016 - 2018 Marco 'icebit' Cetica

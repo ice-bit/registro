@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>731</width>
-    <height>461</height>
+    <width>717</width>
+    <height>470</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Registro - v1.1</string>
+   <string>Registro - v1.2</string>
   </property>
   <property name="windowIcon">
    <iconset resource="Resource.qrc">
@@ -21,30 +21,6 @@
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="2" column="0">
-       <widget class="QGroupBox" name="dbBox">
-        <property name="title">
-         <string/>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QTextEdit" name="txtShow">
-           <property name="styleSheet">
-            <string notr="true">#txtShow {
-	background-color: transparent;
-	border: none;
-	padding: 0;
-	margin: 0;
-}</string>
-           </property>
-           <property name="readOnly">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
       <item row="1" column="0">
        <widget class="QGroupBox" name="createBox">
         <property name="title">
@@ -98,7 +74,7 @@
             <string notr="true">#btnLoadElements {
 	background-color: transparent;
 	border: none;
-	background: none;
+    background: none;
 }
 #btnLoadElements:pressed {
 	background-color: #b3e6ff;
@@ -148,6 +124,13 @@
           </spacer>
          </item>
          <item>
+          <widget class="QLabel" name="lblElements">
+           <property name="text">
+            <string>Numbers Of Elements:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="horizontalSpacer">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -186,12 +169,12 @@
          <item>
           <widget class="QPushButton" name="btnSearchElements">
            <property name="styleSheet">
-            <string notr="true">#btnSearchElement {
+            <string notr="true">#btnSearchElements {
 	background-color: transparent;
 	border: none;
 	background: none;
 }
-#btnSearchElement:pressed {
+#btnSearchElements:pressed {
 	background-color: #b3e6ff;
 }</string>
            </property>
@@ -207,6 +190,28 @@
         </layout>
        </widget>
       </item>
+      <item row="2" column="0">
+       <widget class="QGroupBox" name="dbBox">
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QTableWidget" name="tbResult"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnDeleteRecord">
+           <property name="text">
+            <string>Delete</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spnDelID"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
      </layout>
     </item>
    </layout>
@@ -216,7 +221,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>731</width>
+     <width>717</width>
      <height>21</height>
     </rect>
    </property>

@@ -2,7 +2,7 @@
 
 editrecord::editrecord(QWidget *parent) : QMainWindow(parent), ui(new Ui::editrecord) {
 	ui->setupUi(this);
-	setFixedSize(469, 487);
+	setFixedSize(573, 303);
 	//Set Current Date
 	ui->dtNewDate->setDate(QDate::currentDate());
 	//Load subjects
@@ -21,6 +21,9 @@ editrecord::editrecord(QWidget *parent) : QMainWindow(parent), ui(new Ui::editre
 	}
 	sqlite3_free(ErrMsg);
 	sqlite3_close(db);
+	//Free all QObject and other stuff
+	//Need to decrease memory when closing the window
+	setAttribute(Qt::WA_DeleteOnClose);
 }
 void editrecord::get_all_elements() {
 	this->id = ui->spnNewId->value();
@@ -40,7 +43,7 @@ void editrecord::on_btnUpdateRecord_clicked() {
 		QMessageBox errMsg;
 		errMsg.critical(0, "Error", "Failed to open the database");
 	}
-	rc = sqlite3_prepare_v2(db, sqlQuery, -1, &res, 0);
+	rc = sqlite3_prepare_v2(db, sqlQuery.c_str(), -1, &res, 0);
 	if (rc == SQLITE_OK) {
 		sqlite3_bind_double(res, 1, this->mark);
 		sqlite3_bind_text(res, 2, this->subject.c_str(), this->subject.length(), SQLITE_TRANSIENT);

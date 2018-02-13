@@ -34,7 +34,7 @@ public:
 private:
 	Ui::editrecord *ui;
 	void get_all_elements();
-	const char * sqlQuery;
+	std::string sqlQuery;
 	double mark;
 	std::string subject;
 	std::string markd;

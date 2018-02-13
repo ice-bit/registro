@@ -31,13 +31,12 @@ public:
 	~addrecord();
 	private slots:
 	void on_btnSaveVote_clicked();
-	void on_btnDelRecord_clicked();
 private:
 	Ui::addrecord *ui;
 
-	void get_all_elements(int op); //If operation is equal to 0 then set all the 'add' variables
+	void get_all_elements(); //If operation is equal to 0 then set all the 'add' variables
 								   //else if operation is equal to 1 set only the 'del' variable.
-	const char * sqlQuery;
+	std::string sqlQuery;
 	double mark;
 	std::string subject;
 	std::string markd;

@@ -38,4 +38,5 @@ private:
 	Ui::adddb *ui;
 	subjects *sub;
 	std::string subject;
+	QMessageBox errMsg;
 };

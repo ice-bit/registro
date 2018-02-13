@@ -1,5 +1,13 @@
 #include "subjects.h"
 
+subjects::subjects(QWidget *parent) : QMainWindow(parent), ui(new Ui::subjects) {
+	ui->setupUi(this);
+	setFixedSize(526, 454);
+	ui->txtSub->clear();
+	//Free all QObject and other stuff
+	//Need to decrease memory when closing the window
+	setAttribute(Qt::WA_DeleteOnClose);
+}
 int subjects::addSubjects(void *qTextAppend, int argc, char **argv, char **azColName) {
 	QTextEdit* qText = (QTextEdit*)qTextAppend;
 	for (int i = 0; i < argc; i++) {
@@ -12,29 +20,6 @@ int subjects::addSubjects(void *qTextAppend, int argc, char **argv, char **azCol
 	}
 	qText->insertPlainText("\n");
 	return 0;
-}
-subjects::subjects(QWidget *parent) : QMainWindow(parent), ui(new Ui::subjects) {
-	ui->setupUi(this);
-	setFixedSize(827, 440);
-	//Load subjects
-	ui->txtSub->clear();
-	std::string sqlQuery = "SELECT * FROM SUBJECTS;";
-	std::string adPath = define_path();
-	std::string rootDir = adPath + "/registro.db";
-
-	rc = sqlite3_open(rootDir.c_str(), &db);
-	if (rc != SQLITE_OK) {
-		QMessageBox errMsg;
-		errMsg.critical(0, "Error", "Failed to open the database!");
-	}
-	rc = sqlite3_exec(db, sqlQuery.c_str(), addSubjects, ui->txtSub, &ErrMsg);
-	/*if(rc != SQLITE_OK) {
-	QMessageBox errMsg;
-	errMsg.critical(0, "Error", "Failed to execute your query!");
-	Do nothing beacuse SUBJECTS table could be empty
-	}*/
-	sqlite3_free(ErrMsg);
-	sqlite3_close(db);
 }
 void subjects::on_btnUpdate_clicked() {
 	this->id = ui->spnIdUp->value();
@@ -86,21 +71,24 @@ void subjects::on_btnDel_clicked() {
 	sqlite3_close(db);
 }
 void subjects::on_btnRefresh_clicked() {
-	ui->txtSub->clear();
 	std::string sqlQuery = "SELECT * FROM SUBJECTS;";
 	std::string adPath = define_path();
 	std::string rootDir = adPath + "/registro.db";
+	QFont lblFont("MS Shell Dlg 2", 10, QFont::Bold);//Define a standard Font for labels
 
+	ui->lblSubject->setFont(lblFont);//set the previous font to subjectLabel
+	ui->lblSubject->setText("Lists OF Subjects");
 	rc = sqlite3_open(rootDir.c_str(), &db);
 	if (rc != SQLITE_OK) {
 		QMessageBox errMsg;
 		errMsg.critical(0, "Error", "Failed to open the database!");
 	}
 	rc = sqlite3_exec(db, sqlQuery.c_str(), addSubjects, ui->txtSub, &ErrMsg);
-	if (rc != SQLITE_OK) {
-		QMessageBox errMsg;
-		errMsg.critical(0, "Error", "Failed to execute your query!");
-	}
+	/*if(rc != SQLITE_OK) {
+	QMessageBox errMsg;
+	errMsg.critical(0, "Error", "Failed to execute your query!");
+	Do nothing beacuse SUBJECTS table could be empty
+	}*/
 	sqlite3_free(ErrMsg);
 	sqlite3_close(db);
 }
