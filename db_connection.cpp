@@ -11,11 +11,11 @@ int connection::appendSub(void *qCbnAppend, int argc, char **argv, char **azColN
 std::string connection::define_path() {
 	std::string path;
 	if (OS == 1) {
-		path = getenv("HOME");
-		//path += "/.registro.db";
+        path = getenv("HOME");
+        //path += "registro.db";
 	}
 	else if (OS == 2) {
-		path = getenv("APPDATA");
+        path = getenv("APPDATA");
 		path += "/Registro";
 	}
 	else {
@@ -26,7 +26,7 @@ std::string connection::define_path() {
 
 int connection::init_db() {
 	std::string adPath = define_path();
-	std::string rootDir = adPath + "/registro.db";
+    std::string rootDir = adPath + "/registro.db";
 	rc = sqlite3_open(rootDir.c_str(), &db);
 	if (rc != SQLITE_OK) {
 		std::cerr << "Can't open the database" << std::endl;  // Error Messages handled by other class

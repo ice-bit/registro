@@ -8,9 +8,9 @@ about::about(QWidget *parent) : QMainWindow(parent), ui(new Ui::aboutWindow) {
 	old_value = ui->lblPr->text().toLocal8Bit().constData();//get the standard value from labels
 	ui->lblPr->setText(old_value + QString::fromStdString(BUILD_INFO));
 	old_value = ui->lblOs->text().toLocal8Bit().constData();
-	ui->lblOs->setText(old_value + QString::fromStdString(PLATFORM));
+    ui->lblOs->setText(old_value + QString::fromStdString(PLATFORM));
 	old_value = ui->lblAuthor->text().toLocal8Bit().constData();
-	ui->lblAuthor->setText(old_value + QString::fromLatin1(AUTHOR));
+    ui->lblAuthor->setText(old_value + QString::fromStdString(AUTHOR));
 	old_value = ui->lblVersion->text().toLocal8Bit().constData();
 	ui->lblVersion->setText(old_value + QString::fromStdString(VERSION));
 	//Free all QObject and other stuff

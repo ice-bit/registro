@@ -14,8 +14,8 @@
    <string>Registro - v1.2</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Resource.qrc">
-    <normaloff>:/resources/Resources/registro_icon_application.png</normaloff>:/resources/Resources/registro_icon_application.png</iconset>
+   <iconset resource="resources.qrc">
+    <normaloff>:/Resources/registro_icon_application.png</normaloff>:/Resources/registro_icon_application.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -43,8 +43,8 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="Resource.qrc">
-             <normaloff>:/resources/Resources/add.png</normaloff>:/resources/Resources/add.png</iconset>
+            <iconset resource="resources.qrc">
+             <normaloff>:/Resources/add.png</normaloff>:/Resources/add.png</iconset>
            </property>
           </widget>
          </item>
@@ -63,8 +63,8 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="Resource.qrc">
-             <normaloff>:/resources/Resources/edit.png</normaloff>:/resources/Resources/edit.png</iconset>
+            <iconset resource="resources.qrc">
+             <normaloff>:/Resources/edit.png</normaloff>:/Resources/edit.png</iconset>
            </property>
           </widget>
          </item>
@@ -84,8 +84,8 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="Resource.qrc">
-             <normaloff>:/resources/Resources/load.png</normaloff>:/resources/Resources/load.png</iconset>
+            <iconset resource="resources.qrc">
+             <normaloff>:/Resources/load.png</normaloff>:/Resources/load.png</iconset>
            </property>
           </widget>
          </item>
@@ -105,8 +105,8 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="Resource.qrc">
-             <normaloff>:/resources/Resources/less_than_five.png</normaloff>:/resources/Resources/less_than_five.png</iconset>
+            <iconset resource="resources.qrc">
+             <normaloff>:/Resources/less_than_five.png</normaloff>:/Resources/less_than_five.png</iconset>
            </property>
           </widget>
          </item>
@@ -182,8 +182,8 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="Resource.qrc">
-             <normaloff>:/resources/Resources/search.png</normaloff>:/resources/Resources/search.png</iconset>
+            <iconset resource="resources.qrc">
+             <normaloff>:/Resources/search.png</normaloff>:/Resources/search.png</iconset>
            </property>
           </widget>
          </item>
@@ -222,7 +222,7 @@
      <x>0</x>
      <y>0</y>
      <width>717</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -268,7 +268,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="Resource.qrc"/>
+  <include location="resources.qrc"/>
  </resources>
  <connections/>
 </ui>
