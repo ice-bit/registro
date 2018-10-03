@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>754</width>
+    <height>491</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -166,7 +166,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>754</width>
      <height>30</height>
     </rect>
    </property>
@@ -174,7 +174,7 @@
     <property name="title">
      <string>Fi&amp;le</string>
     </property>
-    <addaction name="actionCreate_Database"/>
+    <addaction name="actionCreateDB"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menu">
@@ -187,7 +187,7 @@
    <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionCreate_Database">
+  <action name="actionCreateDB">
    <property name="text">
     <string>Create Database</string>
    </property>

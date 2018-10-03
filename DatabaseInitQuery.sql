@@ -1,6 +1,5 @@
 CREATE TABLE teacher (
 	ID INT NOT NULL AUTO_INCREMENT,
-    TName VARCHAR(10) NOT NULL,
     TSurname VARCHAR(23) NOT NULL,
     PRIMARY KEY(ID)
 );
@@ -24,3 +23,5 @@ CREATE TABLE mark (
 );
 
 
+SET @var = (SELECT ID FROM teacher WHERE TSurname = "Rossi" LIMIT 1);
+INSERT INTO subject (SubName,CodTeacher) VALUES ("Computer Science", @var);

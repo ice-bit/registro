@@ -12,6 +12,6 @@ set(CMAKE_AUTOUIC ON)
 find_package(Qt5Widgets)
 find_package(Qt5Core)
 
-add_executable(Registro main.cpp registro.h registro.cpp)
+add_executable(Registro main.cpp registro.h registro.cpp createDB.h createDB.cpp)
 target_link_libraries(Registro Qt5::Widgets Qt5::Core)
 
