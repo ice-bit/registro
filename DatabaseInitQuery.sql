@@ -22,6 +22,30 @@ CREATE TABLE mark (
     PRIMARY KEY(ID)
 );
 
+" insert a new subject"
 
 SET @var = (SELECT ID FROM teacher WHERE TSurname = "Rossi" LIMIT 1);
 INSERT INTO subject (SubName,CodTeacher) VALUES ("Computer Science", @var);
+
+" SQLite version of above "
+
+CREATE TABLE IF NOT EXISTS teacher (
+    ID INTEGER PRIMARY KEY,
+    TSurname TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS subject (
+    ID INTEGER PRIMARY KEY,
+    SubName TEXT NOT NULL,
+    CodTeacher INTEGER NOT NULL,
+    FOREIGN KEY (CodTeacher) REFERENCES teacher(ID)
+);
+
+CREATE TABLE IF NOT EXISTS mark (
+    ID INTEGER PRIMARY KEY,
+    Mark FLOAT NOT NULL,
+    MarkDate DATE NOT NULL,
+    Description TEXT NOT NULL,
+    CodSub INTEGER NOT NULL,
+    FOREIGN KEY (CodSub) REFERENCES subject(ID)
+);

@@ -2,6 +2,10 @@
 #define CREATEDB_H 
 
 #include <QtWidgets/QMainWindow>
+#include <QSqlDatabase>
+#include <QMessageBox>
+#include <QSqlQuery>
+#include <QDebug>
 #include "ui_createDB.h"
 
 class createDB : public QMainWindow {
@@ -9,6 +13,10 @@ class createDB : public QMainWindow {
 
 private:
     Ui::createDBClass *ui;
+    QString teacher, subject;
+
+private slots:
+    void on_btnAddSubject_clicked();
 
 public:
     createDB(QWidget *parent = Q_NULLPTR);
