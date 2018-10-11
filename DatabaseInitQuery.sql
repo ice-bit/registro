@@ -49,3 +49,12 @@ CREATE TABLE IF NOT EXISTS mark (
     CodSub INTEGER NOT NULL,
     FOREIGN KEY (CodSub) REFERENCES subject(ID)
 );
+
+" SQLite Select with INNER JOIN "
+
+SELECT m.Mark, s.SubName, m.MarkDate, m.Description, t.TSurname 
+FROM mark as m 
+INNER JOIN subject as s 
+ON m.CodSub = s.ID 
+INNER JOIN teacher as t 
+ON s.CodTeacher = t.ID;

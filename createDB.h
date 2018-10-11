@@ -5,7 +5,7 @@
 #include <QSqlDatabase>
 #include <QMessageBox>
 #include <QSqlQuery>
-#include <QDebug>
+#include <QTimer>
 #include "ui_createDB.h"
 
 class createDB : public QMainWindow {

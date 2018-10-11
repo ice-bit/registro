@@ -4,6 +4,9 @@
 createDB::createDB(QWidget *parent) : QMainWindow(parent), ui(new Ui::createDBClass) {
     ui->setupUi(this);
     setFixedSize(639, 189);
+
+    // Free QObjects(needed to avoid memory leaks)
+    setAttribute(Qt::WA_DeleteOnClose);
 }
 
 void createDB::on_btnAddSubject_clicked() {
@@ -17,7 +20,7 @@ void createDB::on_btnAddSubject_clicked() {
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
-    return;
+        return;
     }
 
     // Our Query
@@ -65,7 +68,7 @@ void createDB::on_btnAddSubject_clicked() {
     // We need to retrive the ID of the teacher
     int id;
     if(query.first())
-        id = query.value(0).toInt(); // value argument means the 2nd column of teacher table
+        id = query.value(0).toInt(); // store the result of the query into id variable
     else
         ui->lblQueryStatus->setText("Error while executing this query!");
 
@@ -76,8 +79,12 @@ void createDB::on_btnAddSubject_clicked() {
     // Then insert the subject
     if(!query.exec())
         ui->lblQueryStatus->setText("Error while executing this query!");
-    else
+    else { 
+        // else print a status message for 1.5 seconds.
         ui->lblQueryStatus->setText("Subject added successfully!");
+        QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
+    }
+    
 }
 
 createDB::~createDB() { delete ui; }

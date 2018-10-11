@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Registro v1.3Beta</string>
+   <string>Registro v1.Alpha</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -89,7 +89,7 @@
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <widget class="QTableWidget" name="tableWidget"/>
+          <widget class="QTableView" name="tbMain"/>
          </item>
          <item>
           <widget class="QGroupBox" name="actionBox">
@@ -109,6 +109,13 @@
                </size>
               </property>
              </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnLoadElements">
+              <property name="text">
+               <string>Load</string>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QPushButton" name="pushButton">
@@ -189,17 +196,17 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionCreateDB">
    <property name="text">
-    <string>Create Database</string>
+    <string>&amp;Create Database</string>
    </property>
   </action>
   <action name="actionExit">
    <property name="text">
-    <string>Exit</string>
+    <string>&amp;Exit</string>
    </property>
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>About</string>
+    <string>&amp;About</string>
    </property>
   </action>
  </widget>
