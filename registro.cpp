@@ -43,6 +43,9 @@ void regMain::on_btnLoadElements_clicked() {
     model->setHeaderData(2, Qt::Horizontal, tr("Date"));
     model->setHeaderData(3, Qt::Horizontal, tr("Description"));
     model->setHeaderData(4, Qt::Horizontal, tr("Teacher Name"));
+
+    // Close the connection to the database
+    db.close();
 }
 
 regMain::~regMain() { delete ui; }
