@@ -2,6 +2,9 @@
 
 regMain::regMain(QWidget *parent) : QMainWindow(parent), ui(new Ui::regMainClass) {
     ui->setupUi(this);
+
+    // Set columns auto resize
+    ui->tbMain->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void regMain::on_actionCreateDB_triggered() {
