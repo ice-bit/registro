@@ -25,11 +25,11 @@ void createDB::on_actionRefresh_triggered() {
     QSqlQuery *query = new QSqlQuery(db);
 
     // Append teachers to the combobox
-    query->exec("SELECT TSurname || ' ' || TName FROM teacher;");
+    query->exec("SELECT TSurname FROM teacher;");
 
     // Error Handling
     if(!query->isActive())
-        ui->lblQueryStatus->setText("Error while executing this query!");
+        ui->lblQueryStatus->setText("Can't load teacher list, try to add a new record first!");
     
     model->setQuery(*query);
     ui->cbnTeacher->setModel(model);
@@ -133,13 +133,24 @@ void createDB::on_btnAddSubject_clicked() {
     if(!query.isActive())
         ui->lblQueryStatus->setText("Error while executing this query!");
 
-    // TODO: retrive the ID with a SELECT query with LIKE Operator
-
+    // Retrive the ID of the teacher choosed by the user
+    query.prepare("SELECT ID FROM teacher WHERE TSurname = :surname LIMIT 1;");
+    query.bindValue(":surname", this->teacherSurname);
     
-   /* // Retrive the ID of the teacher choosed by the user
-    query.prepare("SELECT ID FROM teacher WHERE TSurname = :surname LIMIT 1")
+    if(!query.exec())
+        ui->lblQueryStatus->setText("Error while executing this query!");
 
-    );
+    // Store the result of the query(the Teacher's ID) into a local variable
+    int id;
+    if(query.first())
+        id = query.value(0).toInt();
+    else
+        ui->lblQueryStatus->setText("Error while executing this query!");
+
+    query.prepare("INSERT INTO subject (SubName,CodTeacher) VALUES("
+                  ":subname, :codTeacher);");
+    query.bindValue(":subname", this->subject);
+    query.bindValue(":codTeacher", id);
 
     // Then insert the subject
     if(!query.exec())
@@ -151,7 +162,7 @@ void createDB::on_btnAddSubject_clicked() {
     }
 
     // Close the connection to the database
-    db.close();*/
+    db.close();
 }
 
 createDB::~createDB() { delete ui; }
