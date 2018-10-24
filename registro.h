@@ -4,6 +4,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QSqlDatabase>
 #include <QSqlQueryModel>
+#include <QSqlRelationalTableModel>
 #include <QDebug>
 #include "ui_registro.h"
 #include "createDB.h"
@@ -15,7 +16,6 @@ class regMain : public QMainWindow {
 private:
     Ui::regMainClass *ui;
     createDB *createDBWin;
-
 
 public:
     regMain(QWidget *parent = Q_NULLPTR);
