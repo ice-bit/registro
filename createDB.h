@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QSqlQuery>
 #include <QTimer>
+#include "delTS.h"
 #include "ui_createDB.h"
 
 class createDB : public QMainWindow {
@@ -14,6 +15,7 @@ class createDB : public QMainWindow {
 
 private:
     Ui::createDBClass *ui;
+    delTS *delTSWin;
     QString teacherName, teacherSurname, subject;
 
 private slots:
@@ -22,6 +24,7 @@ private slots:
 
 public slots:
     void on_actionRefresh_triggered();
+    void on_actionDelete_triggered();
 
 public:
     createDB(QWidget *parent = Q_NULLPTR);

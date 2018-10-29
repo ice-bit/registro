@@ -49,6 +49,9 @@ void regMain::on_btnLoadElements_clicked() {
 
     // Close the connection to the database
     db.close();
+
+    // Delete heap objects
+    delete query;
 }
 
 regMain::~regMain() { delete ui; }

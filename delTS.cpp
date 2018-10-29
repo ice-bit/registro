@@ -1,0 +1,142 @@
+#include "delTS.h"
+
+delTS::delTS(QWidget *parent) : QMainWindow(parent), ui(new Ui::delTSClass) {
+    ui->setupUi(this);
+    setFixedSize(530, 512);
+
+    // Free QObjects(needed to avoid memory leaks)
+    setAttribute(Qt::WA_DeleteOnClose);
+}
+
+void delTS::on_btnDeleteSub_clicked() {
+    // Get the user input
+    this->subid = ui->spnSub->value();
+
+    // Load the SQLite driver
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("debug.db");
+    if(!db.open()) {
+        QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
+            QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
+        return;
+    }
+
+    // Our query
+    QSqlQuery query;
+
+    // Delete the subject
+    query.prepare("DELETE FROM subject WHERE ID = :id;");
+    query.bindValue(":id", this->subid);
+
+    if(!query.exec())
+        ui->lblQueryStatus->setText("Error while deleting the subject!");
+    else {
+        // else print a status message for 1.5 seconds.
+        ui->lblQueryStatus->setText("Subject deleted successfully!");
+        QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
+    }
+
+    // Close the connection to the database
+    db.close();
+}
+
+void delTS::on_btnDeleteTeach_clicked() {
+        // Get the user input
+    this->teachid = ui->spnTeach->value();
+
+    // Load the SQLite driver
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("debug.db");
+    if(!db.open()) {
+        QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
+            QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
+        return;
+    }
+
+    // Our query
+    QSqlQuery query;
+
+    // Delete the subject
+    query.prepare("DELETE FROM teacher WHERE ID = :id;");
+    query.bindValue(":id", this->teachid);
+
+    if(!query.exec())
+        ui->lblQueryStatus->setText("Error while deleting the teacher!");
+    else {
+        // else print a status message for 1.5 seconds.
+        ui->lblQueryStatus->setText("Teacher deleted successfully!");
+        QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
+    }
+
+    // Close the connection to the database
+    db.close();
+}
+void delTS::on_actionRefresh_triggered() {
+    // Load the SQLite driver
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("debug.db");
+    if(!db.open()) {
+        QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
+            QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
+        return;
+    }
+
+    // Create a query model to store query result set.
+    QSqlQueryModel *mainmodel = new QSqlQueryModel();
+    QSqlQueryModel *submodel = new QSqlQueryModel();
+    // Our Query
+    QSqlQuery *mainquery = new QSqlQuery(db);
+    QSqlQuery *subquery = new QSqlQuery(db);
+    // Execute the query
+    mainquery->exec("SELECT ID, SubName FROM subject;");
+
+    // Error Handling
+    if(!mainquery->isActive())
+        ui->lblQueryStatus->setText("Can't load subject list!");
+
+    // Put the result of the query into our model
+    mainmodel->setQuery(*mainquery);
+
+    // Display our model into the QTableView.
+    ui->tbSubjects->setModel(mainmodel);
+
+    // Configure column's labels with appropriate names
+    mainmodel->setHeaderData(0, Qt::Horizontal, tr("ID"));
+    mainmodel->setHeaderData(1, Qt::Horizontal, tr("Subject"));
+
+    // Now do the same thing with the other table(Teachers)
+
+    // Load teachers into Qtable
+    subquery->exec("SELECT ID, TSurname FROM teacher;");
+
+    // Error Handling
+    if(!subquery->isActive())
+        ui->lblQueryStatus->setText("Can't load subject list!");
+
+    // Put the result of the query into our model
+    submodel->setQuery(*subquery);
+
+    // Display our model into the QTableView.
+    ui->tbTeachers->setModel(submodel);
+
+    // Configure column's labels with appropriate names
+    submodel->setHeaderData(0, Qt::Horizontal, tr("ID"));
+    submodel->setHeaderData(1, Qt::Horizontal, tr("Teacher"));
+
+    // Close the connection to the database
+    db.close();
+
+    // Adjust the column width
+    ui->tbSubjects->setColumnWidth(1, 150);
+    ui->tbTeachers->setColumnWidth(1, 150);
+
+    // Remove row index
+    ui->tbSubjects->verticalHeader()->setVisible(false);
+    ui->tbTeachers->verticalHeader()->setVisible(false);
+
+    // Delete heap objects
+    delete mainquery;
+    delete subquery;
+}
+
+delTS::~delTS() { delete ui; }

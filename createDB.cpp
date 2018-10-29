@@ -36,6 +36,12 @@ void createDB::on_actionRefresh_triggered() {
 }
 
 void createDB::on_btnAddTeacher_clicked() {
+    // First check if the user input is empty
+    if(ui->lnTeacherName->text().isEmpty() || ui->lnTeacherSurname->text().isEmpty()) {
+        ui->lblQueryStatus->setText("Please fill the input boxes!");
+        return;
+    }
+
     // Fetch the user input
     this->teacherName = ui->lnTeacherName->text();
     this->teacherSurname = ui->lnTeacherSurname->text();
@@ -94,6 +100,12 @@ void createDB::on_btnAddTeacher_clicked() {
 }
 
 void createDB::on_btnAddSubject_clicked() {
+    // First check if the user input is empty
+    if(ui->lnSubject->text().isEmpty() || ui->cbnTeacher->currentText().isEmpty()) {
+        ui->lblQueryStatus->setText("Please fill the input boxes!");
+        return;
+    }
+
     // Fetch the user input
     this->subject = ui->lnSubject->text();
     this->teacherSurname = ui->cbnTeacher->currentText();
@@ -141,7 +153,7 @@ void createDB::on_btnAddSubject_clicked() {
         ui->lblQueryStatus->setText("Error while executing this query!");
 
     // Store the result of the query(the Teacher's ID) into a local variable
-    int id;
+    unsigned int id;
     if(query.first())
         id = query.value(0).toInt();
     else
@@ -163,6 +175,11 @@ void createDB::on_btnAddSubject_clicked() {
 
     // Close the connection to the database
     db.close();
+}
+
+void createDB::on_actionDelete_triggered() {
+    delTSWin = new delTS();
+    delTSWin->show();
 }
 
 createDB::~createDB() { delete ui; }

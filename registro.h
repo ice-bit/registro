@@ -6,8 +6,8 @@
 #include <QSqlQueryModel>
 #include <QSqlRelationalTableModel>
 #include <QDebug>
-#include "ui_registro.h"
 #include "createDB.h"
+#include "ui_registro.h"
 
 class regMain : public QMainWindow {
     
