@@ -168,6 +168,7 @@
     <property name="title">
      <string>E&amp;dit</string>
     </property>
+    <addaction name="actionUpdate"/>
     <addaction name="actionDelete"/>
    </widget>
    <addaction name="menuFile"/>
@@ -179,14 +180,19 @@
     <string>&amp;Refresh</string>
    </property>
   </action>
-  <action name="actionDelete">
+  <action name="actionUpdate">
    <property name="text">
-    <string>Delete</string>
+    <string>Edit Subjects</string>
    </property>
   </action>
   <action name="actionDeleteSubject">
    <property name="text">
     <string>Delete a subject</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="text">
+    <string>Delete Subjects</string>
    </property>
   </action>
  </widget>

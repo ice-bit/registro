@@ -177,6 +177,11 @@ void createDB::on_btnAddSubject_clicked() {
     db.close();
 }
 
+void createDB::on_actionUpdate_triggered() {
+    upTSWin = new upTS();
+    upTSWin->show();
+}
+
 void createDB::on_actionDelete_triggered() {
     delTSWin = new delTS();
     delTSWin->show();

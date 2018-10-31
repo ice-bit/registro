@@ -13,5 +13,5 @@ find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Sql REQUIRED)
 
-add_executable(Registro main.cpp registro.h registro.cpp createDB.h createDB.cpp delTS.h delTS.cpp)
+add_executable(Registro main.cpp registro.h registro.cpp createDB.h createDB.cpp delTS.h delTS.cpp upTS.h upTS.cpp)
 target_link_libraries(Registro Qt5::Widgets Qt5::Core Qt5::Sql)

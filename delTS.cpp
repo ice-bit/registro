@@ -2,7 +2,7 @@
 
 delTS::delTS(QWidget *parent) : QMainWindow(parent), ui(new Ui::delTSClass) {
     ui->setupUi(this);
-    setFixedSize(530, 512);
+    setFixedSize(472, 512);
 
     // Free QObjects(needed to avoid memory leaks)
     setAttribute(Qt::WA_DeleteOnClose);
