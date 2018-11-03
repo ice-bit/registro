@@ -7,15 +7,16 @@
 #include <QSqlRelationalTableModel>
 #include <QDebug>
 #include "createDB.h"
+#include "addMK.h"
 #include "ui_registro.h"
 
 class regMain : public QMainWindow {
-    
     Q_OBJECT
 
 private:
     Ui::regMainClass *ui;
     createDB *createDBWin;
+    addMK *addMKWin;
 
 public:
     regMain(QWidget *parent = Q_NULLPTR);
@@ -26,6 +27,7 @@ public slots:
 
 private slots:
     void on_btnLoadElements_clicked();
+    void on_btnAddElements_clicked();
 };
 
 #endif

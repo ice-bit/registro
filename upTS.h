@@ -7,7 +7,6 @@
 #include <QMessageBox>
 #include <QSqlQuery>
 #include <QTimer>
-#include <QDebug>
 #include "ui_upTS.h"
 
 class upTS : public QMainWindow {

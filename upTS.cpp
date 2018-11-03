@@ -169,7 +169,7 @@ void upTS::on_btnSubUpdate_clicked() {
 }
 
 void upTS::on_btnTeacherUpdate_clicked() {
-    // Check if user input are empty
+    // Check if user inputs are empty
     if(ui->lnTeachName->text().isEmpty() && ui->lnTeachSurname->text().isEmpty()) {
         ui->lblQueryStatus->setText("Plase fill at least one input box");
         return;

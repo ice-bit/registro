@@ -54,5 +54,10 @@ void regMain::on_btnLoadElements_clicked() {
     delete query;
 }
 
+void regMain::on_btnAddElements_clicked() {
+    addMKWin = new addMK();
+    addMKWin->show();
+}
+
 regMain::~regMain() { delete ui; }
 
