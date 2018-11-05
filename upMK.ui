@@ -1,95 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>addMKClass</class>
- <widget class="QMainWindow" name="addMKClass">
+ <class>upMKClass</class>
+ <widget class="QMainWindow" name="upMKClass">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>681</width>
+    <width>741</width>
     <height>155</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Add a Mark</string>
+   <string>Update a Mark</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLineEdit" name="lnDescription">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>40</y>
-      <width>191</width>
-      <height>32</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnInsertMark">
-    <property name="geometry">
-     <rect>
-      <x>580</x>
-      <y>40</y>
-      <width>88</width>
-      <height>34</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Add</string>
-    </property>
-   </widget>
    <widget class="QComboBox" name="cbnSubject">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>490</x>
       <y>40</y>
       <width>141</width>
       <height>32</height>
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="lblQueryStatus">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>51</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Mark</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>10</y>
-      <width>111</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Date</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>10</y>
-      <width>191</width>
+      <x>10</x>
+      <y>80</y>
+      <width>721</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>Description</string>
+     <string/>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -98,7 +43,7 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>490</x>
       <y>10</y>
       <width>141</width>
       <height>20</height>
@@ -111,42 +56,65 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QDateTimeEdit" name="dtMark">
+   <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>40</y>
-      <width>131</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="displayFormat">
-     <string>dd/MM/yyyy</string>
-    </property>
-    <property name="calendarPopup">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lblQueryStatus">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>80</y>
-      <width>661</width>
+      <x>290</x>
+      <y>10</y>
+      <width>191</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string/>
+     <string>Description</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>10</y>
+      <width>51</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Mark</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnUpdateMark">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>40</y>
+      <width>88</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Update</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lnDescription">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>40</y>
+      <width>191</width>
+      <height>32</height>
+     </rect>
+    </property>
+   </widget>
    <widget class="QDoubleSpinBox" name="spnMark">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>70</x>
       <y>40</y>
       <width>71</width>
       <height>32</height>
@@ -162,13 +130,71 @@
      <double>6.000000000000000</double>
     </property>
    </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>10</y>
+      <width>111</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Date</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QDateTimeEdit" name="dtMark">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>40</y>
+      <width>131</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="displayFormat">
+     <string>dd/MM/yyyy</string>
+    </property>
+    <property name="calendarPopup">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spnID">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>52</width>
+      <height>32</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>51</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ID</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>681</width>
+     <width>741</width>
      <height>30</height>
     </rect>
    </property>
@@ -183,7 +209,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionRefresh">
    <property name="text">
-    <string>&amp;Refresh</string>
+    <string>Refresh</string>
    </property>
   </action>
  </widget>

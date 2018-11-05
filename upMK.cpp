@@ -1,8 +1,8 @@
-#include "addMK.h"
+#include "upMK.h"
 
-addMK::addMK(QWidget *parent) : QMainWindow(parent), ui(new Ui::addMKClass) {
+upMK::upMK(QWidget *parent) : QMainWindow(parent), ui(new Ui::upMKClass) {
     ui->setupUi(this);
-    setFixedSize(681, 155);
+    setFixedSize(741, 155);
 
     // Free QObjects(needed to avoid memory leaks)
     setAttribute(Qt::WA_DeleteOnClose);
@@ -11,7 +11,7 @@ addMK::addMK(QWidget *parent) : QMainWindow(parent), ui(new Ui::addMKClass) {
     ui->dtMark->setDate(QDate::currentDate());
 }
 
-void addMK::on_actionRefresh_triggered() {
+void upMK::on_actionRefresh_triggered() {
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("debug.db");
@@ -44,19 +44,20 @@ void addMK::on_actionRefresh_triggered() {
     delete query;
 }
 
-void addMK::on_btnInsertMark_clicked() {
-    // Check if user inputs are empty
+void upMK::on_btnUpdateMark_clicked() {
+    // Check user inputs
     if(ui->spnMark->text().isEmpty() || ui->dtMark->text().isEmpty() || ui->lnDescription->text().isEmpty() || ui->cbnSubject->currentText().isEmpty()) {
         ui->lblQueryStatus->setText("Please fill the input boxes!");
         return;
     }
 
-    // Fetch user input 
+    // Fetch user input
     this->mkMark = ui->spnMark->value();
     this->mkDate = ui->dtMark->date().toString("dd/MM/yyyy");
     this->mkDesc = ui->lnDescription->text();
     this->mkSub = ui->cbnSubject->currentText();
-        
+    this->mkID = ui->spnID->value();
+
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("debug.db");
@@ -65,42 +66,44 @@ void addMK::on_btnInsertMark_clicked() {
             QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
         return;
     }
-    
+
     // Our query
     QSqlQuery query;
 
+    // Retrive the ID from the Subject name
     query.prepare("SELECT ID FROM subject WHERE SubName = :subname LIMIT 1;");
     query.bindValue(":subname", this->mkSub);
 
-    // Error Handling
+    // Error handling
     if(!query.exec())
         ui->lblQueryStatus->setText("Error while executing this query!");
     
-    // Store the result of the query into a local variable
+    // Store the result into a integer variable
     unsigned int id;
     if(query.first())
         id = query.value(0).toInt();
     else
         ui->lblQueryStatus->setText("Error while executing this query!");
+    
 
-    // Now we're able to prepare our insert query
-    query.prepare("INSERT INTO mark(Mark, MarkDate, Description, CodSub) VALUES ("
-                  ":mark, :date, :desc, :sub);");
+    // Now update the record
+    query.prepare("UPDATE mark SET Mark = :mark, MarkDate = :date, Description = "
+                  ":desc, CodSub = :sub WHERE ID = :id;");
     query.bindValue(":mark", this->mkMark);
     query.bindValue(":date", this->mkDate);
     query.bindValue(":desc", this->mkDesc);
     query.bindValue(":sub", id);
+    query.bindValue(":id", this->mkID);
 
-    // Execute the query(with error handling)
     if(!query.exec())
-        ui->lblQueryStatus->setText("Error while executing this query!");
+        ui->lblQueryStatus->setText("Error while executing this query");
 
-    // Print a status message for 1.5 seconds(1500 ms)
-    ui->lblQueryStatus->setText("Mark added successfully!");
+    // Print a status message for 1.5 seconds(1500ms)
+    ui->lblQueryStatus->setText("Mark updated successfully!");
     QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
-    
+
     // Close the connection to the database
     db.close();
 }
 
-addMK::~addMK() { delete ui; }
+upMK::~upMK() { delete ui; }

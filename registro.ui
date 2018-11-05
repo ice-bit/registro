@@ -44,17 +44,16 @@
           </spacer>
          </item>
          <item>
-          <spacer name="horizontalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+          <widget class="QLabel" name="lblQueryStatus">
+           <property name="font">
+            <font>
+             <pointsize>8</pointsize>
+            </font>
            </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
+           <property name="text">
+            <string/>
            </property>
-          </spacer>
+          </widget>
          </item>
          <item>
           <spacer name="horizontalSpacer_3">
@@ -91,7 +90,7 @@
          <item>
           <widget class="QTableView" name="tbMain">
            <property name="editTriggers">
-            <set>QAbstractItemView::AllEditTriggers</set>
+            <set>QAbstractItemView::NoEditTriggers</set>
            </property>
           </widget>
          </item>
@@ -129,21 +128,14 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_2">
-              <property name="text">
-               <string>Edit</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_4">
+             <widget class="QPushButton" name="btnUpElements">
               <property name="text">
                <string>Update</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_3">
+             <widget class="QPushButton" name="btnDelElements">
               <property name="text">
                <string>Delete</string>
               </property>
@@ -190,7 +182,7 @@
    </widget>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>?</string>
+     <string>Help</string>
     </property>
     <addaction name="actionAbout"/>
    </widget>

@@ -4,10 +4,10 @@
 #include <QtWidgets/QMainWindow>
 #include <QSqlDatabase>
 #include <QSqlQueryModel>
-#include <QSqlRelationalTableModel>
 #include <QDebug>
 #include "createDB.h"
 #include "addMK.h"
+#include "upMK.h"
 #include "ui_registro.h"
 
 class regMain : public QMainWindow {
@@ -17,6 +17,8 @@ private:
     Ui::regMainClass *ui;
     createDB *createDBWin;
     addMK *addMKWin;
+    upMK *upMKWin;
+    unsigned int userSelection;
 
 public:
     regMain(QWidget *parent = Q_NULLPTR);
@@ -28,6 +30,8 @@ public slots:
 private slots:
     void on_btnLoadElements_clicked();
     void on_btnAddElements_clicked();
+    void on_btnUpElements_clicked();
+    void on_btnDelElements_clicked();
 };
 
 #endif

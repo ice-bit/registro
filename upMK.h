@@ -1,5 +1,5 @@
-#ifndef ADDMK_H
-#define ADDMK_H
+#ifndef UPMK_H
+#define UPMK_H
 
 #include <QtWidgets/QMainWindow>
 #include <QSqlDatabase>
@@ -7,25 +7,27 @@
 #include <QMessageBox>
 #include <QSqlQuery>
 #include <QTimer>
-#include "ui_addMK.h"
+#include "addMK.h"
+#include "ui_upMK.h"
 
-class addMK : public QMainWindow {
+class upMK : public QMainWindow {
     Q_OBJECT
 
 private:
-    Ui::addMKClass *ui;
-    float mkMark;
+    Ui::upMKClass *ui;
+    float mkMark, mkID;
     QString mkDate, mkDesc, mkSub;
 
 public:
-    addMK(QWidget *parent = Q_NULLPTR);
-    ~addMK();
+    upMK(QWidget *parent = Q_NULLPTR);
+    ~upMK();
 
 public slots:
     void on_actionRefresh_triggered();
 
 private slots:
-    void on_btnInsertMark_clicked();
+    void on_btnUpdateMark_clicked();
+
 };
 
 #endif
