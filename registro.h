@@ -5,6 +5,8 @@
 #include <QSqlDatabase>
 #include <QSqlQueryModel>
 #include <QDebug>
+#include <vector>
+#include <math.h>
 #include "createDB.h"
 #include "addMK.h"
 #include "upMK.h"
@@ -19,6 +21,8 @@ private:
     addMK *addMKWin;
     upMK *upMKWin;
     unsigned int userSelection;
+    float avg(std::vector<float> marks);
+    std::vector<float> marks;
 
 public:
     regMain(QWidget *parent = Q_NULLPTR);

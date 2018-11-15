@@ -57,6 +57,17 @@ void regMain::on_btnLoadElements_clicked() {
     // Close the connection to the database
     db.close();
 
+    // put the values of the marks column into a vector
+    for(int col = 0; col < ui->tbMain->model()->rowCount(); col++) {
+        QVariant index = ui->tbMain->model()->data(ui->tbMain->model()->index(col, 1));
+        float value = index.value<float>();
+        this->marks.push_back(value);
+    }
+    // Compute the average
+    float marks_avg = avg(this->marks);
+    // Display it to the user
+    ui->lblAvg->setText(QString::number(marks_avg));
+    
     // Delete heap objects
     delete query;
 
@@ -124,6 +135,15 @@ void regMain::on_btnDelElements_clicked() {
 
     // Close the connection to the database
     db.close();
+}
+
+float regMain::avg(std::vector<float> marks) {
+    float sum = 0;
+
+    for(int i = 0; i < marks.size(); i++)
+        sum += marks.at(i);
+    
+    return round(sum / marks.size() * 100) / 100;
 }
 
 regMain::~regMain() { delete ui; }
