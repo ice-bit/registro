@@ -4,9 +4,10 @@
 #include <QtWidgets/QMainWindow>
 #include <QSqlDatabase>
 #include <QSqlQueryModel>
-#include <QDebug>
 #include <vector>
 #include <math.h>
+#include <QDebug>
+#include <QSqlError>
 #include "createDB.h"
 #include "addMK.h"
 #include "upMK.h"
@@ -21,8 +22,9 @@ private:
     addMK *addMKWin;
     upMK *upMKWin;
     unsigned int userSelection;
-    float avg(std::vector<float> marks);
     std::vector<float> marks;
+    QString reqsub;
+    float avg(std::vector<float> marks);
 
 public:
     regMain(QWidget *parent = Q_NULLPTR);
@@ -30,6 +32,7 @@ public:
 
 public slots:
     void on_actionCreateDB_triggered();
+    void searchSubject();
 
 private slots:
     void on_btnLoadElements_clicked();

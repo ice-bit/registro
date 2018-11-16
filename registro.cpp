@@ -11,6 +11,9 @@ regMain::regMain(QWidget *parent) : QMainWindow(parent), ui(new Ui::regMainClass
 
     // Disable delete button before creating the QTableView
     ui->btnDelElements->setEnabled(false);
+
+    // Custom Signal
+    QObject::connect(ui->lnSearch, SIGNAL(textChanged(QString)), this, SLOT(searchSubject()));
 }
 
 void regMain::on_actionCreateDB_triggered() {
@@ -31,15 +34,15 @@ void regMain::on_btnLoadElements_clicked() {
     // Create a new query model(which is read only) and a new query(in the Heap memory)
     QSqlQueryModel *model = new QSqlQueryModel();
 
-
     QSqlQuery *query = new QSqlQuery(db);
     // Execute the query
-    query->exec("SELECT m.ID, m.mark, s.SubName, m.MarkDate, m.Description, t.TSurname "
+    if(!query->exec("SELECT m.ID, m.mark, s.SubName, m.MarkDate, m.Description, t.TSurname "
                 "FROM mark AS m "
                 "INNER JOIN subject AS s "
                 "ON m.CodSub = s.ID "
                 "INNER JOIN teacher AS t "
-                "ON s.CodTeacher = t.ID;");
+                "ON s.CodTeacher = t.ID;"))
+        ui->lblQueryStatus->setText("Error while executing this query!");
     // put the result of the query into our model
     model->setQuery(*query);
     // Display our model into the QTableView.
@@ -57,6 +60,10 @@ void regMain::on_btnLoadElements_clicked() {
     // Close the connection to the database
     db.close();
 
+    /* Average section */
+
+    // Clear the vector
+    this->marks.clear();
     // put the values of the marks column into a vector
     for(int col = 0; col < ui->tbMain->model()->rowCount(); col++) {
         QVariant index = ui->tbMain->model()->data(ui->tbMain->model()->index(col, 1));
@@ -66,13 +73,17 @@ void regMain::on_btnLoadElements_clicked() {
     // Compute the average
     float marks_avg = avg(this->marks);
     // Display it to the user
-    ui->lblAvg->setText(QString::number(marks_avg));
-    
+    if(std::isnan(marks_avg))
+        ui->lblAvg->setText("/");
+    else
+        ui->lblAvg->setText(QString::number(marks_avg));
+
     // Delete heap objects
     delete query;
 
-    // Enable delete button
+    // Enable delete button and search input box
     ui->btnDelElements->setEnabled(true);
+    ui->lnSearch->setEnabled(true);
 }
 
 void regMain::on_btnAddElements_clicked() {
@@ -144,6 +155,75 @@ float regMain::avg(std::vector<float> marks) {
         sum += marks.at(i);
     
     return round(sum / marks.size() * 100) / 100;
+}
+
+void regMain::searchSubject() {
+    // Retrieve requested subject
+    this->reqsub = ui->lnSearch->text();
+    // Connect to the database
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("debug.db");
+    if(!db.open()) {
+        QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
+            QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
+        return;
+    }
+
+    // Create a new query model(which is read only) and a new query(in the Heap memory)
+    QSqlQueryModel *model = new QSqlQueryModel();
+
+    QSqlQuery *query = new QSqlQuery(db);
+    // Execute the query
+    query->prepare("SELECT m.ID, m.mark, s.SubName, m.MarkDate, m.Description, t.TSurname "
+                "FROM mark AS m "
+                "INNER JOIN subject AS s "
+                "ON m.CodSub = s.ID "
+                "INNER JOIN teacher AS t "
+                "ON s.CodTeacher = t.ID "
+                "WHERE s.SubName LIKE :subname;");
+    query->bindValue(":subname", QString("%%1%").arg(this->reqsub));
+
+    if(!query->exec())
+        ui->lblQueryStatus->setText("Error while executing this query!");
+
+    // put the result of the query into our model
+    model->setQuery(*query);
+    // Display our model into the QTableView.
+    ui->tbMain->setModel(model);
+    // For a better result, set tbe Columns width automatically
+    ui->tbMain->horizontalHeader()->setStretchLastSection(true);
+    // Configure column's labels with appropriate names
+    model->setHeaderData(0, Qt::Horizontal, tr("ID"));
+    model->setHeaderData(1, Qt::Horizontal, tr("Mark"));
+    model->setHeaderData(2, Qt::Horizontal, tr("Subject"));
+    model->setHeaderData(3, Qt::Horizontal, tr("Date"));
+    model->setHeaderData(4, Qt::Horizontal, tr("Description"));
+    model->setHeaderData(5, Qt::Horizontal, tr("Teacher Name"));
+
+    // Close the connection to the database
+    db.close();
+
+    /* Average section */
+
+    // Clear the vector
+    this->marks.clear();
+
+    // put the values of the marks column into a vector
+    for(int col = 0; col < ui->tbMain->model()->rowCount(); col++) {
+        QVariant index = ui->tbMain->model()->data(ui->tbMain->model()->index(col, 1));
+        float value = index.value<float>();
+        this->marks.push_back(value);
+    }
+    // Compute the average
+    float marks_avg = avg(this->marks);
+    // Display it to the user
+    if(std::isnan(marks_avg))
+        ui->lblAvg->setText("/");
+    else
+        ui->lblAvg->setText(QString::number(marks_avg));
+
+    // Delete heap objects
+    delete query;
 }
 
 regMain::~regMain() { delete ui; }
