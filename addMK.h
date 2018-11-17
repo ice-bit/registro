@@ -10,7 +10,6 @@
 #include "ui_addMK.h"
 
 class addMK : public QMainWindow {
-    Q_OBJECT
 
 private:
     Ui::addMKClass *ui;

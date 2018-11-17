@@ -81,9 +81,8 @@ void regMain::on_btnLoadElements_clicked() {
     // Delete heap objects
     delete query;
 
-    // Enable delete button and search input box
+    // Enable delete button
     ui->btnDelElements->setEnabled(true);
-    ui->lnSearch->setEnabled(true);
 }
 
 void regMain::on_btnAddElements_clicked() {
@@ -224,6 +223,18 @@ void regMain::searchSubject() {
 
     // Delete heap objects
     delete query;
+
+    // Enable delete button
+    ui->btnDelElements->setEnabled(true);
+}
+
+void regMain::on_actionAbout_triggered() {
+    aboutWin = new about();
+    aboutWin->show();
+}
+
+void regMain::on_actionExit_triggered() {
+    exit(0);
 }
 
 regMain::~regMain() { delete ui; }

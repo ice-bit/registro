@@ -17,16 +17,16 @@ private:
     unsigned int id, teachid;
     QString subName, tcName, tcSurname;
 
+public:
+    upTS(QWidget *parent = Q_NULLPTR);
+    ~upTS();
+
 private slots:
     void on_btnSubUpdate_clicked();
     void on_btnTeacherUpdate_clicked();
 
 public slots:
     void on_actionRefresh_triggered();
-
-public:
-    upTS(QWidget *parent = Q_NULLPTR);
-    ~upTS();
 };
 
 #endif

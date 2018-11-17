@@ -11,6 +11,7 @@
 #include "createDB.h"
 #include "addMK.h"
 #include "upMK.h"
+#include "about.h"
 #include "ui_registro.h"
 
 class regMain : public QMainWindow {
@@ -21,6 +22,7 @@ private:
     createDB *createDBWin;
     addMK *addMKWin;
     upMK *upMKWin;
+    about *aboutWin;
     unsigned int userSelection;
     std::vector<float> marks;
     QString reqsub;
@@ -32,6 +34,8 @@ public:
 
 public slots:
     void on_actionCreateDB_triggered();
+    void on_actionAbout_triggered();
+    void on_actionExit_triggered();
     void searchSubject();
 
 private slots:

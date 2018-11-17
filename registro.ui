@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Registro v1.3Beta</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/imgs/images/window_icon.ico</normaloff>:/imgs/images/window_icon.ico</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
@@ -91,7 +95,7 @@
          <item>
           <widget class="QLineEdit" name="lnSearch">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="text">
             <string/>
@@ -229,6 +233,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="Resources/res.qrc"/>
+ </resources>
  <connections/>
 </ui>

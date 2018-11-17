@@ -16,16 +16,16 @@ private:
     Ui::delTSClass *ui;
     unsigned int subid, teachid;
 
+public:
+    delTS(QWidget *parent = Q_NULLPTR);
+    ~delTS();
+
 private slots:
     void on_btnDeleteSub_clicked();
     void on_btnDeleteTeach_clicked();
 
 public slots:
     void on_actionRefresh_triggered();
-
-public:
-    delTS(QWidget *parent = Q_NULLPTR);
-    ~delTS();
 };
 
 #endif

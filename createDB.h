@@ -20,6 +20,10 @@ private:
     delTS *delTSWin;
     QString teacherName, teacherSurname, subject;
 
+public:
+    createDB(QWidget *parent = Q_NULLPTR);
+    ~createDB();
+
 private slots:
     void on_btnAddSubject_clicked();
     void on_btnAddTeacher_clicked();
@@ -28,10 +32,6 @@ public slots:
     void on_actionRefresh_triggered();
     void on_actionUpdate_triggered();
     void on_actionDelete_triggered();
-
-public:
-    createDB(QWidget *parent = Q_NULLPTR);
-    ~createDB();
 };
 
 #endif
