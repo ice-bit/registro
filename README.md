@@ -1,1 +1,3 @@
-# Registro - v1.3Alpha
+# Registro - v1.3Beta
+
+New Readme will come soon...
