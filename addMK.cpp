@@ -12,9 +12,14 @@ addMK::addMK(QWidget *parent) : QMainWindow(parent), ui(new Ui::addMKClass) {
 }
 
 void addMK::on_actionRefresh_triggered() {
-    // Load the SQLite driver
+    // Get user path
+    if(this->file == nullptr) {
+        path pt;
+        this->file = pt.get_path();
+    }
+    // Connect to the database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("debug.db");
+    db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
@@ -40,6 +45,13 @@ void addMK::on_actionRefresh_triggered() {
     // Display our modle into QComboBox
     ui->cbnSubject->setModel(model);
 
+    // Close the connection to the database
+    QString con;
+    con = db.connectionName();
+    db.close();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
+
     // Delete heap objects
     delete query;
 }
@@ -50,16 +62,20 @@ void addMK::on_btnInsertMark_clicked() {
         ui->lblQueryStatus->setText("Please fill the input boxes!");
         return;
     }
-
     // Fetch user input 
     this->mkMark = ui->spnMark->value();
     this->mkDate = ui->dtMark->date().toString("dd/MM/yyyy");
     this->mkDesc = ui->lnDescription->text();
     this->mkSub = ui->cbnSubject->currentText();
         
-    // Load the SQLite driver
+    // Get user path
+    if(this->file == nullptr) {
+        path pt;
+        this->file = pt.get_path();
+    }
+    // Connect to the database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("debug.db");
+    db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
@@ -100,7 +116,11 @@ void addMK::on_btnInsertMark_clicked() {
     QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
     
     // Close the connection to the database
+    QString con;
+    con = db.connectionName();
     db.close();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
 }
 
 addMK::~addMK() { delete ui; }

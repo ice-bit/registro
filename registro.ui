@@ -14,7 +14,7 @@
    <string>Registro v1.3Beta</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="resources/res.qrc">
     <normaloff>:/imgs/images/window_icon.ico</normaloff>:/imgs/images/window_icon.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -95,7 +95,7 @@
          <item>
           <widget class="QLineEdit" name="lnSearch">
            <property name="enabled">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
            <property name="text">
             <string/>
@@ -142,6 +142,9 @@
             </item>
             <item>
              <widget class="QPushButton" name="btnLoadElements">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
               <property name="text">
                <string>Load</string>
               </property>
@@ -149,6 +152,9 @@
             </item>
             <item>
              <widget class="QPushButton" name="btnAddElements">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
               <property name="text">
                <string>Add</string>
               </property>
@@ -156,6 +162,9 @@
             </item>
             <item>
              <widget class="QPushButton" name="btnUpElements">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
               <property name="text">
                <string>Update</string>
               </property>
@@ -163,6 +172,9 @@
             </item>
             <item>
              <widget class="QPushButton" name="btnDelElements">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="text">
                <string>Delete</string>
               </property>
@@ -205,6 +217,7 @@
      <string>Fi&amp;le</string>
     </property>
     <addaction name="actionCreateDB"/>
+    <addaction name="actionChangeDB"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menu">
@@ -232,9 +245,14 @@
     <string>&amp;About</string>
    </property>
   </action>
+  <action name="actionChangeDB">
+   <property name="text">
+    <string>Change Database</string>
+   </property>
+  </action>
  </widget>
  <resources>
-  <include location="Resources/res.qrc"/>
+  <include location="resources/res.qrc"/>
  </resources>
  <connections/>
 </ui>

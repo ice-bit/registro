@@ -22,9 +22,14 @@ void regMain::on_actionCreateDB_triggered() {
 }
 
 void regMain::on_btnLoadElements_clicked() {
+    // Get user path
+    if(this->file == nullptr) {
+        path pt;
+        this->file = pt.get_path();
+    }
     // Connect to the database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("debug.db");
+    db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
@@ -58,12 +63,16 @@ void regMain::on_btnLoadElements_clicked() {
     model->setHeaderData(5, Qt::Horizontal, tr("Teacher Name"));
 
     // Close the connection to the database
+    QString con;
+    con = db.connectionName();
     db.close();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
 
     /* Average section */
 
     // Clear the vector
-    this->marks.clear();
+   this->marks.clear();
     // put the values of the marks column into a vector
     for(int col = 0; col < ui->tbMain->model()->rowCount(); col++) {
         QVariant index = ui->tbMain->model()->data(ui->tbMain->model()->index(col, 1));
@@ -81,8 +90,9 @@ void regMain::on_btnLoadElements_clicked() {
     // Delete heap objects
     delete query;
 
-    // Enable delete button
+    // Enable delete button and search field
     ui->btnDelElements->setEnabled(true);
+    ui->lnSearch->setEnabled(true);
 }
 
 void regMain::on_btnAddElements_clicked() {
@@ -119,9 +129,14 @@ void regMain::on_btnDelElements_clicked() {
     // Convert it to an integer
     this->userSelection = indexValue.value<int>();
     
+    // Get user path
+    if(this->file == nullptr) {
+        path pt;
+        this->file = pt.get_path();
+    }
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("debug.db");
+    db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
@@ -144,7 +159,11 @@ void regMain::on_btnDelElements_clicked() {
     QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
 
     // Close the connection to the database
+    QString con;
+    con = db.connectionName();
     db.close();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
 }
 
 float regMain::avg(std::vector<float> marks) {
@@ -159,9 +178,10 @@ float regMain::avg(std::vector<float> marks) {
 void regMain::searchSubject() {
     // Retrieve requested subject
     this->reqsub = ui->lnSearch->text();
+    
     // Connect to the database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("debug.db");
+    db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
@@ -198,9 +218,13 @@ void regMain::searchSubject() {
     model->setHeaderData(3, Qt::Horizontal, tr("Date"));
     model->setHeaderData(4, Qt::Horizontal, tr("Description"));
     model->setHeaderData(5, Qt::Horizontal, tr("Teacher Name"));
-
+    
     // Close the connection to the database
+    QString con;
+    con = db.connectionName();
     db.close();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
 
     /* Average section */
 
@@ -226,6 +250,11 @@ void regMain::searchSubject() {
 
     // Enable delete button
     ui->btnDelElements->setEnabled(true);
+}
+
+void regMain::on_actionChangeDB_triggered() {
+    path pt;
+    this->file = pt.get_path();
 }
 
 void regMain::on_actionAbout_triggered() {

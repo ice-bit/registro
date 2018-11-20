@@ -12,9 +12,15 @@ void delTS::on_btnDeleteSub_clicked() {
     // Get the user input
     this->subid = ui->spnSub->value();
 
+    // Get user path
+    if(this->file == nullptr) {
+        path pt;
+        this->file = pt.get_path();
+    }
+
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("debug.db");
+    db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
@@ -37,16 +43,26 @@ void delTS::on_btnDeleteSub_clicked() {
     }
 
     // Close the connection to the database
+    QString con;
+    con = db.connectionName();
     db.close();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
 }
 
 void delTS::on_btnDeleteTeach_clicked() {
-        // Get the user input
+    // Get the user input
     this->teachid = ui->spnTeach->value();
+
+    // Get user path
+    if(this->file == nullptr) {
+        path pt;
+        this->file = pt.get_path();
+    }
 
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("debug.db");
+    db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
@@ -69,12 +85,23 @@ void delTS::on_btnDeleteTeach_clicked() {
     }
 
     // Close the connection to the database
+    QString con;
+    con = db.connectionName();
     db.close();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
 }
 void delTS::on_actionRefresh_triggered() {
+
+    // Get user path
+    if(this->file == nullptr) {
+        path pt;
+        this->file = pt.get_path();
+    }
+
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("debug.db");
+    db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
@@ -122,10 +149,14 @@ void delTS::on_actionRefresh_triggered() {
     // Configure column's labels with appropriate names
     submodel->setHeaderData(0, Qt::Horizontal, tr("ID"));
     submodel->setHeaderData(1, Qt::Horizontal, tr("Teacher"));
-
+    
     // Close the connection to the database
+    QString con;
+    con = db.connectionName();
     db.close();
-
+    db = QSqlDatabase();
+    db.removeDatabase(con);
+    
     // Adjust the column width
     ui->tbSubjects->setColumnWidth(1, 150);
     ui->tbTeachers->setColumnWidth(1, 150);

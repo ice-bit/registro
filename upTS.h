@@ -7,6 +7,8 @@
 #include <QMessageBox>
 #include <QSqlQuery>
 #include <QTimer>
+#include "path.h"
+#include "path.h"
 #include "ui_upTS.h"
 
 class upTS : public QMainWindow {
@@ -15,7 +17,7 @@ class upTS : public QMainWindow {
 private:
     Ui::upTSClass *ui;
     unsigned int id, teachid;
-    QString subName, tcName, tcSurname;
+    QString subName, tcName, tcSurname, file = nullptr;
 
 public:
     upTS(QWidget *parent = Q_NULLPTR);

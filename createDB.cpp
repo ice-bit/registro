@@ -10,9 +10,15 @@ createDB::createDB(QWidget *parent) : QMainWindow(parent), ui(new Ui::createDBCl
 }
 
 void createDB::on_actionRefresh_triggered() {
+    // Get user path
+    if(this->file == nullptr) {
+        path pt;
+        this->file = pt.get_path();
+    }
+
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("debug.db");
+    db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
@@ -33,6 +39,13 @@ void createDB::on_actionRefresh_triggered() {
     
     model->setQuery(*query);
     ui->cbnTeacher->setModel(model);
+
+    // Close the connection to the database
+    QString con;
+    con = db.connectionName();
+    db.close();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
 }
 
 void createDB::on_btnAddTeacher_clicked() {
@@ -46,9 +59,15 @@ void createDB::on_btnAddTeacher_clicked() {
     this->teacherName = ui->lnTeacherName->text();
     this->teacherSurname = ui->lnTeacherSurname->text();
 
+    // Get user path
+    if(this->file == nullptr) {
+        path pt;
+        this->file = pt.get_path();
+    }
+
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("debug.db");
+    db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
@@ -97,7 +116,11 @@ void createDB::on_btnAddTeacher_clicked() {
     QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
 
     // Close the connection to the database
+    QString con;
+    con = db.connectionName();
     db.close();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
 }
 
 void createDB::on_btnAddSubject_clicked() {
@@ -111,9 +134,78 @@ void createDB::on_btnAddSubject_clicked() {
     this->subject = ui->lnSubject->text();
     this->teacherSurname = ui->cbnTeacher->currentText();
 
+    // Get user path
+    if(this->file == nullptr) {
+        path pt;
+        this->file = pt.get_path();
+    }
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("debug.db");
+    db.setDatabaseName(this->file);
+    if(!db.open()) {
+        QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
+            QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
+        return;
+    }
+
+    // Our Query
+    QSqlQuery query;
+
+    // Retrive the ID of the teacher choosed by the user
+    query.prepare("SELECT ID FROM teacher WHERE TSurname = :surname LIMIT 1;");
+    query.bindValue(":surname", this->teacherSurname);
+    
+    if(!query.exec())
+        ui->lblQueryStatus->setText("Error while executing this query!");
+
+    // Store the result of the query(the Teacher's ID) into a local variable
+    unsigned int id;
+    if(query.first())
+        id = query.value(0).toInt();
+    else
+        ui->lblQueryStatus->setText("Error while executing this query!");
+
+    query.prepare("INSERT INTO subject (SubName,CodTeacher) VALUES("
+                  ":subname, :codTeacher);");
+    query.bindValue(":subname", this->subject);
+    query.bindValue(":codTeacher", id);
+
+    // Then insert the subject
+    if(!query.exec())
+        ui->lblQueryStatus->setText("Error while executing this query!");
+    else { 
+        // else print a status message for 1.5 seconds.
+        ui->lblQueryStatus->setText("Subject added successfully!");
+        QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
+    }
+
+    // Close the connection to the database
+    QString con;
+    con = db.connectionName();
+    db.close();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
+}
+
+void createDB::on_actionUpdate_triggered() {
+    upTSWin = new upTS();
+    upTSWin->show();
+}
+
+void createDB::on_actionDelete_triggered() {
+    delTSWin = new delTS();
+    delTSWin->show();
+}
+
+void createDB::on_actionDBCreate_triggered() {
+    QMessageBox::warning(this, 
+        tr("Save a new database"), 
+        tr("This will delete any previous existing file!") );
+    path pt;
+    this->file = pt.set_path();
+    // Load the SQLite driver
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
@@ -146,46 +238,16 @@ void createDB::on_btnAddSubject_clicked() {
     if(!query.isActive())
         ui->lblQueryStatus->setText("Error while executing this query!");
 
-    // Retrive the ID of the teacher choosed by the user
-    query.prepare("SELECT ID FROM teacher WHERE TSurname = :surname LIMIT 1;");
-    query.bindValue(":surname", this->teacherSurname);
-    
-    if(!query.exec())
-        ui->lblQueryStatus->setText("Error while executing this query!");
-
-    // Store the result of the query(the Teacher's ID) into a local variable
-    unsigned int id;
-    if(query.first())
-        id = query.value(0).toInt();
-    else
-        ui->lblQueryStatus->setText("Error while executing this query!");
-
-    query.prepare("INSERT INTO subject (SubName,CodTeacher) VALUES("
-                  ":subname, :codTeacher);");
-    query.bindValue(":subname", this->subject);
-    query.bindValue(":codTeacher", id);
-
-    // Then insert the subject
-    if(!query.exec())
-        ui->lblQueryStatus->setText("Error while executing this query!");
-    else { 
-        // else print a status message for 1.5 seconds.
-        ui->lblQueryStatus->setText("Subject added successfully!");
-        QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
-    }
+    // Print a status message for 1.5 seconds(1500 ms)
+    ui->lblQueryStatus->setText("database created successfully!");
+    QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
 
     // Close the connection to the database
+    QString con;
+    con = db.connectionName();
     db.close();
-}
-
-void createDB::on_actionUpdate_triggered() {
-    upTSWin = new upTS();
-    upTSWin->show();
-}
-
-void createDB::on_actionDelete_triggered() {
-    delTSWin = new delTS();
-    delTSWin->show();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
 }
 
 createDB::~createDB() { delete ui; }

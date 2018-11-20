@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QSqlQuery>
 #include <QTimer>
+#include "path.h"
 #include "addMK.h"
 #include "ui_upMK.h"
 
@@ -16,7 +17,7 @@ class upMK : public QMainWindow {
 private:
     Ui::upMKClass *ui;
     float mkMark, mkID;
-    QString mkDate, mkDesc, mkSub;
+    QString mkDate, mkDesc, mkSub, file = nullptr;
 
 public:
     upMK(QWidget *parent = Q_NULLPTR);

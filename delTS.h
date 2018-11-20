@@ -7,12 +7,14 @@
 #include <QMessageBox>
 #include <QSqlQuery>
 #include <QTimer>
+#include "path.h"
 #include "ui_delTS.h"
 
 class delTS : public QMainWindow {
     Q_OBJECT
 
 private:
+    QString file = nullptr;
     Ui::delTSClass *ui;
     unsigned int subid, teachid;
 

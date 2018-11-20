@@ -163,6 +163,7 @@
      <string>File</string>
     </property>
     <addaction name="actionRefresh"/>
+    <addaction name="actionDBCreate"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -176,13 +177,16 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionRefresh">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>&amp;Refresh</string>
    </property>
   </action>
   <action name="actionUpdate">
    <property name="text">
-    <string>Update Subjects or Teachers</string>
+    <string>&amp;Update Subjects or Teachers</string>
    </property>
   </action>
   <action name="actionDeleteSubject">
@@ -193,6 +197,11 @@
   <action name="actionDelete">
    <property name="text">
     <string>&amp;Delete Subjects or Teachers</string>
+   </property>
+  </action>
+  <action name="actionDBCreate">
+   <property name="text">
+    <string>Create a new database</string>
    </property>
   </action>
  </widget>

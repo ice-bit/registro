@@ -12,9 +12,14 @@ upMK::upMK(QWidget *parent) : QMainWindow(parent), ui(new Ui::upMKClass) {
 }
 
 void upMK::on_actionRefresh_triggered() {
-    // Load the SQLite driver
+    // Get user path
+    if(this->file == nullptr) {
+        path pt;
+        this->file = pt.get_path();
+    }
+    // Connect to the database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("debug.db");
+    db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
@@ -42,6 +47,13 @@ void upMK::on_actionRefresh_triggered() {
 
     // Delete heap objects
     delete query;
+
+    // Close the connection to the database
+    QString con;
+    con = db.connectionName();
+    db.close();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
 }
 
 void upMK::on_btnUpdateMark_clicked() {
@@ -58,9 +70,14 @@ void upMK::on_btnUpdateMark_clicked() {
     this->mkSub = ui->cbnSubject->currentText();
     this->mkID = ui->spnID->value();
 
-    // Load the SQLite driver
+    // Get user path
+    if(this->file == nullptr) {
+        path pt;
+        this->file = pt.get_path();
+    }
+    // Connect to the database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("debug.db");
+    db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
@@ -103,7 +120,11 @@ void upMK::on_btnUpdateMark_clicked() {
     QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
 
     // Close the connection to the database
+    QString con;
+    con = db.connectionName();
     db.close();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
 }
 
 upMK::~upMK() { delete ui; }

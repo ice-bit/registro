@@ -9,9 +9,14 @@ upTS::upTS(QWidget *parent) : QMainWindow(parent), ui(new Ui::upTSClass) {
 }
 
 void upTS::on_actionRefresh_triggered() {
+    // Get user path
+    if(this->file == nullptr) {
+        path pt;
+        this->file = pt.get_path();
+    }
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("debug.db");
+    db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
@@ -77,7 +82,11 @@ void upTS::on_actionRefresh_triggered() {
     ui->cbnTeacher->setModel(cbnmodel);
 
     // Close the connection to the database
+    QString con;
+    con = db.connectionName();
     db.close();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
 
     // Adjust the column width
     ui->tbSubjects->setColumnWidth(1, 150);
@@ -106,9 +115,15 @@ void upTS::on_btnSubUpdate_clicked() {
     this->subName = ui->lnSubName->text();
     this->tcName = ui->cbnTeacher->currentText();
 
-    // Load the SQLite driver
+
+    // Get user path
+    if(this->file == nullptr) {
+        path pt;
+        this->file = pt.get_path();
+    }
+    // Connect to the database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("debug.db");
+    db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
@@ -145,7 +160,7 @@ void upTS::on_btnSubUpdate_clicked() {
         if(!query.exec())
             ui->lblQueryStatus->setText("Error while executing this query!");
         else {
-            ui->lblQueryStatus->setText("Subject updated successfully!");
+            ui->lblQueryStatus->setText("Teacher updated successfully!");
             QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
         }
 
@@ -164,8 +179,12 @@ void upTS::on_btnSubUpdate_clicked() {
         }
     }
 
-    // Finally close the connection
+    // Close the connection to the database
+    QString con;
+    con = db.connectionName();
     db.close();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
 }
 
 void upTS::on_btnTeacherUpdate_clicked() {
@@ -180,9 +199,14 @@ void upTS::on_btnTeacherUpdate_clicked() {
     this->tcName = ui->lnTeachName->text();
     this->tcSurname = ui->lnTeachSurname->text();
 
-    // Load the SQLite driver
+    // Get user path
+    if(this->file == nullptr) {
+        path pt;
+        this->file = pt.get_path();
+    }
+    // Connect to the database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("debug.db");
+    db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
@@ -233,9 +257,13 @@ void upTS::on_btnTeacherUpdate_clicked() {
             QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
         }
     }
-
-    // Finally close the connection
+    
+    // Close the connection to the database
+    QString con;
+    con = db.connectionName();
     db.close();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
 }
 
 upTS::~upTS() { delete ui; }

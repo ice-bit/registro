@@ -8,6 +8,7 @@
 #include <math.h>
 #include <QDebug>
 #include <QSqlError>
+#include "path.h"
 #include "createDB.h"
 #include "addMK.h"
 #include "upMK.h"
@@ -25,7 +26,7 @@ private:
     about *aboutWin;
     unsigned int userSelection;
     std::vector<float> marks;
-    QString reqsub;
+    QString reqsub, file = nullptr;
     float avg(std::vector<float> marks);
 
 public:
@@ -36,6 +37,7 @@ public slots:
     void on_actionCreateDB_triggered();
     void on_actionAbout_triggered();
     void on_actionExit_triggered();
+    void on_actionChangeDB_triggered();
     void searchSubject();
 
 private slots:
