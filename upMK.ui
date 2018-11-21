@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Update a Mark</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources/res.qrc">
+    <normaloff>:/imgs/images/window_icon.ico</normaloff>:/imgs/images/window_icon.ico</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QComboBox" name="cbnSubject">
     <property name="geometry">
@@ -209,10 +213,12 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionRefresh">
    <property name="text">
-    <string>Refresh</string>
+    <string>&amp;Refresh</string>
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources/res.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Create a New Database</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources/res.qrc">
+    <normaloff>:/imgs/images/window_icon.ico</normaloff>:/imgs/images/window_icon.ico</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="lnSubject">
     <property name="geometry">
@@ -201,10 +205,12 @@
   </action>
   <action name="actionDBCreate">
    <property name="text">
-    <string>Create a new database</string>
+    <string>&amp;Create a new database</string>
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources/res.qrc"/>
+ </resources>
  <connections/>
 </ui>

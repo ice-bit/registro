@@ -8,6 +8,7 @@ QString path::get_path() {
         tr("Database files (*.db)"));
     return this->user_path;
 }
+
 QString path::set_path() {
     this->user_path = QFileDialog::getSaveFileName(this,
         tr("Save a new database"), "",

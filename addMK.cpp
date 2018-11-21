@@ -36,8 +36,10 @@ void addMK::on_actionRefresh_triggered() {
     query->exec("SELECT SubName FROM subject;");
 
     // Error handling
-    if(!query->isActive())
+    if(!query->isActive()) {
         ui->lblQueryStatus->setText("Can't load subject list, try to add a new subject first!");
+        return;
+    }
     
     // Put the result of the query into our model
     model->setQuery(*query);
@@ -89,8 +91,10 @@ void addMK::on_btnInsertMark_clicked() {
     query.bindValue(":subname", this->mkSub);
 
     // Error Handling
-    if(!query.exec())
+    if(!query.exec()) {
         ui->lblQueryStatus->setText("Error while executing this query!");
+        return;
+    }
     
     // Store the result of the query into a local variable
     unsigned int id;
@@ -108,8 +112,10 @@ void addMK::on_btnInsertMark_clicked() {
     query.bindValue(":sub", id);
 
     // Execute the query(with error handling)
-    if(!query.exec())
+    if(!query.exec()) {
         ui->lblQueryStatus->setText("Error while executing this query!");
+        return;
+    }
 
     // Print a status message for 1.5 seconds(1500 ms)
     ui->lblQueryStatus->setText("Mark added successfully!");

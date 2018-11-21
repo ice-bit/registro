@@ -15,7 +15,7 @@ void createDB::on_actionRefresh_triggered() {
         path pt;
         this->file = pt.get_path();
     }
-
+    
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(this->file);
@@ -34,8 +34,10 @@ void createDB::on_actionRefresh_triggered() {
     query->exec("SELECT TSurname FROM teacher;");
 
     // Error Handling
-    if(!query->isActive())
+    if(!query->isActive()) {
         ui->lblQueryStatus->setText("Can't load teacher list, try to add a new record first!");
+        return;
+    }
     
     model->setQuery(*query);
     ui->cbnTeacher->setModel(model);
@@ -98,8 +100,10 @@ void createDB::on_btnAddTeacher_clicked() {
                "FOREIGN KEY (CodSub) REFERENCES subject(ID));");
 
     // Error Handling
-    if(!query.isActive())
+    if(!query.isActive()) {
         ui->lblQueryStatus->setText("Error while executing this query!");
+        return;
+    }
 
     // Now we want to insert the user input into the database
     // For security reason, we want to bind those values.
@@ -108,8 +112,10 @@ void createDB::on_btnAddTeacher_clicked() {
     query.bindValue(":surname", this->teacherSurname);
 
     // Error Handling
-    if(!query.exec())
+    if(!query.exec()) {
         ui->lblQueryStatus->setText("Error while executing this query!");
+        return;
+    }
     
     // Print a status message for 1.5 seconds(1500 ms)
     ui->lblQueryStatus->setText("Teacher added successfully!");
@@ -155,15 +161,19 @@ void createDB::on_btnAddSubject_clicked() {
     query.prepare("SELECT ID FROM teacher WHERE TSurname = :surname LIMIT 1;");
     query.bindValue(":surname", this->teacherSurname);
     
-    if(!query.exec())
+    if(!query.exec()) {
         ui->lblQueryStatus->setText("Error while executing this query!");
+        return;
+    }
 
     // Store the result of the query(the Teacher's ID) into a local variable
     unsigned int id;
     if(query.first())
         id = query.value(0).toInt();
-    else
+    else {
         ui->lblQueryStatus->setText("Error while executing this query!");
+        return;
+    }
 
     query.prepare("INSERT INTO subject (SubName,CodTeacher) VALUES("
                   ":subname, :codTeacher);");
@@ -171,8 +181,10 @@ void createDB::on_btnAddSubject_clicked() {
     query.bindValue(":codTeacher", id);
 
     // Then insert the subject
-    if(!query.exec())
+    if(!query.exec()) {
         ui->lblQueryStatus->setText("Error while executing this query!");
+        return;
+    }
     else { 
         // else print a status message for 1.5 seconds.
         ui->lblQueryStatus->setText("Subject added successfully!");
@@ -201,8 +213,13 @@ void createDB::on_actionDBCreate_triggered() {
     QMessageBox::warning(this, 
         tr("Save a new database"), 
         tr("This will delete any previous existing file!") );
+
+    // Get the file path
     path pt;
     this->file = pt.set_path();
+    if(this->file.isEmpty())
+        return;
+
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(this->file);
@@ -235,8 +252,10 @@ void createDB::on_actionDBCreate_triggered() {
                "FOREIGN KEY (CodSub) REFERENCES subject(ID));");
 
     // Error Handling
-    if(!query.isActive())
+    if(!query.isActive()) {
         ui->lblQueryStatus->setText("Error while executing this query!");
+        return;
+    }
 
     // Print a status message for 1.5 seconds(1500 ms)
     ui->lblQueryStatus->setText("database created successfully!");

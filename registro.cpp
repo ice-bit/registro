@@ -46,8 +46,10 @@ void regMain::on_btnLoadElements_clicked() {
                 "INNER JOIN subject AS s "
                 "ON m.CodSub = s.ID "
                 "INNER JOIN teacher AS t "
-                "ON s.CodTeacher = t.ID;"))
+                "ON s.CodTeacher = t.ID;")) {
         ui->lblQueryStatus->setText("Error while executing this query!");
+        return;
+    }
     // put the result of the query into our model
     model->setQuery(*query);
     // Display our model into the QTableView.
@@ -151,8 +153,10 @@ void regMain::on_btnDelElements_clicked() {
     query.bindValue(":id", this->userSelection);
 
     // Error Handling
-    if(!query.exec())
+    if(!query.exec()) {
         ui->lblQueryStatus->setText("Error while executing this query!");
+        return;
+    }
     
     // Print a status message for 1.5 seconds(1500ms)
     ui->lblQueryStatus->setText("Mark deleted successfully!");
@@ -202,8 +206,10 @@ void regMain::searchSubject() {
                 "WHERE s.SubName LIKE :subname;");
     query->bindValue(":subname", QString("%%1%").arg(this->reqsub));
 
-    if(!query->exec())
+    if(!query->exec()) {
         ui->lblQueryStatus->setText("Error while executing this query!");
+        return;
+    }
 
     // put the result of the query into our model
     model->setQuery(*query);

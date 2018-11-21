@@ -34,8 +34,10 @@ void delTS::on_btnDeleteSub_clicked() {
     query.prepare("DELETE FROM subject WHERE ID = :id;");
     query.bindValue(":id", this->subid);
 
-    if(!query.exec())
+    if(!query.exec()) {
         ui->lblQueryStatus->setText("Error while deleting the subject!");
+        return;
+    }
     else {
         // else print a status message for 1.5 seconds.
         ui->lblQueryStatus->setText("Subject deleted successfully!");
@@ -76,8 +78,10 @@ void delTS::on_btnDeleteTeach_clicked() {
     query.prepare("DELETE FROM teacher WHERE ID = :id;");
     query.bindValue(":id", this->teachid);
 
-    if(!query.exec())
+    if(!query.exec()) {
         ui->lblQueryStatus->setText("Error while deleting the teacher!");
+        return;
+    }
     else {
         // else print a status message for 1.5 seconds.
         ui->lblQueryStatus->setText("Teacher deleted successfully!");
@@ -118,8 +122,10 @@ void delTS::on_actionRefresh_triggered() {
     mainquery->exec("SELECT ID, SubName FROM subject;");
 
     // Error Handling
-    if(!mainquery->isActive())
+    if(!mainquery->isActive()) {
         ui->lblQueryStatus->setText("Can't load subject list!");
+        return;
+    }
 
     // Put the result of the query into our model
     mainmodel->setQuery(*mainquery);
@@ -137,8 +143,10 @@ void delTS::on_actionRefresh_triggered() {
     subquery->exec("SELECT ID, TSurname FROM teacher;");
 
     // Error Handling
-    if(!subquery->isActive())
+    if(!subquery->isActive()) {
         ui->lblQueryStatus->setText("Can't load subject list!");
+        return;
+    }
 
     // Put the result of the query into our model
     submodel->setQuery(*subquery);

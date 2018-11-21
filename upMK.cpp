@@ -36,8 +36,10 @@ void upMK::on_actionRefresh_triggered() {
     query->exec("SELECT SubName FROM subject;");
 
     // Error handling
-    if(!query->isActive())
+    if(!query->isActive()) {
         ui->lblQueryStatus->setText("Can't load subject list, try to add a new subject first!");
+        return;
+    }
     
     // Put the result of the query into our model
     model->setQuery(*query);
@@ -92,15 +94,19 @@ void upMK::on_btnUpdateMark_clicked() {
     query.bindValue(":subname", this->mkSub);
 
     // Error handling
-    if(!query.exec())
+    if(!query.exec()) {
         ui->lblQueryStatus->setText("Error while executing this query!");
+        return;
+    }
     
     // Store the result into a integer variable
     unsigned int id;
     if(query.first())
         id = query.value(0).toInt();
-    else
+    else {
         ui->lblQueryStatus->setText("Error while executing this query!");
+        return;
+    }
     
 
     // Now update the record
@@ -112,8 +118,10 @@ void upMK::on_btnUpdateMark_clicked() {
     query.bindValue(":sub", id);
     query.bindValue(":id", this->mkID);
 
-    if(!query.exec())
+    if(!query.exec()) {
         ui->lblQueryStatus->setText("Error while executing this query");
+        return;
+    }
 
     // Print a status message for 1.5 seconds(1500ms)
     ui->lblQueryStatus->setText("Mark updated successfully!");

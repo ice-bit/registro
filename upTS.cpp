@@ -37,8 +37,10 @@ void upTS::on_actionRefresh_triggered() {
                     "INNER JOIN teacher AS t ON m.CodTeacher = t.ID;");
 
     // Error Handling
-    if(!mainquery->isActive())
+    if(!mainquery->isActive()) {
         ui->lblQueryStatus->setText("Can't load subject list!");
+        return;
+    }
 
     // Put the result of the query into our model
     mainmodel->setQuery(*mainquery);
@@ -58,8 +60,10 @@ void upTS::on_actionRefresh_triggered() {
     subquery->exec("SELECT ID, TName, TSurname FROM teacher;");
 
     // Error Handling
-    if(!subquery->isActive())
+    if(!subquery->isActive()) {
         ui->lblQueryStatus->setText("Can't load subject list!");
+        return;
+    }
 
     // Put the result of the query into our model
     submodel->setQuery(*subquery);
@@ -75,8 +79,10 @@ void upTS::on_actionRefresh_triggered() {
     // Now do the same thing with the other QObject
     cbnquery->exec("SELECT TSurname FROM teacher;");
 
-    if(!cbnquery->isActive())
+    if(!cbnquery->isActive()) {
         ui->lblQueryStatus->setText("Can't load teacher list, try to add a new record first!");
+        return;
+    }
 
     cbnmodel->setQuery(*cbnquery);
     ui->cbnTeacher->setModel(cbnmodel);
@@ -137,8 +143,10 @@ void upTS::on_btnSubUpdate_clicked() {
     query.bindValue(":surname", this->tcName);
     
 
-    if(!query.exec())
+    if(!query.exec()) {
         ui->lblQueryStatus->setText("Error while executing this query!");
+        return;
+    }
         
     // Store the result of the query into a local variable
     unsigned int id;
@@ -157,8 +165,10 @@ void upTS::on_btnSubUpdate_clicked() {
         query.bindValue(":id", this->id);
 
         // Execute the query
-        if(!query.exec())
+        if(!query.exec()) {
             ui->lblQueryStatus->setText("Error while executing this query!");
+            return;
+        }
         else {
             ui->lblQueryStatus->setText("Teacher updated successfully!");
             QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
@@ -171,8 +181,10 @@ void upTS::on_btnSubUpdate_clicked() {
         query.bindValue(":id", this->id);
 
         // Execute the query
-        if(!query.exec())
+        if(!query.exec()) {
             ui->lblQueryStatus->setText("Error while executing this query!");
+            return;
+        }
         else {
             ui->lblQueryStatus->setText("Subject updated successfully!");
             QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
@@ -223,8 +235,10 @@ void upTS::on_btnTeacherUpdate_clicked() {
         query.bindValue(":id", this->id);
 
         // Exec the query
-        if(!query.exec())
+        if(!query.exec()) {
             ui->lblQueryStatus->setText("Error while executing this query!");
+            return;
+        }
         else {
             ui->lblQueryStatus->setText("Subject updated successfully!");
             QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
@@ -236,8 +250,10 @@ void upTS::on_btnTeacherUpdate_clicked() {
         query.bindValue(":id", this->id);
 
         // Exec the query
-        if(!query.exec())
+        if(!query.exec()) {
             ui->lblQueryStatus->setText("Error while executing this query!");
+            return;
+        }
         else {
             ui->lblQueryStatus->setText("Subject updated successfully!");
             QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
@@ -250,8 +266,10 @@ void upTS::on_btnTeacherUpdate_clicked() {
         query.bindValue(":id", this->id);
 
         // Exec the query
-        if(!query.exec())
+        if(!query.exec()) {
             ui->lblQueryStatus->setText("Error while executing this query!");
+            return;
+        }
         else {
             ui->lblQueryStatus->setText("Subject updated successfully!");
             QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
