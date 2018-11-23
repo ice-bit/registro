@@ -14,5 +14,12 @@ find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Sql REQUIRED)
 
-add_executable(registro main.cpp registro.h registro.cpp createDB.h createDB.cpp delTS.h delTS.cpp upTS.h upTS.cpp addMK.h addMK.cpp upMK.h upMK.cpp about.h about.cpp path.h path.cpp resources/res.qrc)
+if (WIN32)
+    add_executable(registro WIN32 main.cpp registro.h registro.cpp createDB.h createDB.cpp delTS.h delTS.cpp upTS.h upTS.cpp addMK.h addMK.cpp upMK.h upMK.cpp about.h about.cpp path.h path.cpp resources/res.qrc)
+endif (WIN32)
+
+if (UNIX)
+    add_executable(registro main.cpp registro.h registro.cpp createDB.h createDB.cpp delTS.h delTS.cpp upTS.h upTS.cpp addMK.h addMK.cpp upMK.h upMK.cpp about.h about.cpp path.h path.cpp resources/res.qrc)
+endif (UNIX)
+
 target_link_libraries(registro Qt5::Widgets Qt5::Core Qt5::Sql)

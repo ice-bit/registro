@@ -170,7 +170,7 @@ void upTS::on_btnSubUpdate_clicked() {
             return;
         }
         else {
-            ui->lblQueryStatus->setText("Teacher updated successfully!");
+            ui->lblQueryStatus->setText("Subject updated successfully!");
             QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
         }
 
@@ -240,7 +240,7 @@ void upTS::on_btnTeacherUpdate_clicked() {
             return;
         }
         else {
-            ui->lblQueryStatus->setText("Subject updated successfully!");
+            ui->lblQueryStatus->setText("Teacher updated successfully!");
             QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
         }
     } else if(ui->lnTeachSurname->text().isEmpty()) {
@@ -255,7 +255,7 @@ void upTS::on_btnTeacherUpdate_clicked() {
             return;
         }
         else {
-            ui->lblQueryStatus->setText("Subject updated successfully!");
+            ui->lblQueryStatus->setText("Teacher updated successfully!");
             QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
         }
     } else {
@@ -271,7 +271,7 @@ void upTS::on_btnTeacherUpdate_clicked() {
             return;
         }
         else {
-            ui->lblQueryStatus->setText("Subject updated successfully!");
+            ui->lblQueryStatus->setText("Teacher updated successfully!");
             QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
         }
     }

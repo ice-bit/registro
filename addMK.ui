@@ -24,7 +24,7 @@
       <x>230</x>
       <y>40</y>
       <width>191</width>
-      <height>32</height>
+      <height>21</height>
      </rect>
     </property>
    </widget>
@@ -34,7 +34,7 @@
       <x>580</x>
       <y>40</y>
       <width>88</width>
-      <height>34</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
@@ -47,7 +47,7 @@
       <x>430</x>
       <y>40</y>
       <width>141</width>
-      <height>32</height>
+      <height>21</height>
      </rect>
     </property>
    </widget>
@@ -121,7 +121,7 @@
       <x>90</x>
       <y>40</y>
       <width>131</width>
-      <height>32</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="displayFormat">
@@ -153,7 +153,7 @@
       <x>10</x>
       <y>40</y>
       <width>71</width>
-      <height>32</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="minimum">

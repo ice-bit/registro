@@ -6,7 +6,6 @@
 #include <QSqlQueryModel>
 #include <vector>
 #include <math.h>
-#include <QDebug>
 #include <QSqlError>
 #include "path.h"
 #include "createDB.h"
@@ -14,6 +13,7 @@
 #include "upMK.h"
 #include "about.h"
 #include "ui_registro.h"
+
 
 class regMain : public QMainWindow {
     Q_OBJECT

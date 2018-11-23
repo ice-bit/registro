@@ -170,8 +170,9 @@ void regMain::on_btnDelElements_clicked() {
     db.removeDatabase(con);
 }
 
+
 float regMain::avg(std::vector<float> marks) {
-    float sum = 0;
+    long sum = 0;
 
     for(int i = 0; i < marks.size(); i++)
         sum += marks.at(i);
@@ -261,6 +262,7 @@ void regMain::searchSubject() {
 void regMain::on_actionChangeDB_triggered() {
     path pt;
     this->file = pt.get_path();
+    ui->lblQueryStatus->setText("Database changed, reload the table");
 }
 
 void regMain::on_actionAbout_triggered() {
