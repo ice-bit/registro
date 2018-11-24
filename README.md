@@ -26,7 +26,7 @@ The other way is to download the [executable file](#) and open/install it.
 Registro is user-friendly and very intuitive, to start it just _double-click_ in the Application icon or start it from a command line interface by typing: `./registro`.
 
 # License
-Registro is released under GPLv3.0, you will obtain a copy of this license by downloading the repository or by visiting [this](https://opensource.org/licenses/GPL-3.0) link.
+Registro is released under GPLv3.0, you will obtain a copy of this license by downloading the repository or by visiting [this](https://opensource.org/licenses/GPL-3.0) page.
 
 # Screenshot
 > not available yet.

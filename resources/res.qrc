@@ -1,7 +1,6 @@
 <RCC>
   <qresource prefix="imgs">
     <file>images/about_icon.png</file>
-    <file>images/application_icon.png</file>
     <file>images/window_icon.ico</file>
   </qresource>
 </RCC>
