@@ -1,4 +1,4 @@
-# Registro
+# Registro [![Build Status](https://travis-ci.org/ice-bit/registro.svg?branch=master)](https://travis-ci.org/ice-bit/registro)
 Registro is a multi-platform application to save and organize your school marks.  
 <img src="https://img.shields.io/badge/os-linux-yellow.svg">
 <img src="https://img.shields.io/badge/os-windows-blue.svg">
