@@ -14,11 +14,6 @@
 class upMK : public QMainWindow {
     Q_OBJECT
 
-private:
-    Ui::upMKClass *ui;
-    float mkMark, mkID;
-    QString mkDate, mkDesc, mkSub, file = nullptr;
-
 public:
     upMK(QWidget *parent = Q_NULLPTR);
     ~upMK();
@@ -28,6 +23,11 @@ public slots:
 
 private slots:
     void on_btnUpdateMark_clicked();
+
+private:
+    Ui::upMKClass *ui;
+    float mkMark, mkID;
+    QString mkDate, mkDesc, mkSub, file = nullptr;
 
 };
 

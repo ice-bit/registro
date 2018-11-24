@@ -15,12 +15,6 @@
 class createDB : public QMainWindow {
     Q_OBJECT
 
-private:
-    Ui::createDBClass *ui;
-    upTS *upTSWin;
-    delTS *delTSWin;
-    QString teacherName, teacherSurname, subject, file = nullptr;
-
 public:
     createDB(QWidget *parent = Q_NULLPTR);
     ~createDB();
@@ -34,6 +28,12 @@ public slots:
     void on_actionUpdate_triggered();
     void on_actionDelete_triggered();
     void on_actionDBCreate_triggered();
+
+private:
+    Ui::createDBClass *ui;
+    upTS *upTSWin;
+    delTS *delTSWin;
+    QString teacherName, teacherSurname, subject, file = nullptr;
 };
 
 #endif

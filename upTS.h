@@ -14,11 +14,6 @@
 class upTS : public QMainWindow {
     Q_OBJECT
 
-private:
-    Ui::upTSClass *ui;
-    unsigned int id, teachid;
-    QString subName, tcName, tcSurname, file = nullptr;
-
 public:
     upTS(QWidget *parent = Q_NULLPTR);
     ~upTS();
@@ -29,6 +24,12 @@ private slots:
 
 public slots:
     void on_actionRefresh_triggered();
+
+private:
+    Ui::upTSClass *ui;
+    unsigned int id, teachid;
+    QString subName, tcName, tcSurname, file = nullptr;
+
 };
 
 #endif

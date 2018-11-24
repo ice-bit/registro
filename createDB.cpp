@@ -1,6 +1,5 @@
 #include "createDB.h"
 
-
 createDB::createDB(QWidget *parent) : QMainWindow(parent), ui(new Ui::createDBClass) {
     ui->setupUi(this);
     setFixedSize(552, 229);
@@ -21,7 +20,7 @@ void createDB::on_actionRefresh_triggered() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
+            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
         return;
     }
 
@@ -72,7 +71,7 @@ void createDB::on_btnAddTeacher_clicked() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
+            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
         return;
     }
 
@@ -150,7 +149,7 @@ void createDB::on_btnAddSubject_clicked() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
+            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
         return;
     }
 
@@ -210,10 +209,6 @@ void createDB::on_actionDelete_triggered() {
 }
 
 void createDB::on_actionDBCreate_triggered() {
-    QMessageBox::warning(this, 
-        tr("Save a new database"), 
-        tr("This will delete any previous existing file!") );
-
     // Get the file path
     path pt;
     this->file = pt.set_path();
@@ -225,7 +220,7 @@ void createDB::on_actionDBCreate_triggered() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
+            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
         return;
     }
 

@@ -58,11 +58,6 @@
         </item>
         <item>
          <widget class="QLabel" name="lblQueryStatus">
-          <property name="font">
-           <font>
-            <pointsize>8</pointsize>
-           </font>
-          </property>
           <property name="text">
            <string/>
           </property>

@@ -9,13 +9,14 @@
 class path : public QMainWindow {
     Q_OBJECT
 
-private:
-    QString user_path;
-
 public:
     path();
     QString get_path(); // open existing file
     QString set_path(); // Create new file
+
+private:
+    QString user_path;
+
 };
 
 #endif

@@ -6,7 +6,6 @@
 #include <QSqlQueryModel>
 #include <vector>
 #include <math.h>
-#include <QSqlError>
 #include "path.h"
 #include "createDB.h"
 #include "addMK.h"
@@ -17,17 +16,6 @@
 
 class regMain : public QMainWindow {
     Q_OBJECT
-
-private:
-    Ui::regMainClass *ui;
-    createDB *createDBWin;
-    addMK *addMKWin;
-    upMK *upMKWin;
-    about *aboutWin;
-    unsigned int userSelection;
-    std::vector<float> marks;
-    QString reqsub, file = nullptr;
-    float avg(std::vector<float> marks);
 
 public:
     regMain(QWidget *parent = Q_NULLPTR);
@@ -45,6 +33,18 @@ private slots:
     void on_btnAddElements_clicked();
     void on_btnUpElements_clicked();
     void on_btnDelElements_clicked();
+
+private:
+    Ui::regMainClass *ui;
+    createDB *createDBWin;
+    addMK *addMKWin;
+    upMK *upMKWin;
+    about *aboutWin;
+    unsigned int userSelection;
+    std::vector<float> marks;
+    QString reqsub, file = nullptr;
+    float avg(std::vector<float> marks);
+
 };
 
 #endif

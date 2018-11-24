@@ -1,15 +1,13 @@
-Outfile "registro_installer_v1.2_release_windows.exe"
+Outfile "registro_installer.exe"
 
-InstallDir "C:\Program Files\Registro"
+InstallDir "C:\Program Files\registro"
 
 Section
 
 SetOutPath "C:\Program Files\Registro"
 
-file /r "registro_final_deploy\*"
-CreateShortcut "$DESKTOP\Registro 1.2.lnk" "$INSTDIR\registro.exe"
-
-CreateDirectory "$APPDATA\Registro"
+file /r "deploy\*"
+CreateShortcut "$DESKTOP\Registro 1.3.lnk" "$INSTDIR\registro.exe"
 
 WriteUninstaller "$INSTDIR\uninstall.exe"
 
@@ -21,8 +19,6 @@ Delete "$INSTDIR\uninstall.exe"
 
 RMDIR /r "$INSTDIR"
 
-RMDIR /r "$APPDATA\Registro"
-
-Delete "$DESKTOP\Registro 1.2.lnk"
+Delete "$DESKTOP\Registro 1.3.lnk"
 
 SectionEnd

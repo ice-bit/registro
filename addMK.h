@@ -4,7 +4,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QSqlDatabase>
 #include <QSqlQueryModel>
-#include <QDebug>
 #include <QMessageBox>
 #include <QSqlQuery>
 #include <QTimer>
@@ -13,11 +12,6 @@
 
 class addMK : public QMainWindow {
     Q_OBJECT
-
-private:
-    Ui::addMKClass *ui;
-    float mkMark;
-    QString mkDate, mkDesc, mkSub, file = nullptr;
 
 public:
     addMK(QWidget *parent = Q_NULLPTR);
@@ -28,6 +22,12 @@ public slots:
 
 private slots:
     void on_btnInsertMark_clicked();
+
+private:
+    Ui::addMKClass *ui;
+    float mkMark;
+    QString mkDate, mkDesc, mkSub, file = nullptr;
+
 };
 
 #endif

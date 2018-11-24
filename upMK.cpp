@@ -22,7 +22,7 @@ void upMK::on_actionRefresh_triggered() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
+            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
         return;
     }
 
@@ -82,7 +82,7 @@ void upMK::on_btnUpdateMark_clicked() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
+            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
         return;
     }
 

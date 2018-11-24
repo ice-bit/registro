@@ -6,18 +6,18 @@
 #define LICENSE "License: GNU General Public License v3.0"
 
 #include <QtWidgets/QMainWindow>
-#include <QDebug>
 #include "ui_about.h"
 
 
 class about : public QMainWindow {
     
-private:
-    Ui::aboutClass *ui;
-
 public:
     about(QWidget *parent = Q_NULLPTR);
     ~about();
+
+private:
+    Ui::aboutClass *ui;
+
 };
 
 #endif

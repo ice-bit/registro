@@ -32,7 +32,7 @@ void regMain::on_btnLoadElements_clicked() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
+            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
         return;
     }
 
@@ -141,7 +141,7 @@ void regMain::on_btnDelElements_clicked() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
+            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
         return;
     }
 
@@ -189,7 +189,7 @@ void regMain::searchSubject() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Cancel);
+            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
         return;
     }
 
@@ -262,7 +262,7 @@ void regMain::searchSubject() {
 void regMain::on_actionChangeDB_triggered() {
     path pt;
     this->file = pt.get_path();
-    ui->lblQueryStatus->setText("Database changed, reload the table");
+    ui->lblQueryStatus->setText("Database changed, reload it");
 }
 
 void regMain::on_actionAbout_triggered() {
