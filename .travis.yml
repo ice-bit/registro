@@ -1,15 +1,16 @@
 sudo: required
-dist: trusty
 language: cpp
 
 before_install:
-        - sudo add-apt-repository --yes ppa:beineri/opt-qt551-trusty
-        - sudo apt-get install sqlite3 libsqlite3-dev
+        - sudo add-apt-repository --yes ppa:beineri/opt-qt-5.10.1-trusty
         - sudo apt-get update -qq
 install:
-        - sudo apt install qt55[QTPACKAGE] -y
-script:
-        - source /opt/qt55/bin/qt55-env.sh
-        - /opt/qt55/bin/qmake Registro.pro -spec linux-g++
-        - make
+        - sudo apt install qt510[PACKAGE] -y
 
+packages:
+        - cmake
+
+script:
+        mkdir build && cd build
+        cmake ..
+        make
