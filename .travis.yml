@@ -12,5 +12,5 @@ packages:
 
 script:
        - mkdir build && cd build
-       - cmake --version
+       - cmake ..
        - make
