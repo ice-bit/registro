@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.9)
 project(registro VERSION 1.3)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
