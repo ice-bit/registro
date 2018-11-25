@@ -1,16 +1,25 @@
-sudo: required
 language: cpp
-
-before_install:
-        - sudo add-apt-repository --yes ppa:beineri/opt-qt-5.10.1-trusty
-        - sudo apt-get update -qq
-install:
-        - sudo apt install qt510[PACKAGE] -y
+os: linux
+sudo: required
+dist: trusty
 
 packages:
-        - cmake
+  - cmake
+
+before_install:
+  # Add qt repository
+  - sudo add-apt-repository --yes ppa:beineri/opt-qt-5.10.1-trusty
+  - sudo apt-get update -qq
+
+install:
+  # Install qt packages
+  - sudo apt install qt510[PACKAGE] --yes
+
+before_script:
+  - source /opt/qt510/bin/qt510-env.sh
 
 script:
-       - mkdir build && cd build
-       - cmake ..
-       - make
+  - mkdir build && cd build
+  - cmake ..
+  - make
+
