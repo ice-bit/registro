@@ -41,6 +41,7 @@ void regMain::on_btnLoadElements_clicked() {
 
     QSqlQuery *query = new QSqlQuery(db);
     // Execute the query
+
     if(!query->exec("SELECT m.ID, m.mark, s.SubName, m.MarkDate, m.Description, t.TSurname "
                 "FROM mark AS m "
                 "INNER JOIN subject AS s "
@@ -74,21 +75,25 @@ void regMain::on_btnLoadElements_clicked() {
     /* Average section */
 
     // Clear the vector
-   this->marks.clear();
+    this->marks.clear();
     // put the values of the marks column into a vector
     for(int col = 0; col < ui->tbMain->model()->rowCount(); col++) {
         QVariant index = ui->tbMain->model()->data(ui->tbMain->model()->index(col, 1));
         float value = index.value<float>();
         this->marks.push_back(value);
     }
-    // Compute the average
-    float marks_avg = avg(this->marks);
-    // Display it to the user
-    if(std::isnan(marks_avg))
+    
+    if(!this->marks.empty()) {
+        // Compute the average
+        float marks_avg = avg(this->marks);
+        // Display it to the user
+        if(std::isnan(marks_avg))
+            ui->lblAvg->setText("/");
+        else
+            ui->lblAvg->setText(QString::number(marks_avg));
+    } else
         ui->lblAvg->setText("/");
-    else
-        ui->lblAvg->setText(QString::number(marks_avg));
-
+        
     // Delete heap objects
     delete query;
 

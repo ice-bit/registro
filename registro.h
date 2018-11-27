@@ -12,7 +12,7 @@
 #include "upMK.h"
 #include "about.h"
 #include "ui_registro.h"
-
+#include <QDebug>
 
 class regMain : public QMainWindow {
     Q_OBJECT
