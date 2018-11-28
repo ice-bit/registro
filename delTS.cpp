@@ -6,6 +6,8 @@ delTS::delTS(QWidget *parent) : QMainWindow(parent), ui(new Ui::delTSClass) {
 
     // Free QObjects(needed to avoid memory leaks)
     setAttribute(Qt::WA_DeleteOnClose);
+    ui->tbSubjects->horizontalHeader()->setStretchLastSection(true);
+    ui->tbTeachers->horizontalHeader()->setStretchLastSection(true);
 }
 
 void delTS::on_btnDeleteSub_clicked() {

@@ -6,6 +6,8 @@ upTS::upTS(QWidget *parent) : QMainWindow(parent), ui(new Ui::upTSClass) {
 
     // Free QObjet(needed to avoid memory leaks)
     setAttribute(Qt::WA_DeleteOnClose);
+    ui->tbSubjects->horizontalHeader()->setStretchLastSection(true);
+    ui->tbTeachers->horizontalHeader()->setStretchLastSection(true);
 }
 
 void upTS::on_actionRefresh_triggered() {
