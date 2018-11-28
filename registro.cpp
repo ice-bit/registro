@@ -248,14 +248,18 @@ void regMain::searchSubject() {
         QVariant index = ui->tbMain->model()->data(ui->tbMain->model()->index(col, 1));
         float value = index.value<float>();
         this->marks.push_back(value);
+    
     }
-    // Compute the average
-    float marks_avg = avg(this->marks);
-    // Display it to the user
-    if(std::isnan(marks_avg))
+    if(!this->marks.empty()) {
+        // Compute the average
+        float marks_avg = avg(this->marks);
+        // Display it to the user
+        if(std::isnan(marks_avg))
+            ui->lblAvg->setText("/");
+        else
+            ui->lblAvg->setText(QString::number(marks_avg));
+    } else
         ui->lblAvg->setText("/");
-    else
-        ui->lblAvg->setText(QString::number(marks_avg));
 
     // Delete heap objects
     delete query;
