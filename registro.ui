@@ -208,6 +208,7 @@
     </property>
     <addaction name="actionCreateDB"/>
     <addaction name="actionChangeDB"/>
+    <addaction name="actionCreatePDF"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menu">
@@ -238,6 +239,11 @@
   <action name="actionChangeDB">
    <property name="text">
     <string>Change &amp;Database</string>
+   </property>
+  </action>
+  <action name="actionCreatePDF">
+   <property name="text">
+    <string>Export As PDF</string>
    </property>
   </action>
  </widget>

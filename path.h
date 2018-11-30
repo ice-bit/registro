@@ -11,12 +11,12 @@ class path : public QMainWindow {
 
 public:
     path();
-    QString get_path(); // open existing file
-    QString set_path(); // Create new file
+    QString get_path(); // open existing db
+    QString set_path(); // create a new db
+    QString set_path_pdf(); // create a new pdf
 
 private:
     QString user_path;
-
 };
 
 #endif

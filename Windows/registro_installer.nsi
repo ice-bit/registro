@@ -1,10 +1,10 @@
 Outfile "registro_installer.exe"
 
-InstallDir "PROGRAMFILES64\registro"
+InstallDir "$PROGRAMFILES64\registro"
 
 Section
 
-SetOutPath "PROGRAMFILES64\Registro"
+SetOutPath "$PROGRAMFILES64\Registro"
 
 file /r "Release\*"
 CreateShortcut "$DESKTOP\Registro 1.3.lnk" "$INSTDIR\registro.exe"

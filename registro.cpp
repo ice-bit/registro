@@ -273,6 +273,110 @@ void regMain::on_actionChangeDB_triggered() {
     this->file = pt.get_path();
     ui->lblQueryStatus->setText("Database changed, reload it");
 }
+void regMain::on_actionCreatePDF_triggered() {
+    // Create an html+css template
+    QString *htmlTemplate = new QString();
+
+    // Get user path
+    if(this->file == nullptr) {
+        path pt;
+        this->file = pt.get_path();
+    }
+
+    // Connect to the database
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(this->file);
+    if(!db.open()) {
+        QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
+            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+        return;
+    }
+
+    QSqlQuery *query = new QSqlQuery();
+
+    if(!query->exec("SELECT ROUND(m.mark, 2), s.SubName, m.MarkDate, m.Description, t.TSurname "
+                "FROM mark AS m "
+                "INNER JOIN subject AS s "
+                "ON m.CodSub = s.ID "
+                "INNER JOIN teacher AS t "
+                "ON s.CodTeacher = t.ID;")) {
+        ui->lblQueryStatus->setText("Error while executing this query!");
+        return;
+    }
+     // Get current year
+    QString date = QDate::currentDate().toString("dd/MM/yyyy");
+
+    // Basic html+css template
+    *htmlTemplate = 
+        "<body><div align='left'>"
+            "<i>" + date + "</i>"
+        "</div><div align='right'>"
+            "<h1>Registro</h1><br /<br />"
+        "</div>"
+        "<table>"
+            "<tr>"
+                "<th>Mark</th>"
+                "<th>Subject</th>"
+                "<th>Date</th>"
+                "<th>Description</th>"
+                "<th>Teacher</th>"
+            "</tr>";
+
+    while(query->next()) {
+        QString mark, subject, date, description, teacher;
+
+        // Fill vars with query data
+        mark = query->value(0).toString();
+        subject = query->value(1).toString();
+        date = query->value(2).toString();
+        description = query->value(3).toString();
+        teacher = query->value(4).toString();
+
+        // Update htmlTemplate content
+        *htmlTemplate += 
+        "<tr>"
+            "&nbsp;&nbsp;&nbsp;&nbsp;<td>" + mark + "</td> &nbsp;&nbsp;&nbsp;&nbsp;"
+            "&nbsp;&nbsp;&nbsp;&nbsp;<td>" + subject + "</td> &nbsp;&nbsp;&nbsp;&nbsp;"
+            "&nbsp;&nbsp;&nbsp;&nbsp;<td>" + date + "</td> &nbsp;&nbsp;&nbsp;&nbsp;"
+            "&nbsp;&nbsp;&nbsp;&nbsp;<td>" + description + "</td> &nbsp;&nbsp;&nbsp;&nbsp;"
+            "&nbsp;&nbsp;&nbsp;&nbsp;<td>" + teacher + "</td> &nbsp;&nbsp;&nbsp;&nbsp;"
+        "</tr>";
+    }
+    // Close the remaining tags
+    *htmlTemplate += "</table></body>";
+    
+    // Finally, create and save the PDF
+    QTextDocument document;
+    //document.setDefaultStyleSheet("body { border: 1px solid black; }"); Not working yet
+    document.setHtml(*htmlTemplate);
+
+    QPrinter pr(QPrinter::PrinterResolution);
+    pr.setOutputFormat(QPrinter::PdfFormat);
+    pr.setPaperSize(QPrinter::A4);
+    pr.setPageMargins(QMarginsF(15, 15, 15, 15));
+    // Get a path
+    path pt;
+    QString path;
+    path = pt.set_path_pdf();
+    // And set it
+    pr.setOutputFileName(path);
+    // Finally write the file to the disk
+    document.print(&pr);
+
+    ui->lblQueryStatus->setText("PDF successfully created");
+    QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
+
+    // Close the connection to the database
+    QString con;
+    con = db.connectionName();
+    db.close();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
+
+    // Delete heap objects
+    delete query;
+    delete htmlTemplate;
+}
 
 void regMain::on_actionAbout_triggered() {
     aboutWin = new about();
@@ -284,4 +388,3 @@ void regMain::on_actionExit_triggered() {
 }
 
 regMain::~regMain() { delete ui; }
-

@@ -4,6 +4,8 @@
 #include <QtWidgets/QMainWindow>
 #include <QSqlDatabase>
 #include <QSqlQueryModel>
+#include <QPrinter>
+#include <QTextDocument>
 #include <vector>
 #include <math.h>
 #include "path.h"
@@ -12,7 +14,6 @@
 #include "upMK.h"
 #include "about.h"
 #include "ui_registro.h"
-#include <QDebug>
 
 class regMain : public QMainWindow {
     Q_OBJECT
@@ -26,6 +27,7 @@ public slots:
     void on_actionAbout_triggered();
     void on_actionExit_triggered();
     void on_actionChangeDB_triggered();
+    void on_actionCreatePDF_triggered();
     void searchSubject();
 
 private slots:
