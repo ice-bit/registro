@@ -313,7 +313,7 @@ void regMain::on_actionCreatePDF_triggered() {
         "</div><div align='right'>"
             "<h1>Registro</h1><br /<br />"
         "</div>"
-        "<table>"
+        "<table border = 1 padding = 1>"
             "<tr>"
                 "<th>Mark</th>"
                 "<th>Subject</th>"
@@ -335,11 +335,11 @@ void regMain::on_actionCreatePDF_triggered() {
         // Update htmlTemplate content
         *htmlTemplate += 
         "<tr>"
-            "&nbsp;&nbsp;&nbsp;&nbsp;<td>" + mark + "</td> &nbsp;&nbsp;&nbsp;&nbsp;"
-            "&nbsp;&nbsp;&nbsp;&nbsp;<td>" + subject + "</td> &nbsp;&nbsp;&nbsp;&nbsp;"
-            "&nbsp;&nbsp;&nbsp;&nbsp;<td>" + date + "</td> &nbsp;&nbsp;&nbsp;&nbsp;"
-            "&nbsp;&nbsp;&nbsp;&nbsp;<td>" + description + "</td> &nbsp;&nbsp;&nbsp;&nbsp;"
-            "&nbsp;&nbsp;&nbsp;&nbsp;<td>" + teacher + "</td> &nbsp;&nbsp;&nbsp;&nbsp;"
+            "<td>" + mark + "</td>"
+            "<td>" + subject + "</td>"
+            "<td>" + date + "</td>"
+            "<td>" + description + "</td>"
+            "<td>" + teacher + "</td>"
         "</tr>";
     }
     // Close the remaining tags
@@ -347,7 +347,7 @@ void regMain::on_actionCreatePDF_triggered() {
     
     // Finally, create and save the PDF
     QTextDocument document;
-    //document.setDefaultStyleSheet("body { border: 1px solid black; }"); Not working yet
+    document.setDefaultStyleSheet("table, th, td { border: 1px solid black; padding: 5px; }");
     document.setHtml(*htmlTemplate);
 
     QPrinter pr(QPrinter::PrinterResolution);

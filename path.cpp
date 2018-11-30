@@ -19,6 +19,6 @@ QString path::set_path() {
 QString path::set_path_pdf() {
     this->user_path = QFileDialog::getSaveFileName(this,
         tr("Save a new pdf"), "",
-        tr("PDF File (*.pdf"));
+        tr("PDF File (*.pdf)"));
     return this->user_path;
 }
