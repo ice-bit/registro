@@ -308,10 +308,10 @@ void regMain::on_actionCreatePDF_triggered() {
 
     // Basic html+css template
     *htmlTemplate = 
-        "<body><div align='left'>"
+        "<body><div align='right'>"
             "<i>" + date + "</i>"
-        "</div><div align='right'>"
-            "<h1>Registro</h1><br /<br />"
+        "</div><div align='left'>"
+            "<b>Registro<br /></b>"
         "</div>"
         "<table border = 1 padding = 1>"
             "<tr>"
@@ -347,7 +347,7 @@ void regMain::on_actionCreatePDF_triggered() {
     
     // Finally, create and save the PDF
     QTextDocument document;
-    document.setDefaultStyleSheet("table, th, td { border: 1px solid black; padding: 5px; }");
+    document.setDefaultStyleSheet("th, td { border: 1px solid black; padding: 5px; }");
     document.setHtml(*htmlTemplate);
 
     QPrinter pr(QPrinter::PrinterResolution);

@@ -78,32 +78,6 @@ void createDB::on_btnAddTeacher_clicked() {
     // Our Query
     QSqlQuery query;
 
-    // Create the three tables
-    query.exec("CREATE TABLE IF NOT EXISTS teacher ("
-                "ID INTEGER PRIMARY KEY,"
-                "TName TEXT NOT NULL,"
-                "TSurname TEXT NOT NULL);");
-
-    query.exec("CREATE TABLE IF NOT EXISTS subject ("
-               "ID INTEGER PRIMARY KEY,"
-               "SubName TEXT NOT NULL,"
-               "CodTeacher INTEGER NOT NULL,"
-               "FOREIGN KEY (CodTeacher) REFERENCES teacher(ID));");
-
-    query.exec("CREATE TABLE IF NOT EXISTS mark ("
-               "ID INTEGER PRIMARY KEY,"
-               "Mark FLOAT NOT NULL,"
-               "MarkDate DATE NOT NULL,"
-               "Description TEXT NOT NULL,"
-               "CodSub INTEGER NOT NULL,"
-               "FOREIGN KEY (CodSub) REFERENCES subject(ID));");
-
-    // Error Handling
-    if(!query.isActive()) {
-        ui->lblQueryStatus->setText("Error while executing this query!");
-        return;
-    }
-
     // Now we want to insert the user input into the database
     // For security reason, we want to bind those values.
     query.prepare("INSERT INTO teacher (TName, TSurname) VALUES (:name, :surname);");
@@ -227,18 +201,18 @@ void createDB::on_actionDBCreate_triggered() {
     // Our Query
     QSqlQuery query;
     // Create the three tables
-    query.exec("CREATE TABLE IF NOT EXISTS teacher ("
+    query.exec("DROP TABLE IF EXISTS teacher; CREATE TABLE teacher ("
                 "ID INTEGER PRIMARY KEY,"
                 "TName TEXT NOT NULL,"
                 "TSurname TEXT NOT NULL);");
 
-    query.exec("CREATE TABLE IF NOT EXISTS subject ("
+    query.exec("DROP TABLE IF EXISTS subject; CREATE TABLE subject ("
                "ID INTEGER PRIMARY KEY,"
                "SubName TEXT NOT NULL,"
                "CodTeacher INTEGER NOT NULL,"
                "FOREIGN KEY (CodTeacher) REFERENCES teacher(ID));");
 
-    query.exec("CREATE TABLE IF NOT EXISTS mark ("
+    query.exec("DROP TABLE IF EXISTS mark; CREATE TABLE mark ("
                "ID INTEGER PRIMARY KEY,"
                "Mark FLOAT NOT NULL,"
                "MarkDate DATE NOT NULL,"
