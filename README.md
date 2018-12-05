@@ -15,12 +15,12 @@ Clone the git repository: `git clone https://github.com/ice-bit/registro.git`
 Inside the directory run: `mkdir build && cd build`  
 And then: `cmake .. && make`  
 
-After that, the _Makefile_ will create a executable file called **registro**, you can move it anywhere.
+After that, the _compiler_ will create an executable file called **registro**, you can move it anywhere.
 
 ## Downloading the executable file
 The other way is to download the [executable file](https://github.com/ice-bit/registro/releases) and open/install it.
 
-**Note**: This will only work in _Windows_ and _GNU/Linux_ platforms, official executable file for _OSX_ is not provided yet.
+**Note**: Executable files are only provided for Windows, GNU/Linux and OSX users have to compile it from scratch
 
 # Usage
 Registro is user-friendly and very intuitive, to start it just _double-click_ in the Application icon or start it from a command line interface by typing: `./registro`.
