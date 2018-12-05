@@ -169,6 +169,14 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>spnSub</tabstop>
+  <tabstop>btnDeleteSub</tabstop>
+  <tabstop>spnTeach</tabstop>
+  <tabstop>btnDeleteTeach</tabstop>
+  <tabstop>tbSubjects</tabstop>
+  <tabstop>tbTeachers</tabstop>
+ </tabstops>
  <resources>
   <include location="resources/res.qrc"/>
  </resources>

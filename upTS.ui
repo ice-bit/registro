@@ -317,6 +317,18 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>spnSubID</tabstop>
+  <tabstop>lnSubName</tabstop>
+  <tabstop>cbnTeacher</tabstop>
+  <tabstop>btnSubUpdate</tabstop>
+  <tabstop>spnTeachID</tabstop>
+  <tabstop>lnTeachName</tabstop>
+  <tabstop>lnTeachSurname</tabstop>
+  <tabstop>btnTeacherUpdate</tabstop>
+  <tabstop>tbSubjects</tabstop>
+  <tabstop>tbTeachers</tabstop>
+ </tabstops>
  <resources>
   <include location="resources/res.qrc"/>
  </resources>

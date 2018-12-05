@@ -20,7 +20,7 @@ void createDB::on_actionRefresh_triggered() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok);
         return;
     }
 
@@ -71,7 +71,7 @@ void createDB::on_btnAddTeacher_clicked() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
         return;
     }
 
@@ -86,7 +86,7 @@ void createDB::on_btnAddTeacher_clicked() {
 
     // Error Handling
     if(!query.exec()) {
-        ui->lblQueryStatus->setText("Error while executing this query!");
+        ui->lblQueryStatus->setText(query.lastError().text());
         return;
     }
     
@@ -123,7 +123,7 @@ void createDB::on_btnAddSubject_clicked() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
         return;
     }
 
@@ -135,7 +135,7 @@ void createDB::on_btnAddSubject_clicked() {
     query.bindValue(":surname", this->teacherSurname);
     
     if(!query.exec()) {
-        ui->lblQueryStatus->setText("Error while executing this query!");
+        ui->lblQueryStatus->setText(query.lastError().text());
         return;
     }
 
@@ -144,7 +144,7 @@ void createDB::on_btnAddSubject_clicked() {
     if(query.first())
         id = query.value(0).toInt();
     else {
-        ui->lblQueryStatus->setText("Error while executing this query!");
+        ui->lblQueryStatus->setText(query.lastError().text());
         return;
     }
 
@@ -155,7 +155,7 @@ void createDB::on_btnAddSubject_clicked() {
 
     // Then insert the subject
     if(!query.exec()) {
-        ui->lblQueryStatus->setText("Error while executing this query!");
+        ui->lblQueryStatus->setText(query.lastError().text());
         return;
     }
     else { 
@@ -194,25 +194,31 @@ void createDB::on_actionDBCreate_triggered() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+           QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
         return;
     }
 
     // Our Query
     QSqlQuery query;
+
+     // drop previous exists tables
+    query.exec("DROP TABLE IF EXISTS teacher;");
+    query.exec("DROP TABLE IF EXISTS subject;");
+    query.exec("DROP TABLE IF EXISTS mark;");
+
     // Create the three tables
-    query.exec("DROP TABLE IF EXISTS teacher; CREATE TABLE teacher ("
+    query.exec("CREATE TABLE teacher ("
                 "ID INTEGER PRIMARY KEY,"
                 "TName TEXT NOT NULL,"
                 "TSurname TEXT NOT NULL);");
 
-    query.exec("DROP TABLE IF EXISTS subject; CREATE TABLE subject ("
+    query.exec("CREATE TABLE subject ("
                "ID INTEGER PRIMARY KEY,"
                "SubName TEXT NOT NULL,"
                "CodTeacher INTEGER NOT NULL,"
                "FOREIGN KEY (CodTeacher) REFERENCES teacher(ID));");
 
-    query.exec("DROP TABLE IF EXISTS mark; CREATE TABLE mark ("
+    query.exec("CREATE TABLE mark ("
                "ID INTEGER PRIMARY KEY,"
                "Mark FLOAT NOT NULL,"
                "MarkDate DATE NOT NULL,"
@@ -222,7 +228,7 @@ void createDB::on_actionDBCreate_triggered() {
 
     // Error Handling
     if(!query.isActive()) {
-        ui->lblQueryStatus->setText("Error while executing this query!");
+        ui->lblQueryStatus->setText(query.lastError().text());
         return;
     }
 

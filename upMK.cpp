@@ -22,7 +22,7 @@ void upMK::on_actionRefresh_triggered() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
         return;
     }
 
@@ -82,7 +82,7 @@ void upMK::on_btnUpdateMark_clicked() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+           QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
         return;
     }
 
@@ -95,7 +95,7 @@ void upMK::on_btnUpdateMark_clicked() {
 
     // Error handling
     if(!query.exec()) {
-        ui->lblQueryStatus->setText("Error while executing this query!");
+        ui->lblQueryStatus->setText(query.lastError().text());
         return;
     }
     
@@ -104,7 +104,7 @@ void upMK::on_btnUpdateMark_clicked() {
     if(query.first())
         id = query.value(0).toInt();
     else {
-        ui->lblQueryStatus->setText("Error while executing this query!");
+        ui->lblQueryStatus->setText(query.lastError().text());
         return;
     }
     
@@ -119,7 +119,7 @@ void upMK::on_btnUpdateMark_clicked() {
     query.bindValue(":id", this->mkID);
 
     if(!query.exec()) {
-        ui->lblQueryStatus->setText("Error while executing this query");
+        ui->lblQueryStatus->setText(query.lastError().text());
         return;
     }
 

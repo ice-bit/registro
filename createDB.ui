@@ -209,6 +209,14 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>lnSubject</tabstop>
+  <tabstop>cbnTeacher</tabstop>
+  <tabstop>btnAddSubject</tabstop>
+  <tabstop>lnTeacherName</tabstop>
+  <tabstop>lnTeacherSurname</tabstop>
+  <tabstop>btnAddTeacher</tabstop>
+ </tabstops>
  <resources>
   <include location="resources/res.qrc"/>
  </resources>

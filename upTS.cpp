@@ -21,7 +21,7 @@ void upTS::on_actionRefresh_triggered() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+           QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
         return;
     }
 
@@ -134,7 +134,7 @@ void upTS::on_btnSubUpdate_clicked() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+           QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
         return;
     }
 
@@ -146,7 +146,7 @@ void upTS::on_btnSubUpdate_clicked() {
     
 
     if(!query.exec()) {
-        ui->lblQueryStatus->setText("Error while executing this query!");
+        ui->lblQueryStatus->setText(query.lastError().text());
         return;
     }
         
@@ -155,7 +155,7 @@ void upTS::on_btnSubUpdate_clicked() {
     if(query.first())
         id = query.value(0).toInt();
     else
-        ui->lblQueryStatus->setText("Error while executing this query!");
+        ui->lblQueryStatus->setText(query.lastError().text());
         
 
     if(ui->lnSubName->text().isEmpty() && ui->cbnTeacher->currentText().isEmpty()) {
@@ -168,7 +168,7 @@ void upTS::on_btnSubUpdate_clicked() {
 
         // Execute the query
         if(!query.exec()) {
-            ui->lblQueryStatus->setText("Error while executing this query!");
+            ui->lblQueryStatus->setText(query.lastError().text());
             return;
         }
         else {
@@ -184,7 +184,7 @@ void upTS::on_btnSubUpdate_clicked() {
 
         // Execute the query
         if(!query.exec()) {
-            ui->lblQueryStatus->setText("Error while executing this query!");
+            ui->lblQueryStatus->setText(query.lastError().text());
             return;
         }
         else {
@@ -223,7 +223,7 @@ void upTS::on_btnTeacherUpdate_clicked() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+           QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
         return;
     }
 
@@ -238,7 +238,7 @@ void upTS::on_btnTeacherUpdate_clicked() {
 
         // Exec the query
         if(!query.exec()) {
-            ui->lblQueryStatus->setText("Error while executing this query!");
+            ui->lblQueryStatus->setText(query.lastError().text());
             return;
         }
         else {
@@ -253,7 +253,7 @@ void upTS::on_btnTeacherUpdate_clicked() {
 
         // Exec the query
         if(!query.exec()) {
-            ui->lblQueryStatus->setText("Error while executing this query!");
+            ui->lblQueryStatus->setText(query.lastError().text());
             return;
         }
         else {
@@ -269,7 +269,7 @@ void upTS::on_btnTeacherUpdate_clicked() {
 
         // Exec the query
         if(!query.exec()) {
-            ui->lblQueryStatus->setText("Error while executing this query!");
+            ui->lblQueryStatus->setText(query.lastError().text());
             return;
         }
         else {

@@ -25,7 +25,7 @@ void delTS::on_btnDeleteSub_clicked() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+           QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
         return;
     }
 
@@ -37,7 +37,7 @@ void delTS::on_btnDeleteSub_clicked() {
     query.bindValue(":id", this->subid);
 
     if(!query.exec()) {
-        ui->lblQueryStatus->setText("Error while deleting the subject!");
+        ui->lblQueryStatus->setText(query.lastError().text());
         return;
     }
     else {
@@ -69,7 +69,7 @@ void delTS::on_btnDeleteTeach_clicked() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+           QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
         return;
     }
 
@@ -81,7 +81,7 @@ void delTS::on_btnDeleteTeach_clicked() {
     query.bindValue(":id", this->teachid);
 
     if(!query.exec()) {
-        ui->lblQueryStatus->setText("Error while deleting the teacher!");
+        ui->lblQueryStatus->setText(query.lastError().text());
         return;
     }
     else {
@@ -110,7 +110,7 @@ void delTS::on_actionRefresh_triggered() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+           QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
         return;
     }
 
@@ -125,7 +125,7 @@ void delTS::on_actionRefresh_triggered() {
 
     // Error Handling
     if(!mainquery->isActive()) {
-        ui->lblQueryStatus->setText("Can't load subject list!");
+        ui->lblQueryStatus->setText("Can't load subjects list : " + mainquery->lastError().text());
         return;
     }
 
@@ -146,7 +146,7 @@ void delTS::on_actionRefresh_triggered() {
 
     // Error Handling
     if(!subquery->isActive()) {
-        ui->lblQueryStatus->setText("Can't load subject list!");
+        ui->lblQueryStatus->setText("Can't load teachers list : " + subquery->lastError().text());
         return;
     }
 

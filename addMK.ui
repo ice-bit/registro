@@ -191,6 +191,13 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>spnMark</tabstop>
+  <tabstop>dtMark</tabstop>
+  <tabstop>lnDescription</tabstop>
+  <tabstop>cbnSubject</tabstop>
+  <tabstop>btnInsertMark</tabstop>
+ </tabstops>
  <resources>
   <include location="resources/res.qrc"/>
  </resources>

@@ -22,7 +22,7 @@ void addMK::on_actionRefresh_triggered() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+           QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
         return;
     }
 
@@ -80,7 +80,7 @@ void addMK::on_btnInsertMark_clicked() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+           QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
         return;
     }
     
@@ -92,7 +92,7 @@ void addMK::on_btnInsertMark_clicked() {
 
     // Error Handling
     if(!query.exec()) {
-        ui->lblQueryStatus->setText("Error while executing this query!");
+        ui->lblQueryStatus->setText(query.lastError().text());
         return;
     }
     
@@ -101,7 +101,7 @@ void addMK::on_btnInsertMark_clicked() {
     if(query.first())
         id = query.value(0).toInt();
     else
-        ui->lblQueryStatus->setText("Error while executing this query!");
+        ui->lblQueryStatus->setText(query.lastError().text());
 
     // Now we're able to prepare our insert query
     query.prepare("INSERT INTO mark(Mark, MarkDate, Description, CodSub) VALUES ("
@@ -113,7 +113,7 @@ void addMK::on_btnInsertMark_clicked() {
 
     // Execute the query(with error handling)
     if(!query.exec()) {
-        ui->lblQueryStatus->setText("Error while executing this query!");
+        ui->lblQueryStatus->setText(query.lastError().text());
         return;
     }
 

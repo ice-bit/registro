@@ -32,7 +32,7 @@ void regMain::on_btnLoadElements_clicked() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+           QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
         return;
     }
 
@@ -48,7 +48,7 @@ void regMain::on_btnLoadElements_clicked() {
                 "ON m.CodSub = s.ID "
                 "INNER JOIN teacher AS t "
                 "ON s.CodTeacher = t.ID;")) {
-        ui->lblQueryStatus->setText("Error while executing this query!");
+        ui->lblQueryStatus->setText(query->lastError().text());
         return;
     }
     // put the result of the query into our model
@@ -146,7 +146,7 @@ void regMain::on_btnDelElements_clicked() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+           QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
         return;
     }
 
@@ -159,7 +159,7 @@ void regMain::on_btnDelElements_clicked() {
 
     // Error Handling
     if(!query.exec()) {
-        ui->lblQueryStatus->setText("Error while executing this query!");
+        ui->lblQueryStatus->setText(query.lastError().text());
         return;
     }
     
@@ -194,7 +194,7 @@ void regMain::searchSubject() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+           QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
         return;
     }
 
@@ -213,7 +213,7 @@ void regMain::searchSubject() {
     query->bindValue(":subname", QString("%%1%").arg(this->reqsub));
 
     if(!query->exec()) {
-        ui->lblQueryStatus->setText("Error while executing this query!");
+        ui->lblQueryStatus->setText(query->lastError().text());
         return;
     }
 
@@ -288,7 +288,7 @@ void regMain::on_actionCreatePDF_triggered() {
     db.setDatabaseName(this->file);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
-            QObject::tr("Unable to create a database connection!"), QMessageBox::Ok);
+           QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
         return;
     }
 
@@ -300,7 +300,7 @@ void regMain::on_actionCreatePDF_triggered() {
                 "ON m.CodSub = s.ID "
                 "INNER JOIN teacher AS t "
                 "ON s.CodTeacher = t.ID;")) {
-        ui->lblQueryStatus->setText("Error while executing this query!");
+        ui->lblQueryStatus->setText(query->lastError().text());
         return;
     }
      // Get current year

@@ -7,6 +7,7 @@
 #include <QPrinter>
 #include <QTextDocument>
 #include <vector>
+#include <QSqlError>
 #include <math.h>
 #include "path.h"
 #include "createDB.h"

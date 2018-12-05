@@ -6,6 +6,7 @@
 #include <QSqlQueryModel>
 #include <QMessageBox>
 #include <QSqlQuery>
+#include <QSqlError>
 #include <QTimer>
 #include "path.h"
 #include "upTS.h"
