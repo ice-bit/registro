@@ -311,7 +311,7 @@ void regMain::on_actionCreatePDF_triggered() {
         "<body><div align='right'>"
             "<i>" + date + "</i>"
         "</div><div align='left'>"
-            "<b>Registro<br /></b>"
+            "<b>Summary of school marks<br /></b>"
         "</div>"
         "<table border = 1 padding = 1>"
             "<tr>"
