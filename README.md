@@ -9,7 +9,7 @@ There are two ways to obtain Registro in your computer:
 2. By downloading the executable file/installer;
 
 ## Compiling it from source
-_We assume that you have `CMake`, `Qt`, `git` and a `C++` compiler installed in your computer._
+_We assume that you have `CMake`, `Qt`, `git` and a `C++` compiler installed on your computer._
 
 Clone the git repository: `git clone https://github.com/ice-bit/registro.git`  
 Inside the directory run: `mkdir build && cd build`  
