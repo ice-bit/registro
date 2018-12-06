@@ -75,24 +75,13 @@ void regMain::on_btnLoadElements_clicked() {
     /* Average section */
 
     // Clear the vector
-    this->marks.clear();
-    // put the values of the marks column into a vector
-    for(int col = 0; col < ui->tbMain->model()->rowCount(); col++) {
-        QVariant index = ui->tbMain->model()->data(ui->tbMain->model()->index(col, 1));
-        float value = index.value<float>();
-        this->marks.push_back(value);
-    }
-    
-    if(!this->marks.empty()) {
-        // Compute the average
-        float marks_avg = avg(this->marks);
-        // Display it to the user
-        if(std::isnan(marks_avg))
-            ui->lblAvg->setText("/");
-        else
-            ui->lblAvg->setText(QString::number(marks_avg));
-    } else
+    float marks_avg = 0;
+    marks_avg = avg(1, nullptr);
+
+    if(marks_avg == 0) {
         ui->lblAvg->setText("/");
+    } else
+        ui->lblAvg->setText(QString::number(marks_avg));
         
     // Delete heap objects
     delete query;
@@ -176,13 +165,59 @@ void regMain::on_btnDelElements_clicked() {
 }
 
 
-float regMain::avg(std::vector<float> marks) {
-    long sum = 0;
+float regMain::avg(int operation, QString subname) {
+    float avg;
+    // Connect to the database
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(this->file);
+    if(!db.open()) {
+        QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
+           QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
+        return 0;
+    }
 
-    for(int i = 0; i < marks.size(); i++)
-        sum += marks.at(i);
-    
-    return round(sum / marks.size() * 100) / 100;
+    QSqlQueryModel *modle = new QSqlQueryModel();
+    QSqlQuery *query = new QSqlQuery(db);
+    if(operation == 1) {
+        if(!query->exec("SELECT ROUND(AVG(Mark),1) FROM mark;")) {
+            ui->lblQueryStatus->setText(query->lastError().text());
+            return 0;
+        }
+
+        if(query->first())
+            avg = query->value(0).toFloat();
+        else {
+            ui->lblQueryStatus->setText(query->lastError().text());
+            return 0;
+        }
+    } else if(operation == 2) {
+        query->prepare("SELECT ROUND(AVG(p.Mark),1) FROM mark AS p "
+                       "INNER JOIN subject AS s ON p.CodSub = s.ID "
+                       "WHERE s.SubName LIKE :subname;");
+
+        query->bindValue(":subname", QString("%%1%").arg(subname));
+
+        if(!query->exec()) {
+            ui->lblQueryStatus->setText(query->lastError().text());
+            return 0;
+        }
+
+        if(query->first())
+            avg = query->value(0).toFloat();
+        else {
+            ui->lblQueryStatus->setText(query->lastError().text());
+            return 0;
+        }
+    }
+
+    // Close the connection to the database
+    QString con;
+    con = db.connectionName();
+    db.close();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
+
+    return avg;
 }
 
 void regMain::searchSubject() {
@@ -239,27 +274,13 @@ void regMain::searchSubject() {
     db.removeDatabase(con);
 
     /* Average section */
+    float marks_avg = 0;
+    marks_avg = avg(2, this->reqsub);
 
-    // Clear the vector
-    this->marks.clear();
-
-    // put the values of the marks column into a vector
-    for(int col = 0; col < ui->tbMain->model()->rowCount(); col++) {
-        QVariant index = ui->tbMain->model()->data(ui->tbMain->model()->index(col, 1));
-        float value = index.value<float>();
-        this->marks.push_back(value);
-    
-    }
-    if(!this->marks.empty()) {
-        // Compute the average
-        float marks_avg = avg(this->marks);
-        // Display it to the user
-        if(std::isnan(marks_avg))
-            ui->lblAvg->setText("/");
-        else
-            ui->lblAvg->setText(QString::number(marks_avg));
-    } else
+    if(marks_avg == 0) {
         ui->lblAvg->setText("/");
+    } else
+        ui->lblAvg->setText(QString::number(marks_avg));
 
     // Delete heap objects
     delete query;
@@ -273,7 +294,7 @@ void regMain::on_actionChangeDB_triggered() {
     this->file = pt.get_path();
     ui->lblQueryStatus->setText("Database changed, reload it");
 }
-void regMain::on_actionCreatePDF_triggered() {
+void regMain::on_actionExportMarks_triggered() {
     // Create an html+css template
     QString *htmlTemplate = new QString();
 
@@ -377,6 +398,94 @@ void regMain::on_actionCreatePDF_triggered() {
     delete query;
     delete htmlTemplate;
 }
+
+void regMain::on_actionExportTeachers_triggered() {
+    // Create an html+css template
+    QString *htmlTemplate = new QString();
+
+    // Get user path
+    if(this->file == nullptr) {
+        path pt;
+        this->file = pt.get_path();
+    }
+
+    // Connect to the database
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(this->file);
+    if(!db.open()) {
+        QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
+           QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
+        return;
+    }
+
+    QSqlQuery *query = new QSqlQuery();
+
+    if(!query->exec("SELECT p.TName, p.TSurname, s.SubName FROM teacher AS p "
+                   "INNER JOIN subject AS s ON p.ID = s.CodTeacher;")) {
+        ui->lblQueryStatus->setText(query->lastError().text());
+        return;
+    }
+
+    *htmlTemplate =
+        "<body><table border = 1 padding = 1>"
+        "<tr>"
+            "<th>Name</th>"
+            "<th>Surname</th>"
+            "<th>Subject</th>"
+        "</tr>";
+        
+    while(query->next()) {
+        QString name, surname, subject;
+
+        // Fill vars with query data
+        name = query->value(0).toString();
+        surname = query->value(1).toString();
+        subject = query->value(2).toString();
+
+        // Update htmlTemplate content
+        *htmlTemplate += 
+        "<tr>"
+            "<td>" + name + "</td>"
+            "<td>" + surname + "</td>"
+            "<td>" + subject + "</td>"
+        "</tr>";
+    }
+    // Close the remaining tags
+    *htmlTemplate += "</table></body>";
+    
+    // Finally, create and save the PDF
+    QTextDocument document;
+    document.setDefaultStyleSheet("th, td { border: 1px solid black; padding-left: 35px; padding-right: 35px; }");
+    document.setHtml(*htmlTemplate);
+
+    QPrinter pr(QPrinter::PrinterResolution);
+    pr.setOutputFormat(QPrinter::PdfFormat);
+    pr.setPaperSize(QPrinter::A4);
+    pr.setPageMargins(QMarginsF(15, 15, 15, 15));
+    // Get a path
+    path pt;
+    QString path;
+    path = pt.set_path_pdf();
+    // And set it
+    pr.setOutputFileName(path);
+    // Finally write the file to the disk
+    document.print(&pr);
+
+    ui->lblQueryStatus->setText("PDF successfully created");
+    QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
+
+    // Close the connection to the database
+    QString con;
+    con = db.connectionName();
+    db.close();
+    db = QSqlDatabase();
+    db.removeDatabase(con);
+
+    // Delete heap objects
+    delete query;
+    delete htmlTemplate;
+}
+
 
 void regMain::on_actionAbout_triggered() {
     aboutWin = new about();

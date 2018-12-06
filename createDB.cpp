@@ -100,6 +100,9 @@ void createDB::on_btnAddTeacher_clicked() {
     db.close();
     db = QSqlDatabase();
     db.removeDatabase(con);
+
+    // Then refresh the Subject combobox
+    on_actionRefresh_triggered();
 }
 
 void createDB::on_btnAddSubject_clicked() {

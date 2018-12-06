@@ -206,9 +206,16 @@
     <property name="title">
      <string>Fi&amp;le</string>
     </property>
+    <widget class="QMenu" name="menuExport_As_PDF">
+     <property name="title">
+      <string>Export As &amp;PDF</string>
+     </property>
+     <addaction name="actionExportMarks"/>
+     <addaction name="actionExportTeachers"/>
+    </widget>
     <addaction name="actionCreateDB"/>
     <addaction name="actionChangeDB"/>
-    <addaction name="actionCreatePDF"/>
+    <addaction name="menuExport_As_PDF"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menu">
@@ -241,9 +248,14 @@
     <string>Change &amp;Database</string>
    </property>
   </action>
-  <action name="actionCreatePDF">
+  <action name="actionExportMarks">
    <property name="text">
-    <string>Export As PDF</string>
+    <string>Marks summary</string>
+   </property>
+  </action>
+  <action name="actionExportTeachers">
+   <property name="text">
+    <string>Teacher list</string>
    </property>
   </action>
  </widget>

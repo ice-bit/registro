@@ -52,6 +52,9 @@ void delTS::on_btnDeleteSub_clicked() {
     db.close();
     db = QSqlDatabase();
     db.removeDatabase(con);
+    
+    // Then refresh the Subject combobox
+    on_actionRefresh_triggered();
 }
 
 void delTS::on_btnDeleteTeach_clicked() {
@@ -96,6 +99,9 @@ void delTS::on_btnDeleteTeach_clicked() {
     db.close();
     db = QSqlDatabase();
     db.removeDatabase(con);
+
+    // Then refresh the tables
+    on_actionRefresh_triggered();
 }
 void delTS::on_actionRefresh_triggered() {
 

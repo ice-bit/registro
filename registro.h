@@ -28,7 +28,8 @@ public slots:
     void on_actionAbout_triggered();
     void on_actionExit_triggered();
     void on_actionChangeDB_triggered();
-    void on_actionCreatePDF_triggered();
+    void on_actionExportMarks_triggered();
+    void on_actionExportTeachers_triggered();
     void searchSubject();
 
 private slots:
@@ -44,10 +45,8 @@ private:
     upMK *upMKWin;
     about *aboutWin;
     unsigned int userSelection;
-    std::vector<float> marks;
     QString reqsub, file = nullptr;
-    float avg(std::vector<float> marks);
-
+    float avg(int operation, QString subname);
 };
 
 #endif

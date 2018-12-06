@@ -199,6 +199,9 @@ void upTS::on_btnSubUpdate_clicked() {
     db.close();
     db = QSqlDatabase();
     db.removeDatabase(con);
+
+    // Then refresh the tables
+    on_actionRefresh_triggered();
 }
 
 void upTS::on_btnTeacherUpdate_clicked() {
@@ -284,6 +287,9 @@ void upTS::on_btnTeacherUpdate_clicked() {
     db.close();
     db = QSqlDatabase();
     db.removeDatabase(con);
+
+    // Then refresh the tables
+    on_actionRefresh_triggered();
 }
 
 upTS::~upTS() { delete ui; }
