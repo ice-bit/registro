@@ -19,6 +19,14 @@ regMain::regMain(QWidget *parent) : QMainWindow(parent), ui(new Ui::regMainClass
 void regMain::on_actionCreateDB_triggered() {
     createDBWin = new createDB();
     createDBWin->show();
+    createDBWin->setGeometry(
+        QStyle::alignedRect(
+            Qt::LeftToRight, 
+            Qt::AlignCenter, 
+            createDBWin->size(), 
+            qApp->desktop()->availableGeometry()
+        )
+    );
 }
 
 void regMain::on_btnLoadElements_clicked() {
@@ -94,11 +102,27 @@ void regMain::on_btnLoadElements_clicked() {
 void regMain::on_btnAddElements_clicked() {
     addMKWin = new addMK();
     addMKWin->show();
+    addMKWin->setGeometry(
+        QStyle::alignedRect(
+            Qt::LeftToRight, 
+            Qt::AlignCenter, 
+            addMKWin->size(), 
+            qApp->desktop()->availableGeometry()
+        )
+    );
 }
 
 void regMain::on_btnUpElements_clicked() {
     upMKWin = new upMK;
     upMKWin->show();
+    upMKWin->setGeometry(
+        QStyle::alignedRect(
+            Qt::LeftToRight, 
+            Qt::AlignCenter, 
+            upMKWin->size(), 
+            qApp->desktop()->availableGeometry()
+        )
+    );
 }
 
 void regMain::on_btnDelElements_clicked() {
@@ -490,6 +514,14 @@ void regMain::on_actionExportTeachers_triggered() {
 void regMain::on_actionAbout_triggered() {
     aboutWin = new about();
     aboutWin->show();
+    aboutWin->setGeometry(
+        QStyle::alignedRect(
+            Qt::LeftToRight, 
+            Qt::AlignCenter, 
+            aboutWin->size(), 
+            qApp->desktop()->availableGeometry()
+        )
+    );
 }
 
 void regMain::on_actionExit_triggered() {

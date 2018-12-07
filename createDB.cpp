@@ -178,11 +178,27 @@ void createDB::on_btnAddSubject_clicked() {
 void createDB::on_actionUpdate_triggered() {
     upTSWin = new upTS();
     upTSWin->show();
+    upTSWin->setGeometry(
+        QStyle::alignedRect(
+            Qt::LeftToRight, 
+            Qt::AlignCenter, 
+            upTSWin->size(), 
+            qApp->desktop()->availableGeometry()
+        )
+    );
 }
 
 void createDB::on_actionDelete_triggered() {
     delTSWin = new delTS();
     delTSWin->show();
+    delTSWin->setGeometry(
+        QStyle::alignedRect(
+            Qt::LeftToRight, 
+            Qt::AlignCenter, 
+            delTSWin->size(), 
+            qApp->desktop()->availableGeometry()
+        )
+    );
 }
 
 void createDB::on_actionDBCreate_triggered() {
