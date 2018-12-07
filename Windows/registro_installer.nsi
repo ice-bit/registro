@@ -1,8 +1,10 @@
 Outfile "registro_installer.exe"
+InstallDir "$PROGRAMFILES64\Registro"
 
-InstallDir "$PROGRAMFILES64\registro"
-
-Section
+!define APPNAME "Registro"
+!define INFOMSG "Your databases won't be touched"
+	
+Section "Install"
 
 SetOutPath "$PROGRAMFILES64\Registro"
 
@@ -12,6 +14,16 @@ CreateShortcut "$DESKTOP\Registro 1.3.lnk" "$INSTDIR\registro.exe"
 WriteUninstaller "$INSTDIR\uninstall.exe"
 
 SectionEnd
+
+# Confirm uninstallation of the program
+function un.onInit
+
+MessageBox MB_OKCANCEL "Uninstall ${APPNAME}? ${INFOMSG}" IDOK next
+	Abort
+next:
+	
+functionEnd
+
 
 Section "Uninstall"
 
