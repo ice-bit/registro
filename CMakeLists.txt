@@ -36,8 +36,8 @@ if(WIN32)
     execute_process(COMMAND "cmd" " /c date /t" OUTPUT_VARIABLE DATE)
     string(REGEX REPLACE "[^0-9]*(..).*" "\\1" MONTH "${DATE}")
     set(MONTH ""
-        "Jan" "Feb" "Mar" "Apr" "May" "Jun"
-        "Jul" "Aug" "Sep" "Oct" "Nov" "Dec")
+        "01" "02" "03" "04" "05" "06"
+        "07" "08" "09" "10" "11" "12")
     list(GET MONTHS "${DATE}" MONTH)
     string(REGEX REPLACE "[^/]*(..)/(....).*" "\\1 ${MONTH} \\2" PROJECT_BUILD_DATE "${DATE}")
     execute_process(COMMAND "cmd" " /c echo %TIME%" OUTPUT_VARIABLE TIME)
