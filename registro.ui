@@ -211,7 +211,7 @@
       <string>Export As &amp;PDF</string>
      </property>
      <addaction name="actionExportMarks"/>
-     <addaction name="actionExportTeachers"/>
+     <addaction name="actionExportSubjects"/>
     </widget>
     <addaction name="actionCreateDB"/>
     <addaction name="actionChangeDB"/>
@@ -250,12 +250,12 @@
   </action>
   <action name="actionExportMarks">
    <property name="text">
-    <string>Marks summary</string>
+    <string>&amp;Marks summary</string>
    </property>
   </action>
-  <action name="actionExportTeachers">
+  <action name="actionExportSubjects">
    <property name="text">
-    <string>Teacher list</string>
+    <string>Subjects list</string>
    </property>
   </action>
  </widget>

@@ -1,0 +1,15 @@
+#ifndef VERSION_CONFIG_H
+#define VERSION_CONFIG_H
+
+/* Compile variables from CMake */
+#define PROJECT_GIT_REF "@PROJECT_GIT_REF@"
+#define PROJECT_SOURCE_VERSION "@PROJECT_SOURCE_VERSION@"
+#define PROJECT_BUILD_DATE "@PROJECT_BUILD_DATE@"
+#define PROJECT_BUILD_TIME "@PROJECT_BUILD_TIME@"
+#define PROJECT_VERSION "v1.3Beta"
+#define PROJECT_OS "GNU/Linux"
+#define PROJECT_ARCH "x86_x64"
+#define PROJECT_AUTHOR "2018 (c) Marco 'icebit' Cetica"
+#define PROJECT_LICENSE "GNU General Public License v3.0"
+
+#endif

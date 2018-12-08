@@ -1,8 +1,27 @@
 #include <QApplication>
 #include <QDesktopWidget>
+#include <iostream>
+#include <string>
+#include "config.h"
 #include "registro.h"
 
+void version();
+void helper();
+
 int main(int argc, char **argv) {
+    std::string arg;
+
+    if(argc > 1)
+        arg = argv[1];
+
+    if(arg == "-v" || arg == "--version") {
+        version();
+        return 0;
+    } else if(arg == "-h" || arg == "--help") {
+        helper();
+        return 0;
+    }
+
     QApplication app(argc, argv);
     regMain win;
     win.show();
@@ -18,3 +37,15 @@ int main(int argc, char **argv) {
     return app.exec();
 }
 
+void version() {
+    std::cout << "Registro " << PROJECT_VERSION << " " << PROJECT_OS << " " << PROJECT_ARCH << " ("
+              << PROJECT_SOURCE_VERSION << ", " << 
+                 PROJECT_BUILD_DATE << ", " <<
+                 PROJECT_BUILD_TIME << ")" << std::endl;
+}
+
+void helper() {
+    std::cout << "Registro " << PROJECT_VERSION << " " << PROJECT_ARCH << "\n"
+              << "-v, --version | Print version informations\n" 
+              << "-h, --helper  | Show this helper" << std::endl;
+}

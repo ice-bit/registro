@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>413</width>
-    <height>140</height>
+    <height>159</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -42,7 +42,7 @@
      <rect>
       <x>140</x>
       <y>10</y>
-      <width>91</width>
+      <width>261</width>
       <height>31</height>
      </rect>
     </property>
@@ -67,7 +67,7 @@
      </rect>
     </property>
     <property name="text">
-     <string/>
+     <string>Version: </string>
     </property>
    </widget>
    <widget class="QLabel" name="lblAuthor">
@@ -80,7 +80,7 @@
      </rect>
     </property>
     <property name="text">
-     <string/>
+     <string>Copyright: </string>
     </property>
    </widget>
    <widget class="QLabel" name="lblLicense">
@@ -93,7 +93,20 @@
      </rect>
     </property>
     <property name="text">
-     <string/>
+     <string>License: </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBuild">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>110</y>
+      <width>251</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Build date: </string>
     </property>
    </widget>
   </widget>

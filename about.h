@@ -1,11 +1,8 @@
 #ifndef ABOUT_H
 #define ABOUT_H
 
-#define VERSION "Version: 1.3Beta"
-#define AUTHOR "Copyright: 2018 (c) Marco 'icebit' Cetica"
-#define LICENSE "License: GNU General Public License v3.0"
-
 #include <QtWidgets/QMainWindow>
+#include "config.h"
 #include "ui_about.h"
 
 

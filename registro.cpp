@@ -423,7 +423,7 @@ void regMain::on_actionExportMarks_triggered() {
     delete htmlTemplate;
 }
 
-void regMain::on_actionExportTeachers_triggered() {
+void regMain::on_actionExportSubjects_triggered() {
     // Create an html+css template
     QString *htmlTemplate = new QString();
 
@@ -444,8 +444,8 @@ void regMain::on_actionExportTeachers_triggered() {
 
     QSqlQuery *query = new QSqlQuery();
 
-    if(!query->exec("SELECT p.TName, p.TSurname, s.SubName FROM teacher AS p "
-                   "INNER JOIN subject AS s ON p.ID = s.CodTeacher;")) {
+    if(!query->exec("SELECT p.SubName, s.TSurname, s.TName FROM subject AS p "
+                    "INNER JOIN teacher AS s ON p.CodTeacher = s.ID;")) {
         ui->lblQueryStatus->setText(query->lastError().text());
         return;
     }
@@ -453,25 +453,25 @@ void regMain::on_actionExportTeachers_triggered() {
     *htmlTemplate =
         "<body><table border = 1 padding = 1>"
         "<tr>"
-            "<th>Name</th>"
-            "<th>Surname</th>"
             "<th>Subject</th>"
+            "<th>Surname</th>"
+            "<th>Name</th>"
         "</tr>";
         
     while(query->next()) {
-        QString name, surname, subject;
+        QString subject, surname, name;
 
         // Fill vars with query data
-        name = query->value(0).toString();
+        subject = query->value(0).toString();
         surname = query->value(1).toString();
-        subject = query->value(2).toString();
+        name = query->value(2).toString();
 
         // Update htmlTemplate content
         *htmlTemplate += 
         "<tr>"
-            "<td>" + name + "</td>"
-            "<td>" + surname + "</td>"
             "<td>" + subject + "</td>"
+            "<td>" + surname + "</td>"
+            "<td>" + name + "</td>"
         "</tr>";
     }
     // Close the remaining tags

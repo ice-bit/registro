@@ -23,7 +23,7 @@
      <rect>
       <x>190</x>
       <y>250</y>
-      <width>71</width>
+      <width>101</width>
       <height>18</height>
      </rect>
     </property>
@@ -36,7 +36,7 @@
      <rect>
       <x>190</x>
       <y>0</y>
-      <width>61</width>
+      <width>101</width>
       <height>18</height>
      </rect>
     </property>
@@ -229,10 +229,10 @@
    <widget class="QLabel" name="lblQueryStatus">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>360</x>
       <y>250</y>
-      <width>431</width>
-      <height>18</height>
+      <width>541</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">

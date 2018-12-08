@@ -30,7 +30,7 @@ public slots:
     void on_actionExit_triggered();
     void on_actionChangeDB_triggered();
     void on_actionExportMarks_triggered();
-    void on_actionExportTeachers_triggered();
+    void on_actionExportSubjects_triggered();
     void searchSubject();
 
 private slots:
