@@ -33,15 +33,7 @@ endif()
 
 # Get build date
 if(WIN32)
-    execute_process(COMMAND "cmd" " /c date /t" OUTPUT_VARIABLE DATE)
-    string(REGEX REPLACE "[^0-9]*(..).*" "\\1" MONTH "${DATE}")
-    set(MONTH ""
-        "01" "02" "03" "04" "05" "06"
-        "07" "08" "09" "10" "11" "12")
-    list(GET MONTHS "${DATE}" MONTH)
-    string(REGEX REPLACE "[^/]*(..)/(....).*" "\\1 ${MONTH} \\2" PROJECT_BUILD_DATE "${DATE}")
-    execute_process(COMMAND "cmd" " /c echo %TIME%" OUTPUT_VARIABLE TIME)
-    string(REGEX REPLACE "[^0-9]*(..:..:..).*" "\\1" PROJECT_BUILD_DATE "${TIME}")
+    # It doesn't work for this platform
 else()
     execute_process(COMMAND "date" "+%d %b %Y/%H:%M:%S" OUTPUT_VARIABLE DATE_TIME)
     string(REGEX REPLACE "([^/]*)/.*" "\\1" PROJECT_BUILD_DATE "${DATE_TIME}")
