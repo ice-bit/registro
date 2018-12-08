@@ -34,7 +34,7 @@ endif()
 # Get build date
 if(WIN32)
     execute_process(COMMAND "cmd" " /c date /t" OUTPUT_VARIABLE DATE)
-    string(REGEX REPLACE "[0-9]*(..).*" "\\1" MONTH "${DATE}")
+    string(REGEX REPLACE "[^0-9]*(..).*" "\\1" MONTH "${DATE}")
     set(MONTH ""
         "Jan" "Feb" "Mar" "Apr" "May" "Jun"
         "Jul" "Aug" "Sep" "Oct" "Nov" "Dec")
