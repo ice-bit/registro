@@ -20,7 +20,7 @@ After that, the _compiler_ will create an executable file called **registro**, y
 ## Downloading the executable file
 The other way is to download the [executable file](https://github.com/ice-bit/registro/releases) and open/install it.
 
-**Note**: Executable files are only provided for Windows, GNU/Linux and OSX users have to compile it from scratch
+**Note**: Executable files are only provided for Windows and GNU/Linux; OSX users have to compile it from scratch
 
 # Usage
 Registro is user-friendly and very intuitive, to start it just _double-click_ in the Application icon or start it from a command line interface by typing: `./registro`.
