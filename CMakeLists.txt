@@ -48,11 +48,6 @@ else()
     string(REGEX REPLACE "[^/]*/([0-9:]*).*" "\\1" PROJECT_BUILD_TIME "${DATE_TIME}")
 endif()
 
-include_directories(
-    source
-)
-
-
 configure_file(config.h.in config.h)
 
 if (WIN32)
