@@ -14,7 +14,11 @@ about::about(QWidget *parent) : QMainWindow(parent), ui(new Ui::aboutClass) {
     ui->lblVersion->setText(version + PROJECT_VERSION + " " + PROJECT_OS + " " + PROJECT_ARCH);
     ui->lblAuthor->setText(author + PROJECT_AUTHOR);
     ui->lblLicense->setText(license + PROJECT_LICENSE);
-    ui->lblBuild->setText(build + PROJECT_BUILD_DATE + " " + PROJECT_BUILD_TIME); 
+    #if OS == 0
+        ui->lblBuild->setText(build + PROJECT_BUILD_DATE + " " + PROJECT_BUILD_TIME); 
+    #elif OS == 1
+        ui->lblBuild->setText(build + "n/a");
+    #endif
 
     // Free QObjects(needed to avoid memory leaks)
     setAttribute(Qt::WA_DeleteOnClose);

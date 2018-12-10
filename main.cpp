@@ -38,10 +38,15 @@ int main(int argc, char **argv) {
 }
 
 void version() {
-    std::cout << "Registro " << PROJECT_VERSION << " " << PROJECT_OS << " " << PROJECT_ARCH << " ("
-              << PROJECT_SOURCE_VERSION << ", " << 
-                 PROJECT_BUILD_DATE << ", " <<
-                 PROJECT_BUILD_TIME << ")" << std::endl;
+    #if OS == 0
+        std::cout << "Registro " << PROJECT_VERSION << " " << PROJECT_OS << " " << PROJECT_ARCH << " ("
+                << PROJECT_SOURCE_VERSION << ", " << 
+                    PROJECT_BUILD_DATE << ", " <<
+                    PROJECT_BUILD_TIME << ")" << std::endl;
+    #elif OS == 1
+        std::cout << "Registro " << PROJECT_VERSION << " " << PROJECT_OS << " " << PROJECT_ARCH << " ("
+                << PROJECT_SOURCE_VERSION << ")" << std::endl;
+    #endif
 }
 
 void helper() {

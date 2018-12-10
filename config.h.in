@@ -11,5 +11,6 @@
 #define PROJECT_ARCH "x86_x64"
 #define PROJECT_AUTHOR "2018 (c) Marco 'icebit' Cetica"
 #define PROJECT_LICENSE "GNU General Public License v3.0"
+#define OS 0 // 0(Unix), 1(Windows)
 
 #endif
