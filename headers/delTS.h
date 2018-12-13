@@ -29,7 +29,6 @@ private:
     QString file = nullptr;
     Ui::delTSClass *ui;
     unsigned int subid, teachid;
-
 };
 
 #endif

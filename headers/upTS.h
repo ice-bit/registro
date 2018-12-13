@@ -9,7 +9,6 @@
 #include <QSqlError>
 #include <QTimer>
 #include "path.h"
-#include "path.h"
 #include "ui_upTS.h"
 
 class upTS : public QMainWindow {
@@ -30,7 +29,6 @@ private:
     Ui::upTSClass *ui;
     unsigned int id, teachid;
     QString subName, tcName, tcSurname, file = nullptr;
-
 };
 
 #endif

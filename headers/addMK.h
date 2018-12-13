@@ -28,7 +28,6 @@ private:
     Ui::addMKClass *ui;
     float mkMark;
     QString mkDate, mkDesc, mkSub, file = nullptr;
-
 };
 
 #endif

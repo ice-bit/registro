@@ -33,7 +33,7 @@ endif()
 
 # Get build date
 if(WIN32)
-    # It doesn't work for this platform
+    # It doesn't work in this platform
 else()
     execute_process(COMMAND "date" "+%d %b %Y/%H:%M:%S" OUTPUT_VARIABLE DATE_TIME)
     string(REGEX REPLACE "([^/]*)/.*" "\\1" PROJECT_BUILD_DATE "${DATE_TIME}")
@@ -42,12 +42,49 @@ endif()
 
 configure_file(config.h.in config.h)
 
-if (WIN32)
-    add_executable(registro WIN32 main.cpp registro.h registro.cpp createDB.h createDB.cpp delTS.h delTS.cpp upTS.h upTS.cpp addMK.h addMK.cpp upMK.h upMK.cpp about.h about.cpp path.h path.cpp config.h.in resources/res.qrc)
-endif (WIN32)
+# Declaring files
+set( SOURCES
+     sources/main.cpp
+     sources/registro.cpp
+     sources/createDB.cpp
+     sources/delTS.cpp
+     sources/upTS.cpp
+     sources/addMK.cpp 
+     sources/upMK.cpp
+     sources/about.cpp
+     sources/path.cpp
+)
+set( HEADERS
+     headers/registro.h 
+     headers/createDB.h
+     headers/delTS.h  
+     headers/upTS.h  
+     headers/addMK.h 
+     headers/upMK.h  
+     headers/about.h  
+     headers/path.h
+)
+set( UIS
+    ui/about.ui
+    ui/addMK.ui
+    ui/createDB.ui
+    ui/delTS.ui
+    ui/registro.ui
+    ui/upTK.ui
+    ui/upTS.ui
+)
+set( RES
+     resources/res.qrc
+)
 
-if (UNIX)
-    add_executable(registro main.cpp registro.h registro.cpp createDB.h createDB.cpp delTS.h delTS.cpp upTS.h upTS.cpp addMK.h addMK.cpp upMK.h upMK.cpp about.h about.cpp path.h path.cpp config.h.in resources/res.qrc)
-endif (UNIX)
+# Then compile
+if(WIN32)
+    add_executable(registro WIN32 ${SOURCES} ${MOC_SRCS} ${RES} ${UI})
+endif()
+
+if(UNIX)
+    add_executable(registro ${SOURCES} ${MOC_SRCS} ${RES} ${UI})
+endif()
+
 
 target_link_libraries(registro Qt5::Widgets Qt5::Core Qt5::Sql Qt5::PrintSupport)

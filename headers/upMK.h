@@ -29,7 +29,6 @@ private:
     Ui::upMKClass *ui;
     float mkMark, mkID;
     QString mkDate, mkDesc, mkSub, file = nullptr;
-
 };
 
 #endif

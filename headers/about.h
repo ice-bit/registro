@@ -14,7 +14,6 @@ public:
 
 private:
     Ui::aboutClass *ui;
-
 };
 
 #endif
