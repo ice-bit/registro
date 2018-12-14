@@ -19,6 +19,9 @@ mkdir -p usr/{bin,lib,share} usr/share/{applications,icons/hicolor/256x256/apps}
 # Copy Registro icon
 cp -R ../resources/images/window_icon.png usr/share/icons/hicolor/256x256/apps/registro.png
 
+# Copy the executable
+cp -R registro usr/bin
+
 # Create a basic desktop file
 cat > usr/share/applications/registro.desktop << EOF
 [Desktop Entry]
