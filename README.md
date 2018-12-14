@@ -22,7 +22,7 @@ After that, the _compiler_ will create an executable file called **registro**, y
 ## Downloading the executable file
 The other way is to download the [executable file](https://github.com/ice-bit/registro/releases) and open/install it.
 
- Windows System Requirements: `Visual C++ Redistributable per Visual Studio 2015`
+ Windows System Requirements: `Visual C++ Redistributable per Visual Studio 2015`  
  GNU/Linux System Requirements: `GLIB >= 2.27`
 
 **Note**: Executable files are only provided for Windows and GNU/Linux; OSX users have to compile it from scratch
