@@ -2,7 +2,7 @@
 #define ABOUT_H
 
 #include <QtWidgets/QMainWindow>
-#include "config.h"
+#include "../../config.h"
 #include "ui_about.h"
 
 

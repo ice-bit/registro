@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include "config.h"
-#include "headers/registro.h"
+#include "registro.h"
 
 void version();
 void helper();

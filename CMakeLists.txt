@@ -55,36 +55,26 @@ set( SOURCES
      sources/path.cpp
 )
 set( HEADERS
-     headers/registro.h 
-     headers/createDB.h
-     headers/delTS.h  
-     headers/upTS.h  
-     headers/addMK.h 
-     headers/upMK.h  
-     headers/about.h  
-     headers/path.h
-)
-set( UIS
-    ui/about.ui
-    ui/addMK.ui
-    ui/createDB.ui
-    ui/delTS.ui
-    ui/registro.ui
-    ui/upTK.ui
-    ui/upTS.ui
+     sources/registro.h 
+     sources/createDB.h
+     sources/delTS.h  
+     sources/upTS.h  
+     sources/addMK.h 
+     sources/upMK.h  
+     sources/about.h  
+     sources/path.h
 )
 set( RES
      resources/res.qrc
 )
 
-# Then compile
+# compile
 if(WIN32)
-    add_executable(registro WIN32 ${SOURCES} ${MOC_SRCS} ${RES} ${UI})
+    add_executable(registro WIN32 ${SOURCES} ${RES})
 endif()
 
 if(UNIX)
-    add_executable(registro ${SOURCES} ${MOC_SRCS} ${RES} ${UI})
+    add_executable(registro ${SOURCES} ${RES})
 endif()
-
 
 target_link_libraries(registro Qt5::Widgets Qt5::Core Qt5::Sql Qt5::PrintSupport)
