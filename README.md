@@ -11,11 +11,11 @@ There are two ways to obtain Registro in your computer:
 ## Compiling it from source
 _We assume that you have `CMake`, `Qt`, `git` and a `C++` compiler installed on your computer._
 
-Clone the git repository: `git clone https://github.com/ice-bit/registro.git`  
-Inside the directory run: `mkdir build && cd build`  
-And then: `cmake .. && make`  
+Clone the git repository: `git clone https://github.com/ice-bit/registro.git`
+Inside the directory run: `mkdir build && cd build`
+And then: `cmake .. && make`
 If you are a GNU/Linux user, you can create an [appimage](https://appimage.org/) by launching the `deploy.sh` script from the build directory.  
-**NOTE**: this will overwrite any directory called `usr` from `build`. Before launching it, you have to download a copy of [linuxdeployqt](https://github.com/probonopd/linuxdeployqt) and put it into your PATH with the name of `linuxdeployqt`.
+**NOTE**: this will overwrite any directory called `usr` from `build`. Before launching it, you have to download a copy of [linuxdeployqt](https://github.com/probonopd/linuxdeployqt) and put it into your *PATH* with the name of `linuxdeployqt`.
 
 After that, the _compiler_ will create an executable file called **registro**, you can move it anywhere.
 
