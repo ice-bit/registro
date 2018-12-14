@@ -14,7 +14,7 @@
    <string>Update Teachers or Subjects</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources/res.qrc">
+   <iconset resource="../resources/res.qrc">
     <normaloff>:/imgs/images/window_icon.ico</normaloff>:/imgs/images/window_icon.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -330,7 +330,7 @@
   <tabstop>tbTeachers</tabstop>
  </tabstops>
  <resources>
-  <include location="resources/res.qrc"/>
+  <include location="../resources/res.qrc"/>
  </resources>
  <connections/>
 </ui>

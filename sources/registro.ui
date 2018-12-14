@@ -11,10 +11,10 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Registro v1.3Beta</string>
+   <string>Registro v1.3</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources/res.qrc">
+   <iconset resource="../resources/res.qrc">
     <normaloff>:/imgs/images/window_icon.ico</normaloff>:/imgs/images/window_icon.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -255,12 +255,12 @@
   </action>
   <action name="actionExportSubjects">
    <property name="text">
-    <string>Subjects list</string>
+    <string>&amp;Subjects list</string>
    </property>
   </action>
  </widget>
  <resources>
-  <include location="resources/res.qrc"/>
+  <include location="../resources/res.qrc"/>
  </resources>
  <connections/>
 </ui>
