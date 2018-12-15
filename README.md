@@ -20,7 +20,10 @@ If you are a GNU/Linux user, you can create an [appimage](https://appimage.org/)
 After that, the _compiler_ will create an executable file called **registro**, you can move it anywhere.
 
 ## Downloading the executable file
-The other way is to download the [executable file](https://github.com/ice-bit/registro/releases) and open/install it.
+The other way is to download the executable file and open/install it:  
+[Windows x64 exe](https://github.com/ice-bit/registro/raw/master/Windows/registro_installer(x64).exe)  
+[Windows x86 exe](https://github.com/ice-bit/registro/raw/master/Windows/registro_installer(x86).exe)  
+[GNU/Linux x86_x64](https://github.com/ice-bit/registro/raw/master/Linux/Registro-x86_64.AppImage)  
 
  Windows System Requirements: `Visual C++ Redistributable per Visual Studio 2015`  
  GNU/Linux System Requirements: `GLIB >= 2.27`
