@@ -13,6 +13,9 @@ QString path::set_path() {
     this->user_path = QFileDialog::getSaveFileName(this,
         tr("Save a new database"), "",
         tr("Database file (*.db)"));
+    #if OS == 0 // If the platform is an UNIX-like system we want to add
+        user_path += ".db"; // the extension manually
+    #endif
     return this->user_path;
 }
 
@@ -20,5 +23,8 @@ QString path::set_path_pdf() {
     this->user_path = QFileDialog::getSaveFileName(this,
         tr("Save a new pdf"), "",
         tr("PDF File (*.pdf)"));
+    #if OS == 0 // If the platform is an UNIX-like system we want to add
+        user_path += ".pdf"; // the extension manually
+    #endif
     return this->user_path;
 }

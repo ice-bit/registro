@@ -1,6 +1,6 @@
 #include "delTS.h"
 
-delTS::delTS(QWidget *parent) : QMainWindow(parent), ui(new Ui::delTSClass) {
+delTS::delTS(QString dbPath, QWidget *parent) : QMainWindow(parent), ui(new Ui::delTSClass) {
     ui->setupUi(this);
     setFixedSize(472, 512);
 
@@ -8,6 +8,10 @@ delTS::delTS(QWidget *parent) : QMainWindow(parent), ui(new Ui::delTSClass) {
     setAttribute(Qt::WA_DeleteOnClose);
     ui->tbSubjects->horizontalHeader()->setStretchLastSection(true);
     ui->tbTeachers->horizontalHeader()->setStretchLastSection(true);
+
+    // Initialize the database path if it already exists
+    if(dbPath != nullptr)
+        this->dbPath = dbPath;
 }
 
 void delTS::on_btnDeleteSub_clicked() {
@@ -15,14 +19,14 @@ void delTS::on_btnDeleteSub_clicked() {
     this->subid = ui->spnSub->value();
 
     // Get user path
-    if(this->file == nullptr) {
+    if(this->dbPath == nullptr) {
         path pt;
-        this->file = pt.get_path();
+        this->dbPath = pt.get_path();
     }
 
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(this->file);
+    db.setDatabaseName(this->dbPath);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
@@ -62,14 +66,14 @@ void delTS::on_btnDeleteTeach_clicked() {
     this->teachid = ui->spnTeach->value();
 
     // Get user path
-    if(this->file == nullptr) {
+    if(this->dbPath == nullptr) {
         path pt;
-        this->file = pt.get_path();
+        this->dbPath = pt.get_path();
     }
 
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(this->file);
+    db.setDatabaseName(this->dbPath);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
@@ -106,14 +110,14 @@ void delTS::on_btnDeleteTeach_clicked() {
 void delTS::on_actionRefresh_triggered() {
 
     // Get user path
-    if(this->file == nullptr) {
+    if(this->dbPath == nullptr) {
         path pt;
-        this->file = pt.get_path();
+        this->dbPath = pt.get_path();
     }
 
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(this->file);
+    db.setDatabaseName(this->dbPath);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 

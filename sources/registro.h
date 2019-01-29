@@ -46,7 +46,7 @@ private:
     upMK *upMKWin;
     about *aboutWin;
     unsigned int userSelection;
-    QString reqsub, file = nullptr;
+    QString reqsub, dbPath = nullptr;
     float avg(int operation, QString subname);
 };
 

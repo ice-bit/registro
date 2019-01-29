@@ -1,6 +1,6 @@
 #include "addMK.h"
 
-addMK::addMK(QWidget *parent) : QMainWindow(parent), ui(new Ui::addMKClass) {
+addMK::addMK(QString dbPath, QWidget *parent) : QMainWindow(parent), ui(new Ui::addMKClass) {
     ui->setupUi(this);
     setFixedSize(681, 155);
 
@@ -9,17 +9,21 @@ addMK::addMK(QWidget *parent) : QMainWindow(parent), ui(new Ui::addMKClass) {
 
     // Update the date widget with current date
     ui->dtMark->setDate(QDate::currentDate());
+
+    // Initialize the database path if it already exists
+    if(dbPath != nullptr)
+        this->dbPath = dbPath;
 }
 
 void addMK::on_actionRefresh_triggered() {
     // Get user path
-    if(this->file == nullptr) {
+    if(this->dbPath == nullptr) {
         path pt;
-        this->file = pt.get_path();
+        this->dbPath = pt.get_path();
     }
     // Connect to the database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(this->file);
+    db.setDatabaseName(this->dbPath);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
@@ -71,13 +75,13 @@ void addMK::on_btnInsertMark_clicked() {
     this->mkSub = ui->cbnSubject->currentText();
         
     // Get user path
-    if(this->file == nullptr) {
+    if(this->dbPath == nullptr) {
         path pt;
-        this->file = pt.get_path();
+        this->dbPath = pt.get_path();
     }
     // Connect to the database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(this->file);
+    db.setDatabaseName(this->dbPath);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 

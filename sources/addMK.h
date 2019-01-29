@@ -15,7 +15,7 @@ class addMK : public QMainWindow {
     Q_OBJECT
 
 public:
-    addMK(QWidget *parent = Q_NULLPTR);
+    addMK(QString dbPath, QWidget *parent = Q_NULLPTR);
     ~addMK();
 
 public slots:
@@ -27,7 +27,7 @@ private slots:
 private:
     Ui::addMKClass *ui;
     float mkMark;
-    QString mkDate, mkDesc, mkSub, file = nullptr;
+    QString mkDate, mkDesc, mkSub, dbPath = nullptr;
 };
 
 #endif

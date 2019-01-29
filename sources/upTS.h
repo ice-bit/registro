@@ -15,7 +15,7 @@ class upTS : public QMainWindow {
     Q_OBJECT
 
 public:
-    upTS(QWidget *parent = Q_NULLPTR);
+    upTS(QString dbPath, QWidget *parent = Q_NULLPTR);
     ~upTS();
 
 private slots:
@@ -28,7 +28,7 @@ public slots:
 private:
     Ui::upTSClass *ui;
     unsigned int id, teachid;
-    QString subName, tcName, tcSurname, file = nullptr;
+    QString subName, tcName, tcSurname, dbPath = nullptr;
 };
 
 #endif

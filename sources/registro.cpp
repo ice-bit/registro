@@ -17,7 +17,7 @@ regMain::regMain(QWidget *parent) : QMainWindow(parent), ui(new Ui::regMainClass
 }
 
 void regMain::on_actionCreateDB_triggered() {
-    createDBWin = new createDB();
+    createDBWin = new createDB(this->dbPath, nullptr);
     createDBWin->show();
     createDBWin->setGeometry(
         QStyle::alignedRect(
@@ -31,13 +31,13 @@ void regMain::on_actionCreateDB_triggered() {
 
 void regMain::on_btnLoadElements_clicked() {
     // Get user path
-    if(this->file == nullptr) {
+    if(this->dbPath == nullptr) {
         path pt;
-        this->file = pt.get_path();
+        this->dbPath = pt.get_path();
     }
     // Connect to the database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(this->file);
+    db.setDatabaseName(this->dbPath);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
@@ -100,7 +100,7 @@ void regMain::on_btnLoadElements_clicked() {
 }
 
 void regMain::on_btnAddElements_clicked() {
-    addMKWin = new addMK();
+    addMKWin = new addMK(this->dbPath, nullptr);
     addMKWin->show();
     addMKWin->setGeometry(
         QStyle::alignedRect(
@@ -113,7 +113,7 @@ void regMain::on_btnAddElements_clicked() {
 }
 
 void regMain::on_btnUpElements_clicked() {
-    upMKWin = new upMK;
+    upMKWin = new upMK(this->dbPath, nullptr);
     upMKWin->show();
     upMKWin->setGeometry(
         QStyle::alignedRect(
@@ -150,13 +150,13 @@ void regMain::on_btnDelElements_clicked() {
     this->userSelection = indexValue.value<int>();
     
     // Get user path
-    if(this->file == nullptr) {
+    if(this->dbPath == nullptr) {
         path pt;
-        this->file = pt.get_path();
+        this->dbPath = pt.get_path();
     }
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(this->file);
+    db.setDatabaseName(this->dbPath);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
@@ -193,7 +193,7 @@ float regMain::avg(int operation, QString subname) {
     float avg;
     // Connect to the database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(this->file);
+    db.setDatabaseName(this->dbPath);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
@@ -250,7 +250,7 @@ void regMain::searchSubject() {
     
     // Connect to the database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(this->file);
+    db.setDatabaseName(this->dbPath);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
@@ -315,7 +315,7 @@ void regMain::searchSubject() {
 
 void regMain::on_actionChangeDB_triggered() {
     path pt;
-    this->file = pt.get_path();
+    this->dbPath = pt.get_path();
     ui->lblQueryStatus->setText("Database changed, reload it");
 }
 void regMain::on_actionExportMarks_triggered() {
@@ -323,14 +323,14 @@ void regMain::on_actionExportMarks_triggered() {
     QString *htmlTemplate = new QString();
 
     // Get user path
-    if(this->file == nullptr) {
+    if(this->dbPath == nullptr) {
         path pt;
-        this->file = pt.get_path();
+        this->dbPath = pt.get_path();
     }
 
     // Connect to the database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(this->file);
+    db.setDatabaseName(this->dbPath);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
@@ -339,21 +339,29 @@ void regMain::on_actionExportMarks_triggered() {
 
     QSqlQuery *query = new QSqlQuery();
 
-    if(!query->exec("SELECT ROUND(m.mark, 2), s.SubName, m.MarkDate, m.Description, t.TSurname "
-                "FROM mark AS m "
-                "INNER JOIN subject AS s "
-                "ON m.CodSub = s.ID "
-                "INNER JOIN teacher AS t "
-                "ON s.CodTeacher = t.ID;")) {
+    // Get current year
+    QString date = QDate::currentDate().toString("dd/MM/yyyy");
+
+    // Retrieve the mark's count
+    if(!query->exec("SELECT COUNT(*) FROM mark;")) {
         ui->lblQueryStatus->setText(query->lastError().text());
         return;
     }
-     // Get current year
-    QString date = QDate::currentDate().toString("dd/MM/yyyy");
+
+    // Store the result of the query into a variable
+    unsigned int marks_count;
+    if(query->first())
+        marks_count = query->value(0).toInt();
+    else {
+        ui->lblQueryStatus->setText(query->lastError().text());
+        return;
+    }
 
     // Basic html+css template
     *htmlTemplate = 
-        "<body><div align='right'>"
+        "<body><div align='left'>"
+            "Number of marks: <b>" + QString::number(marks_count) + "</b>"
+        "<div align='right'>"
             "<i>" + date + "</i>"
         "</div><div align='left'>"
             "<b>Summary of school marks<br /></b>"
@@ -366,6 +374,17 @@ void regMain::on_actionExportMarks_triggered() {
                 "<th>Description</th>"
                 "<th>Teacher</th>"
             "</tr>";
+
+    // Execute the main query
+    if(!query->exec("SELECT ROUND(m.mark, 2), s.SubName, m.MarkDate, m.Description, t.TSurname "
+                "FROM mark AS m "
+                "INNER JOIN subject AS s "
+                "ON m.CodSub = s.ID "
+                "INNER JOIN teacher AS t "
+                "ON s.CodTeacher = t.ID;")) {
+        ui->lblQueryStatus->setText(query->lastError().text());
+        return;
+    }
 
     while(query->next()) {
         QString mark, subject, date, description, teacher;
@@ -428,14 +447,14 @@ void regMain::on_actionExportSubjects_triggered() {
     QString *htmlTemplate = new QString();
 
     // Get user path
-    if(this->file == nullptr) {
+    if(this->dbPath == nullptr) {
         path pt;
-        this->file = pt.get_path();
+        this->dbPath = pt.get_path();
     }
 
     // Connect to the database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(this->file);
+    db.setDatabaseName(this->dbPath);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 

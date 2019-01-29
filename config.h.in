@@ -6,11 +6,10 @@
 #define PROJECT_SOURCE_VERSION "@PROJECT_SOURCE_VERSION@"
 #define PROJECT_BUILD_DATE "@PROJECT_BUILD_DATE@"
 #define PROJECT_BUILD_TIME "@PROJECT_BUILD_TIME@"
-#define PROJECT_VERSION "v1.3"
+#define PROJECT_VERSION "v1.3.1"
 #define PROJECT_OS "GNU/Linux"
 #define PROJECT_ARCH "x86_x64"
 #define PROJECT_AUTHOR "2018 (c) Marco 'icebit' Cetica"
-#define PROJECT_LICENSE "GNU General Public License v3.0"
-#define OS 0 // 0(Unix), 1(Windows)
+#define OS 0 // 0(Unix), 1(Windows) // Use this to enabled/disable options related to the specific platform.
 
 #endif

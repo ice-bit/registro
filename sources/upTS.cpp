@@ -1,6 +1,6 @@
 #include "upTS.h"
 
-upTS::upTS(QWidget *parent) : QMainWindow(parent), ui(new Ui::upTSClass) {
+upTS::upTS(QString dbPath, QWidget *parent) : QMainWindow(parent), ui(new Ui::upTSClass) {
     ui->setupUi(this);
     setFixedSize(912, 560);
 
@@ -8,17 +8,21 @@ upTS::upTS(QWidget *parent) : QMainWindow(parent), ui(new Ui::upTSClass) {
     setAttribute(Qt::WA_DeleteOnClose);
     ui->tbSubjects->horizontalHeader()->setStretchLastSection(true);
     ui->tbTeachers->horizontalHeader()->setStretchLastSection(true);
+
+    // Initialize the database path if it already exists
+    if(dbPath != nullptr)
+        this->dbPath = dbPath;
 }
 
 void upTS::on_actionRefresh_triggered() {
     // Get user path
-    if(this->file == nullptr) {
+    if(this->dbPath == nullptr) {
         path pt;
-        this->file = pt.get_path();
+        this->dbPath = pt.get_path();
     }
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(this->file);
+    db.setDatabaseName(this->dbPath);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
@@ -125,13 +129,13 @@ void upTS::on_btnSubUpdate_clicked() {
 
 
     // Get user path
-    if(this->file == nullptr) {
+    if(this->dbPath == nullptr) {
         path pt;
-        this->file = pt.get_path();
+        this->dbPath = pt.get_path();
     }
     // Connect to the database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(this->file);
+    db.setDatabaseName(this->dbPath);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
@@ -217,13 +221,13 @@ void upTS::on_btnTeacherUpdate_clicked() {
     this->tcSurname = ui->lnTeachSurname->text();
 
     // Get user path
-    if(this->file == nullptr) {
+    if(this->dbPath == nullptr) {
         path pt;
-        this->file = pt.get_path();
+        this->dbPath = pt.get_path();
     }
     // Connect to the database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(this->file);
+    db.setDatabaseName(this->dbPath);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 

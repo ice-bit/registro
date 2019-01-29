@@ -1,23 +1,28 @@
 #include "createDB.h"
 
-createDB::createDB(QWidget *parent) : QMainWindow(parent), ui(new Ui::createDBClass) {
+createDB::createDB(QString dbPath, QWidget *parent) : QMainWindow(parent), ui(new Ui::createDBClass) {
     ui->setupUi(this);
     setFixedSize(552, 229);
 
     // Free QObjects(needed to avoid memory leaks)
     setAttribute(Qt::WA_DeleteOnClose);
+
+    // Initialize the database path if it already exists
+    if(dbPath != nullptr)
+        this->dbPath = dbPath;
+    qDebug() << dbPath;
 }
 
 void createDB::on_actionRefresh_triggered() {
     // Get user path
-    if(this->file == nullptr) {
+    if(this->dbPath == nullptr) {
         path pt;
-        this->file = pt.get_path();
+        this->dbPath = pt.get_path();
     }
     
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(this->file);
+    db.setDatabaseName(this->dbPath);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok);
@@ -61,14 +66,14 @@ void createDB::on_btnAddTeacher_clicked() {
     this->teacherSurname = ui->lnTeacherSurname->text();
 
     // Get user path
-    if(this->file == nullptr) {
+    if(this->dbPath == nullptr) {
         path pt;
-        this->file = pt.get_path();
+        this->dbPath = pt.get_path();
     }
 
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(this->file);
+    db.setDatabaseName(this->dbPath);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
@@ -117,13 +122,13 @@ void createDB::on_btnAddSubject_clicked() {
     this->teacherSurname = ui->cbnTeacher->currentText();
 
     // Get user path
-    if(this->file == nullptr) {
+    if(this->dbPath == nullptr) {
         path pt;
-        this->file = pt.get_path();
+        this->dbPath = pt.get_path();
     }
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(this->file);
+    db.setDatabaseName(this->dbPath);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
             QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 
@@ -176,7 +181,7 @@ void createDB::on_btnAddSubject_clicked() {
 }
 
 void createDB::on_actionUpdate_triggered() {
-    upTSWin = new upTS();
+    upTSWin = new upTS(this->dbPath, nullptr);
     upTSWin->show();
     upTSWin->setGeometry(
         QStyle::alignedRect(
@@ -189,7 +194,7 @@ void createDB::on_actionUpdate_triggered() {
 }
 
 void createDB::on_actionDelete_triggered() {
-    delTSWin = new delTS();
+    delTSWin = new delTS(this->dbPath, nullptr);
     delTSWin->show();
     delTSWin->setGeometry(
         QStyle::alignedRect(
@@ -204,13 +209,13 @@ void createDB::on_actionDelete_triggered() {
 void createDB::on_actionDBCreate_triggered() {
     // Get the file path
     path pt;
-    this->file = pt.set_path();
-    if(this->file.isEmpty())
+    this->dbPath = pt.set_path();
+    if(this->dbPath.isEmpty())
         return;
 
     // Load the SQLite driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(this->file);
+    db.setDatabaseName(this->dbPath);
     if(!db.open()) {
         QMessageBox::critical(nullptr, QObject::tr("Cannot open the database!"),
            QObject::tr(db.lastError().text().toLocal8Bit().data()), QMessageBox::Ok); 

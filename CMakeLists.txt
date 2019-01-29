@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.9)
-project(registro VERSION 1.3)
+project(registro VERSION 1.3.1)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
@@ -33,7 +33,7 @@ endif()
 
 # Get build date
 if(WIN32)
-    # It doesn't work in this platform
+    # It doesn't work on this platform
 else()
     execute_process(COMMAND "date" "+%d %b %Y/%H:%M:%S" OUTPUT_VARIABLE DATE_TIME)
     string(REGEX REPLACE "([^/]*)/.*" "\\1" PROJECT_BUILD_DATE "${DATE_TIME}")

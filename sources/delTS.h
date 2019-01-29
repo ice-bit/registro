@@ -15,7 +15,7 @@ class delTS : public QMainWindow {
     Q_OBJECT
 
 public:
-    delTS(QWidget *parent = Q_NULLPTR);
+    delTS(QString dbPath, QWidget *parent = Q_NULLPTR);
     ~delTS();
 
 private slots:
@@ -26,7 +26,7 @@ public slots:
     void on_actionRefresh_triggered();
 
 private:
-    QString file = nullptr;
+    QString dbPath = nullptr;
     Ui::delTSClass *ui;
     unsigned int subid, teachid;
 };

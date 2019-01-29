@@ -16,7 +16,7 @@ class upMK : public QMainWindow {
     Q_OBJECT
 
 public:
-    upMK(QWidget *parent = Q_NULLPTR);
+    upMK(QString dbPath, QWidget *parent = Q_NULLPTR);
     ~upMK();
 
 public slots:
@@ -28,7 +28,7 @@ private slots:
 private:
     Ui::upMKClass *ui;
     float mkMark, mkID;
-    QString mkDate, mkDesc, mkSub, file = nullptr;
+    QString mkDate, mkDesc, mkSub, dbPath = nullptr;
 };
 
 #endif

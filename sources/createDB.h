@@ -9,6 +9,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QTimer>
+#include <QDebug>
 #include "path.h"
 #include "upTS.h"
 #include "delTS.h"
@@ -18,7 +19,7 @@ class createDB : public QMainWindow {
     Q_OBJECT
 
 public:
-    createDB(QWidget *parent = Q_NULLPTR);
+    createDB(QString dbPath, QWidget *parent = Q_NULLPTR);
     ~createDB();
 
 private slots:
@@ -35,7 +36,7 @@ private:
     Ui::createDBClass *ui;
     upTS *upTSWin;
     delTS *delTSWin;
-    QString teacherName, teacherSurname, subject, file = nullptr;
+    QString teacherName, teacherSurname, subject, dbPath = nullptr;
 };
 
 #endif
