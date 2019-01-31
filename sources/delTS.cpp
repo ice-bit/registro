@@ -12,6 +12,8 @@ delTS::delTS(QString dbPath, QWidget *parent) : QMainWindow(parent), ui(new Ui::
     // Initialize the database path if it already exists
     if(dbPath != nullptr)
         this->dbPath = dbPath;
+    // Then load the teachers from the database
+    loadTeachersSubjects();
 }
 
 void delTS::on_btnDeleteSub_clicked() {
@@ -57,8 +59,8 @@ void delTS::on_btnDeleteSub_clicked() {
     db = QSqlDatabase();
     db.removeDatabase(con);
     
-    // Then refresh the Subject combobox
-    on_actionRefresh_triggered();
+    // Then refresh the Subject and the Teachers tables
+    loadTeachersSubjects();
 }
 
 void delTS::on_btnDeleteTeach_clicked() {
@@ -105,9 +107,9 @@ void delTS::on_btnDeleteTeach_clicked() {
     db.removeDatabase(con);
 
     // Then refresh the tables
-    on_actionRefresh_triggered();
+    loadTeachersSubjects();
 }
-void delTS::on_actionRefresh_triggered() {
+void delTS::loadTeachersSubjects() {
 
     // Get user path
     if(this->dbPath == nullptr) {

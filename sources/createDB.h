@@ -9,7 +9,6 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QTimer>
-#include <QDebug>
 #include "path.h"
 #include "upTS.h"
 #include "delTS.h"
@@ -27,12 +26,12 @@ private slots:
     void on_btnAddTeacher_clicked();
 
 public slots:
-    void on_actionRefresh_triggered();
     void on_actionUpdate_triggered();
     void on_actionDelete_triggered();
     void on_actionDBCreate_triggered();
 
 private:
+    void loadTeachers();
     Ui::createDBClass *ui;
     upTS *upTSWin;
     delTS *delTSWin;

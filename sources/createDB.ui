@@ -159,14 +159,13 @@
      <x>0</x>
      <y>0</y>
      <width>552</width>
-     <height>30</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionRefresh"/>
     <addaction name="actionDBCreate"/>
    </widget>
    <widget class="QMenu" name="menuEdit">

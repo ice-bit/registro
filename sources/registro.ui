@@ -26,7 +26,7 @@
         <item>
          <widget class="QPushButton" name="btnAddElements">
           <property name="enabled">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
           <property name="text">
            <string>Add</string>
@@ -79,7 +79,7 @@
         <item>
          <widget class="QPushButton" name="btnUpElements">
           <property name="enabled">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
           <property name="text">
            <string>Update</string>
@@ -199,7 +199,7 @@
      <x>0</x>
      <y>0</y>
      <width>754</width>
-     <height>30</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

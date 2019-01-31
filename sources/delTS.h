@@ -22,10 +22,8 @@ private slots:
     void on_btnDeleteSub_clicked();
     void on_btnDeleteTeach_clicked();
 
-public slots:
-    void on_actionRefresh_triggered();
-
 private:
+    void loadTeachersSubjects();
     QString dbPath = nullptr;
     Ui::delTSClass *ui;
     unsigned int subid, teachid;

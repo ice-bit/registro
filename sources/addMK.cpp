@@ -13,9 +13,11 @@ addMK::addMK(QString dbPath, QWidget *parent) : QMainWindow(parent), ui(new Ui::
     // Initialize the database path if it already exists
     if(dbPath != nullptr)
         this->dbPath = dbPath;
+    // Then load the subject from the database
+    loadSubject();
 }
 
-void addMK::on_actionRefresh_triggered() {
+void addMK::loadSubject() {
     // Get user path
     if(this->dbPath == nullptr) {
         path pt;

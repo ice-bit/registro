@@ -12,9 +12,11 @@ upTS::upTS(QString dbPath, QWidget *parent) : QMainWindow(parent), ui(new Ui::up
     // Initialize the database path if it already exists
     if(dbPath != nullptr)
         this->dbPath = dbPath;
+    // Then load the teachers from the database
+    loadTeachers();
 }
 
-void upTS::on_actionRefresh_triggered() {
+void upTS::loadTeachers() {
     // Get user path
     if(this->dbPath == nullptr) {
         path pt;
@@ -118,7 +120,7 @@ void upTS::on_actionRefresh_triggered() {
 void upTS::on_btnSubUpdate_clicked() {
     // Check if teacher is empty
     if(ui->cbnTeacher->currentText().isEmpty()) {
-        ui->lblQueryStatus->setText("Please refresh the list of teachers and choose an available entry");
+        ui->lblQueryStatus->setText("Please add a teacher before trying to add a subject.");
         return;
     }
 
@@ -205,7 +207,7 @@ void upTS::on_btnSubUpdate_clicked() {
     db.removeDatabase(con);
 
     // Then refresh the tables
-    on_actionRefresh_triggered();
+    loadTeachers();
 }
 
 void upTS::on_btnTeacherUpdate_clicked() {
@@ -293,7 +295,7 @@ void upTS::on_btnTeacherUpdate_clicked() {
     db.removeDatabase(con);
 
     // Then refresh the tables
-    on_actionRefresh_triggered();
+    loadTeachers();
 }
 
 upTS::~upTS() { delete ui; }

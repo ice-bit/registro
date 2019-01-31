@@ -94,9 +94,11 @@ void regMain::on_btnLoadElements_clicked() {
     // Delete heap objects
     delete query;
 
-    // Enable delete button and search field
+    // Enable other functions
     ui->btnDelElements->setEnabled(true);
     ui->lnSearch->setEnabled(true);
+    ui->btnAddElements->setEnabled(true);
+    ui->btnDelElements->setEnabled(true);
 }
 
 void regMain::on_btnAddElements_clicked() {

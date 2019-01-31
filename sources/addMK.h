@@ -18,13 +18,11 @@ public:
     addMK(QString dbPath, QWidget *parent = Q_NULLPTR);
     ~addMK();
 
-public slots:
-    void on_actionRefresh_triggered();
-
 private slots:
     void on_btnInsertMark_clicked();
 
 private:
+    void loadSubject();
     Ui::addMKClass *ui;
     float mkMark;
     QString mkDate, mkDesc, mkSub, dbPath = nullptr;

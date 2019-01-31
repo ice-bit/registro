@@ -13,9 +13,11 @@ upMK::upMK(QString dbPath, QWidget *parent) : QMainWindow(parent), ui(new Ui::up
     // Initialize the database path if it already exists
     if(dbPath != nullptr)
         this->dbPath = dbPath;
+    // Then load the subject from the database
+    loadSubject();
 }
 
-void upMK::on_actionRefresh_triggered() {
+void upMK::loadSubject() {
     // Get user path
     if(this->dbPath == nullptr) {
         path pt;

@@ -10,10 +10,11 @@ createDB::createDB(QString dbPath, QWidget *parent) : QMainWindow(parent), ui(ne
     // Initialize the database path if it already exists
     if(dbPath != nullptr)
         this->dbPath = dbPath;
-    qDebug() << dbPath;
+    // Then load the teachers from the database
+    loadTeachers();
 }
 
-void createDB::on_actionRefresh_triggered() {
+void createDB::loadTeachers() {
     // Get user path
     if(this->dbPath == nullptr) {
         path pt;
@@ -107,7 +108,7 @@ void createDB::on_btnAddTeacher_clicked() {
     db.removeDatabase(con);
 
     // Then refresh the Subject combobox
-    on_actionRefresh_triggered();
+    loadTeachers();
 }
 
 void createDB::on_btnAddSubject_clicked() {

@@ -22,10 +22,8 @@ private slots:
     void on_btnSubUpdate_clicked();
     void on_btnTeacherUpdate_clicked();
 
-public slots:
-    void on_actionRefresh_triggered();
-
 private:
+    void loadTeachers();
     Ui::upTSClass *ui;
     unsigned int id, teachid;
     QString subName, tcName, tcSurname, dbPath = nullptr;

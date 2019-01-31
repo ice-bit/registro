@@ -19,13 +19,11 @@ public:
     upMK(QString dbPath, QWidget *parent = Q_NULLPTR);
     ~upMK();
 
-public slots:
-    void on_actionRefresh_triggered();
-
 private slots:
     void on_btnUpdateMark_clicked();
 
 private:
+    void loadSubject();
     Ui::upMKClass *ui;
     float mkMark, mkID;
     QString mkDate, mkDesc, mkSub, dbPath = nullptr;
