@@ -98,7 +98,7 @@ void regMain::on_btnLoadElements_clicked() {
     ui->btnDelElements->setEnabled(true);
     ui->lnSearch->setEnabled(true);
     ui->btnAddElements->setEnabled(true);
-    ui->btnDelElements->setEnabled(true);
+    ui->btnUpElements->setEnabled(true);
 }
 
 void regMain::on_btnAddElements_clicked() {
