@@ -10,6 +10,6 @@
 #define PROJECT_OS "GNU/Linux"
 #define PROJECT_ARCH "x86_x64"
 #define PROJECT_AUTHOR "2018 (c) Marco 'icebit' Cetica"
-#define OS 0 // 0(Unix), 1(Windows) // Use this to enabled/disable options related to the specific platform.
+#define OS 0 // 0(Linux), 1(Windows), 3(Darwin) // Enable features realated to the platform
 
 #endif
