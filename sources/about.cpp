@@ -15,7 +15,7 @@ about::about(QWidget *parent) : QMainWindow(parent), ui(new Ui::aboutClass) {
     ui->lblOS->setText(os + PROJECT_OS + " " + PROJECT_ARCH);
     ui->lblAuthor->setText(author + PROJECT_AUTHOR);
     
-    #if OS == 0
+    #if OS == 0 || OS == 3
         ui->lblBuild->setText(build + PROJECT_BUILD_DATE + " " + PROJECT_BUILD_TIME); 
     #elif OS == 1
         ui->lblBuild->setText(build + "Not supported for this platform");

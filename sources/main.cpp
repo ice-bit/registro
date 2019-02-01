@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
 }
 
 void version() {
-    #if OS == 0
+    #if OS == 0 || OS == 3
         std::cout << "Registro " << PROJECT_VERSION << " " << PROJECT_OS << " " << PROJECT_ARCH << " ("
                 << PROJECT_SOURCE_VERSION << ", " << 
                     PROJECT_BUILD_DATE << ", " <<
