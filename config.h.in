@@ -9,7 +9,7 @@
 #define PROJECT_VERSION "v1.3.1"
 #define PROJECT_OS "GNU/Linux"
 #define PROJECT_ARCH "x86_x64"
-#define PROJECT_AUTHOR "2018 (c) Marco 'icebit' Cetica"
+#define PROJECT_AUTHOR "2019 (c) Marco 'icebit' Cetica"
 #define OS 0 // 0(Linux), 1(Windows), 3(Darwin) // Enable features realated to the platform
 
 #endif

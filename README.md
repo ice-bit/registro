@@ -26,7 +26,7 @@ The other way is to download the executable file and open/install it:
 [Windows x64 exe](https://github.com/ice-bit/registro/raw/master/Windows/registro_installer(x64).exe)  
 [Windows x86 exe](https://github.com/ice-bit/registro/raw/master/Windows/registro_installer(x86).exe)  
 [GNU/Linux x86_x64](https://github.com/ice-bit/registro/raw/master/Linux/registro-x86_64.AppImage)  
-[OSX x64](https://github.com/ice-bit/registro/raw/master/OSX/registro.app)
+[OSX x64](https://github.com/ice-bit/registro/raw/master/OSX/registro.app.zip)
 
  Windows System Requirements: `Visual C++ Redistributable per Visual Studio 2015`  
  GNU/Linux System Requirements: `GLIB >= 2.27`  
