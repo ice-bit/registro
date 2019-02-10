@@ -9,7 +9,7 @@ Section "Install"
 SetOutPath "$PROGRAMFILES64\Registro"
 
 file /r "Release\*"
-CreateShortcut "$DESKTOP\Registro 1.3.1.lnk" "$INSTDIR\registro.exe"
+CreateShortcut "$DESKTOP\Registro 1.3.2.lnk" "$INSTDIR\registro.exe"
 
 WriteUninstaller "$INSTDIR\uninstall.exe"
 
@@ -31,6 +31,6 @@ Delete "$INSTDIR\uninstall.exe"
 
 RMDIR /r "$INSTDIR"
 
-Delete "$DESKTOP\Registro 1.3.1.lnk"
+Delete "$DESKTOP\Registro 1.3.2.lnk"
 
 SectionEnd
