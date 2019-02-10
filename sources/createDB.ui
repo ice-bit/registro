@@ -179,22 +179,9 @@
    <addaction name="menuEdit"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionRefresh">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Refresh</string>
-   </property>
-  </action>
   <action name="actionUpdate">
    <property name="text">
     <string>&amp;Update Subjects or Teachers</string>
-   </property>
-  </action>
-  <action name="actionDeleteSubject">
-   <property name="text">
-    <string>Delete a subject</string>
    </property>
   </action>
   <action name="actionDelete">

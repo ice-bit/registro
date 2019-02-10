@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>delTSClass</class>
- <widget class="QMainWindow" name="delTSClass">
+ <class>delSBTSClass</class>
+ <widget class="QMainWindow" name="delSBTSClass">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>472</width>
-    <height>512</height>
+    <width>372</width>
+    <height>537</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,8 +22,8 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>50</y>
-      <width>271</width>
+      <y>40</y>
+      <width>351</width>
       <height>171</height>
      </rect>
     </property>
@@ -34,8 +34,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>20</y>
+      <x>150</x>
+      <y>10</y>
       <width>71</width>
       <height>18</height>
      </rect>
@@ -54,8 +54,8 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>290</y>
-      <width>271</width>
+      <y>280</y>
+      <width>351</width>
       <height>171</height>
      </rect>
     </property>
@@ -66,8 +66,8 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>260</y>
+      <x>150</x>
+      <y>250</y>
       <width>71</width>
       <height>18</height>
      </rect>
@@ -82,22 +82,12 @@
      <string>Teachers</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spnSub">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>110</y>
-      <width>52</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btnDeleteSub">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>110</y>
-      <width>88</width>
+      <x>10</x>
+      <y>220</y>
+      <width>351</width>
       <height>21</height>
      </rect>
     </property>
@@ -105,22 +95,12 @@
      <string>Delete</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spnTeach">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>350</y>
-      <width>52</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btnDeleteTeach">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>350</y>
-      <width>88</width>
+      <x>10</x>
+      <y>460</y>
+      <width>351</width>
       <height>21</height>
      </rect>
     </property>
@@ -132,8 +112,8 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>230</y>
-      <width>441</width>
+      <y>490</y>
+      <width>351</width>
       <height>20</height>
      </rect>
     </property>
@@ -146,16 +126,9 @@
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionRefresh">
-   <property name="text">
-    <string>&amp;Refresh</string>
-   </property>
-  </action>
  </widget>
  <tabstops>
-  <tabstop>spnSub</tabstop>
   <tabstop>btnDeleteSub</tabstop>
-  <tabstop>spnTeach</tabstop>
   <tabstop>btnDeleteTeach</tabstop>
   <tabstop>tbSubjects</tabstop>
   <tabstop>tbTeachers</tabstop>

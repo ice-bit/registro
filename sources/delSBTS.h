@@ -1,5 +1,5 @@
-#ifndef DELTS_H
-#define DELTS_H
+#ifndef DELSBTS_H
+#define DELSBTS_H
 
 #include <QtWidgets/QMainWindow>
 #include <QSqlDatabase>
@@ -9,14 +9,14 @@
 #include <QSqlError>
 #include <QTimer>
 #include "path.h"
-#include "ui_delTS.h"
+#include "ui_delSBTS.h"
 
-class delTS : public QMainWindow {
+class delSBTS : public QMainWindow {
     Q_OBJECT
 
 public:
-    delTS(QString dbPath, QWidget *parent = Q_NULLPTR);
-    ~delTS();
+    delSBTS(QString dbPath, QWidget *parent = Q_NULLPTR);
+    ~delSBTS();
 
 private slots:
     void on_btnDeleteSub_clicked();
@@ -25,8 +25,8 @@ private slots:
 private:
     void loadTeachersSubjects();
     QString dbPath = nullptr;
-    Ui::delTSClass *ui;
-    unsigned int subid, teachid;
+    Ui::delSBTSClass *ui;
+    unsigned int userSelection;
 };
 
 #endif

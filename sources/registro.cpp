@@ -51,10 +51,10 @@ void regMain::on_btnLoadElements_clicked() {
     // Execute the query
 
     if(!query->exec("SELECT m.ID, m.mark, s.SubName, m.MarkDate, m.Description, t.TSurname "
-                "FROM mark AS m "
-                "INNER JOIN subject AS s "
+                "FROM marks AS m "
+                "INNER JOIN subjects AS s "
                 "ON m.CodSub = s.ID "
-                "INNER JOIN teacher AS t "
+                "INNER JOIN teachers AS t "
                 "ON s.CodTeacher = t.ID;")) {
         ui->lblQueryStatus->setText(query->lastError().text());
         return;
@@ -134,19 +134,17 @@ void regMain::on_btnDelElements_clicked() {
     // Check how many cells are being selected
     QModelIndexList selection = ui->tbMain->selectionModel()->selectedIndexes();
     if(selection.count() > 1) {
-        ui->lblQueryStatus->setText("Please select one ID at a time.");
+        ui->lblQueryStatus->setText("Please select one ID at time.");
         return;
-    }
-    else if(!ui->tbMain->selectionModel()->hasSelection()) {
+    } else if(!ui->tbMain->selectionModel()->hasSelection()) {
         ui->lblQueryStatus->setText("Please select at least one ID.");
         return;
-    }
-    else if(index.column() != 0) {
+    } else if(index.column() != 0) {
         ui->lblQueryStatus->setText("Please select an element from the ID column.");
         return;
     }
 
-    // Retrive the selected cell
+    // Retrive selected cell
     QVariant indexValue = index.sibling(index.row(), index.column()).data();
     // Convert it to an integer
     this->userSelection = indexValue.value<int>();
@@ -169,7 +167,7 @@ void regMain::on_btnDelElements_clicked() {
     QSqlQuery query;
 
     // Prepare and execute the delete query
-    query.prepare("DELETE FROM mark WHERE ID = :id;");
+    query.prepare("DELETE FROM marks WHERE ID = :id;");
     query.bindValue(":id", this->userSelection);
 
     // Error Handling
@@ -205,7 +203,7 @@ float regMain::avg(int operation, QString subname) {
     QSqlQueryModel *modle = new QSqlQueryModel();
     QSqlQuery *query = new QSqlQuery(db);
     if(operation == 1) {
-        if(!query->exec("SELECT ROUND(AVG(Mark),1) FROM mark;")) {
+        if(!query->exec("SELECT ROUND(AVG(Mark),1) FROM marks;")) {
             ui->lblQueryStatus->setText(query->lastError().text());
             return 0;
         }
@@ -217,8 +215,8 @@ float regMain::avg(int operation, QString subname) {
             return 0;
         }
     } else if(operation == 2) {
-        query->prepare("SELECT ROUND(AVG(p.Mark),1) FROM mark AS p "
-                       "INNER JOIN subject AS s ON p.CodSub = s.ID "
+        query->prepare("SELECT ROUND(AVG(p.Mark),1) FROM marks AS p "
+                       "INNER JOIN subjects AS s ON p.CodSub = s.ID "
                        "WHERE s.SubName LIKE :subname;");
 
         query->bindValue(":subname", QString("%%1%").arg(subname));
@@ -265,10 +263,10 @@ void regMain::searchSubject() {
     QSqlQuery *query = new QSqlQuery(db);
     // Execute the query
     query->prepare("SELECT m.ID, m.mark, s.SubName, m.MarkDate, m.Description, t.TSurname "
-                "FROM mark AS m "
-                "INNER JOIN subject AS s "
+                "FROM marks AS m "
+                "INNER JOIN subjects AS s "
                 "ON m.CodSub = s.ID "
-                "INNER JOIN teacher AS t "
+                "INNER JOIN teachers AS t "
                 "ON s.CodTeacher = t.ID "
                 "WHERE s.SubName LIKE :subname;");
     query->bindValue(":subname", QString("%%1%").arg(this->reqsub));
@@ -345,7 +343,7 @@ void regMain::on_actionExportMarks_triggered() {
     QString date = QDate::currentDate().toString("dd/MM/yyyy");
 
     // Retrieve the mark's count
-    if(!query->exec("SELECT COUNT(*) FROM mark;")) {
+    if(!query->exec("SELECT COUNT(*) FROM marks;")) {
         ui->lblQueryStatus->setText(query->lastError().text());
         return;
     }
@@ -465,8 +463,8 @@ void regMain::on_actionExportSubjects_triggered() {
 
     QSqlQuery *query = new QSqlQuery();
 
-    if(!query->exec("SELECT p.SubName, s.TSurname, s.TName FROM subject AS p "
-                    "INNER JOIN teacher AS s ON p.CodTeacher = s.ID;")) {
+    if(!query->exec("SELECT p.SubName, s.TSurname, s.TName FROM subjects AS p "
+                    "INNER JOIN teachers AS s ON p.CodTeacher = s.ID;")) {
         ui->lblQueryStatus->setText(query->lastError().text());
         return;
     }

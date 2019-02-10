@@ -1,8 +1,8 @@
-#include "delTS.h"
+#include "delSBTS.h"
 
-delTS::delTS(QString dbPath, QWidget *parent) : QMainWindow(parent), ui(new Ui::delTSClass) {
+delSBTS::delSBTS(QString dbPath, QWidget *parent) : QMainWindow(parent), ui(new Ui::delSBTSClass) {
     ui->setupUi(this);
-    setFixedSize(472, 512);
+    setFixedSize(372, 537);
 
     // Free QObjects(needed to avoid memory leaks)
     setAttribute(Qt::WA_DeleteOnClose);
@@ -16,9 +16,27 @@ delTS::delTS(QString dbPath, QWidget *parent) : QMainWindow(parent), ui(new Ui::
     loadTeachersSubjects();
 }
 
-void delTS::on_btnDeleteSub_clicked() {
-    // Get the user input
-    this->subid = ui->spnSub->value();
+void delSBTS::on_btnDeleteSub_clicked() {
+    // Retrive user selection
+    QModelIndex index = ui->tbSubjects->selectionModel()->currentIndex();
+
+    // Check how many cells are being selected
+    QModelIndexList selection = ui->tbSubjects->selectionModel()->selectedIndexes();
+    if(selection.count() > 1) {
+        ui->lblQueryStatus->setText("Please select one ID at time.");
+        return;
+    } else if(!ui->tbSubjects->selectionModel()->hasSelection()) {
+        ui->lblQueryStatus->setText("Please select at least one ID.");
+        return;
+    } else if(index.column() != 0) {
+        ui->lblQueryStatus->setText("Please select an element from the ID column.");
+        return;
+    }
+
+    // Retrive selected cell
+    QVariant indexValue = index.sibling(index.row(), index.column()).data();
+    // Convert it to an integer
+    this->userSelection = indexValue.value<int>();
 
     // Get user path
     if(this->dbPath == nullptr) {
@@ -38,9 +56,16 @@ void delTS::on_btnDeleteSub_clicked() {
     // Our query
     QSqlQuery query;
 
+    // Enable foreign key support(disabled by default in SQLite)
+    query.exec("PRAGMA foreign_keys = ON;");
+    if(!query.isActive()){
+        ui->lblQueryStatus->setText("Cannot enabled FK support.");
+        return;
+    }
+
     // Delete the subject
-    query.prepare("DELETE FROM subject WHERE ID = :id;");
-    query.bindValue(":id", this->subid);
+    query.prepare("DELETE FROM subjects WHERE ID = :id;");
+    query.bindValue(":id", this->userSelection);
 
     if(!query.exec()) {
         ui->lblQueryStatus->setText(query.lastError().text());
@@ -63,10 +88,28 @@ void delTS::on_btnDeleteSub_clicked() {
     loadTeachersSubjects();
 }
 
-void delTS::on_btnDeleteTeach_clicked() {
-    // Get the user input
-    this->teachid = ui->spnTeach->value();
+void delSBTS::on_btnDeleteTeach_clicked() {
+    // Retrieve user selection
+    QModelIndex index = ui->tbTeachers->selectionModel()->currentIndex();
 
+    // Check how many cells are being selected
+    QModelIndexList selection = ui->tbTeachers->selectionModel()->selectedIndexes();
+    if(selection.count() > 1) {
+        ui->lblQueryStatus->setText("Please select one ID at time.");
+        return;
+    } else if(!ui->tbTeachers->selectionModel()->hasSelection()) {
+        ui->lblQueryStatus->setText("Please select at least one ID.");
+        return;
+    } else if(index.column() != 0) {
+        ui->lblQueryStatus->setText("Please select an element from the ID column.");
+        return;
+    }
+
+    // Retrieve selected cell
+    QVariant indexValue = index.sibling(index.row(), index.column()).data();
+    // Convert it to an integer
+    this->userSelection = indexValue.value<int>();
+    
     // Get user path
     if(this->dbPath == nullptr) {
         path pt;
@@ -85,9 +128,16 @@ void delTS::on_btnDeleteTeach_clicked() {
     // Our query
     QSqlQuery query;
 
+    // Enable foreign key support(disabled by default in SQLite)
+    query.exec("PRAGMA foreign_keys = ON;");
+    if(!query.isActive()){
+        ui->lblQueryStatus->setText("Cannot enabled FK support.");
+        return;
+    }
+
     // Delete the subject
-    query.prepare("DELETE FROM teacher WHERE ID = :id;");
-    query.bindValue(":id", this->teachid);
+    query.prepare("DELETE FROM teachers WHERE ID = :id;");
+    query.bindValue(":id", this->userSelection);
 
     if(!query.exec()) {
         ui->lblQueryStatus->setText(query.lastError().text());
@@ -109,7 +159,7 @@ void delTS::on_btnDeleteTeach_clicked() {
     // Then refresh the tables
     loadTeachersSubjects();
 }
-void delTS::loadTeachersSubjects() {
+void delSBTS::loadTeachersSubjects() {
 
     // Get user path
     if(this->dbPath == nullptr) {
@@ -133,7 +183,7 @@ void delTS::loadTeachersSubjects() {
     QSqlQuery *mainquery = new QSqlQuery(db);
     QSqlQuery *subquery = new QSqlQuery(db);
     // Execute the query
-    mainquery->exec("SELECT ID, SubName FROM subject;");
+    mainquery->exec("SELECT ID, SubName FROM subjects;");
 
     // Error Handling
     if(!mainquery->isActive()) {
@@ -149,12 +199,12 @@ void delTS::loadTeachersSubjects() {
 
     // Configure column's labels with appropriate names
     mainmodel->setHeaderData(0, Qt::Horizontal, tr("ID"));
-    mainmodel->setHeaderData(1, Qt::Horizontal, tr("Subject"));
+    mainmodel->setHeaderData(1, Qt::Horizontal, tr("Subject Name"));
 
     // Now do the same thing with the other table(Teachers)
 
     // Load teachers into Qtable
-    subquery->exec("SELECT ID, TSurname FROM teacher;");
+    subquery->exec("SELECT ID, TSurname FROM teachers;");
 
     // Error Handling
     if(!subquery->isActive()) {
@@ -170,7 +220,7 @@ void delTS::loadTeachersSubjects() {
 
     // Configure column's labels with appropriate names
     submodel->setHeaderData(0, Qt::Horizontal, tr("ID"));
-    submodel->setHeaderData(1, Qt::Horizontal, tr("Teacher"));
+    submodel->setHeaderData(1, Qt::Horizontal, tr("Teacher Surname"));
     
     // Close the connection to the database
     QString con;
@@ -180,8 +230,8 @@ void delTS::loadTeachersSubjects() {
     db.removeDatabase(con);
     
     // Adjust the column width
-    ui->tbSubjects->setColumnWidth(1, 150);
-    ui->tbTeachers->setColumnWidth(1, 150);
+    ui->tbSubjects->setColumnWidth(0, 150);
+    ui->tbTeachers->setColumnWidth(0, 150);
 
     // Remove row index
     ui->tbSubjects->verticalHeader()->setVisible(false);
@@ -192,4 +242,4 @@ void delTS::loadTeachersSubjects() {
     delete subquery;
 }
 
-delTS::~delTS() { delete ui; }
+delSBTS::~delSBTS() { delete ui; }

@@ -5,6 +5,7 @@
 #include <QString>
 #include <QFileDialog>
 #include <QObject>
+#include "../../config.h"
 
 class path : public QMainWindow {
     Q_OBJECT

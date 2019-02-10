@@ -294,11 +294,6 @@
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionRefresh">
-   <property name="text">
-    <string>&amp;Refresh</string>
-   </property>
-  </action>
  </widget>
  <tabstops>
   <tabstop>spnSubID</tabstop>

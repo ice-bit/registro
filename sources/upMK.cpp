@@ -39,7 +39,7 @@ void upMK::loadSubject() {
     QSqlQuery *query = new QSqlQuery(db);
 
     // Execute the query
-    query->exec("SELECT SubName FROM subject;");
+    query->exec("SELECT SubName FROM subjects;");
 
     // Error handling
     if(!query->isActive()) {
@@ -96,7 +96,7 @@ void upMK::on_btnUpdateMark_clicked() {
     QSqlQuery query;
 
     // Retrive the ID from the Subject name
-    query.prepare("SELECT ID FROM subject WHERE SubName = :subname LIMIT 1;");
+    query.prepare("SELECT ID FROM subjects WHERE SubName = :subname LIMIT 1;");
     query.bindValue(":subname", this->mkSub);
 
     // Error handling
@@ -116,7 +116,7 @@ void upMK::on_btnUpdateMark_clicked() {
     
 
     // Now update the record
-    query.prepare("UPDATE mark SET Mark = :mark, MarkDate = :date, Description = "
+    query.prepare("UPDATE marks SET Mark = :mark, MarkDate = :date, Description = "
                   ":desc, CodSub = :sub WHERE ID = :id;");
     query.bindValue(":mark", this->mkMark);
     query.bindValue(":date", this->mkDate);

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.9)
-project(registro VERSION 1.3.1)
+project(registro VERSION 1.3.2)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
@@ -47,7 +47,7 @@ set( SOURCES
      sources/main.cpp
      sources/registro.cpp
      sources/createDB.cpp
-     sources/delTS.cpp
+     sources/delSBTS.cpp
      sources/upTS.cpp
      sources/addMK.cpp 
      sources/upMK.cpp
@@ -57,7 +57,7 @@ set( SOURCES
 set( HEADERS
      sources/registro.h 
      sources/createDB.h
-     sources/delTS.h  
+     sources/delSBTS.h  
      sources/upTS.h  
      sources/addMK.h 
      sources/upMK.h  

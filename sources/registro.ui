@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Registro v1.3.1</string>
+   <string>Registro v1.3.2</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../resources/res.qrc">
@@ -230,7 +230,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionCreateDB">
    <property name="text">
-    <string>&amp;Create Database</string>
+    <string>Database Options</string>
    </property>
   </action>
   <action name="actionExit">

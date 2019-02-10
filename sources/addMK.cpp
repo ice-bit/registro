@@ -39,7 +39,7 @@ void addMK::loadSubject() {
     QSqlQuery *query = new QSqlQuery(db);
 
     // Execute the query
-    query->exec("SELECT SubName FROM subject;");
+    query->exec("SELECT SubName FROM subjects;");
 
     // Error handling
     if(!query->isActive()) {
@@ -93,7 +93,7 @@ void addMK::on_btnInsertMark_clicked() {
     // Our query
     QSqlQuery query;
 
-    query.prepare("SELECT ID FROM subject WHERE SubName = :subname LIMIT 1;");
+    query.prepare("SELECT ID FROM subjects WHERE SubName = :subname LIMIT 1;");
     query.bindValue(":subname", this->mkSub);
 
     // Error Handling
@@ -110,7 +110,7 @@ void addMK::on_btnInsertMark_clicked() {
         ui->lblQueryStatus->setText(query.lastError().text());
 
     // Now we're able to prepare our insert query
-    query.prepare("INSERT INTO mark(Mark, MarkDate, Description, CodSub) VALUES ("
+    query.prepare("INSERT INTO marks(Mark, MarkDate, Description, CodSub) VALUES ("
                   ":mark, :date, :desc, :sub);");
     query.bindValue(":mark", this->mkMark);
     query.bindValue(":date", this->mkDate);

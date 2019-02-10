@@ -36,7 +36,7 @@ void createDB::loadTeachers() {
     QSqlQuery *query = new QSqlQuery(db);
 
     // Append teachers to the combobox
-    query->exec("SELECT TSurname FROM teacher;");
+    query->exec("SELECT TSurname FROM teachers;");
 
     // Error Handling
     if(!query->isActive()) {
@@ -86,7 +86,7 @@ void createDB::on_btnAddTeacher_clicked() {
 
     // Now we want to insert the user input into the database
     // For security reason, we want to bind those values.
-    query.prepare("INSERT INTO teacher (TName, TSurname) VALUES (:name, :surname);");
+    query.prepare("INSERT INTO teachers (TName, TSurname) VALUES (:name, :surname);");
     query.bindValue(":name", this->teacherName);
     query.bindValue(":surname", this->teacherSurname);
 
@@ -140,7 +140,7 @@ void createDB::on_btnAddSubject_clicked() {
     QSqlQuery query;
 
     // Retrive the ID of the teacher choosed by the user
-    query.prepare("SELECT ID FROM teacher WHERE TSurname = :surname LIMIT 1;");
+    query.prepare("SELECT ID FROM teachers WHERE TSurname = :surname LIMIT 1;");
     query.bindValue(":surname", this->teacherSurname);
     
     if(!query.exec()) {
@@ -157,7 +157,7 @@ void createDB::on_btnAddSubject_clicked() {
         return;
     }
 
-    query.prepare("INSERT INTO subject (SubName,CodTeacher) VALUES("
+    query.prepare("INSERT INTO subjects (SubName,CodTeacher) VALUES("
                   ":subname, :codTeacher);");
     query.bindValue(":subname", this->subject);
     query.bindValue(":codTeacher", id);
@@ -195,13 +195,13 @@ void createDB::on_actionUpdate_triggered() {
 }
 
 void createDB::on_actionDelete_triggered() {
-    delTSWin = new delTS(this->dbPath, nullptr);
-    delTSWin->show();
-    delTSWin->setGeometry(
+    delSBTSWin = new delSBTS(this->dbPath, nullptr);
+    delSBTSWin->show();
+    delSBTSWin->setGeometry(
         QStyle::alignedRect(
             Qt::LeftToRight, 
             Qt::AlignCenter, 
-            delTSWin->size(), 
+            delSBTSWin->size(), 
             qApp->desktop()->availableGeometry()
         )
     );
@@ -227,29 +227,33 @@ void createDB::on_actionDBCreate_triggered() {
     QSqlQuery query;
 
      // drop previous exists tables
-    query.exec("DROP TABLE IF EXISTS teacher;");
-    query.exec("DROP TABLE IF EXISTS subject;");
-    query.exec("DROP TABLE IF EXISTS mark;");
+    query.exec("DROP TABLE IF EXISTS teachers;");
+    query.exec("DROP TABLE IF EXISTS subjects;");
+    query.exec("DROP TABLE IF EXISTS marks;");
 
     // Create the three tables
-    query.exec("CREATE TABLE teacher ("
+    query.exec("CREATE TABLE teachers ("
                 "ID INTEGER PRIMARY KEY,"
                 "TName TEXT NOT NULL,"
                 "TSurname TEXT NOT NULL);");
 
-    query.exec("CREATE TABLE subject ("
+    query.exec("CREATE TABLE subjects ("
                "ID INTEGER PRIMARY KEY,"
                "SubName TEXT NOT NULL,"
                "CodTeacher INTEGER NOT NULL,"
-               "FOREIGN KEY (CodTeacher) REFERENCES teacher(ID));");
+               "CONSTRAINT fk_teachers "
+               "FOREIGN KEY (CodTeacher) REFERENCES teachers(ID) "
+               "ON DELETE CASCADE);");
 
-    query.exec("CREATE TABLE mark ("
+    query.exec("CREATE TABLE marks ("
                "ID INTEGER PRIMARY KEY,"
                "Mark FLOAT NOT NULL,"
                "MarkDate DATE NOT NULL,"
                "Description TEXT NOT NULL,"
                "CodSub INTEGER NOT NULL,"
-               "FOREIGN KEY (CodSub) REFERENCES subject(ID));");
+               "CONSTRAINT fk_subjects "
+               "FOREIGN KEY (CodSub) REFERENCES subjects(ID) "
+               "ON DELETE CASCADE);");
 
     // Error Handling
     if(!query.isActive()) {

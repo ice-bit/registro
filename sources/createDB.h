@@ -11,7 +11,7 @@
 #include <QTimer>
 #include "path.h"
 #include "upTS.h"
-#include "delTS.h"
+#include "delSBTS.h"
 #include "ui_createDB.h"
 
 class createDB : public QMainWindow {
@@ -34,7 +34,7 @@ private:
     void loadTeachers();
     Ui::createDBClass *ui;
     upTS *upTSWin;
-    delTS *delTSWin;
+    delSBTS *delSBTSWin;
     QString teacherName, teacherSurname, subject, dbPath = nullptr;
 };
 

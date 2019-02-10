@@ -41,8 +41,8 @@ void upTS::loadTeachers() {
     QSqlQuery *cbnquery = new QSqlQuery(db);
 
     // Execute the query
-    mainquery->exec("SELECT m.ID, m.SubName, t.TSurname FROM subject AS m "
-                    "INNER JOIN teacher AS t ON m.CodTeacher = t.ID;");
+    mainquery->exec("SELECT m.ID, m.SubName, t.TSurname FROM subjects AS m "
+                    "INNER JOIN teachers AS t ON m.CodTeacher = t.ID;");
 
     // Error Handling
     if(!mainquery->isActive()) {
@@ -65,7 +65,7 @@ void upTS::loadTeachers() {
     // Now do the same thing with the other table(Teachers)
 
     // Load teachers into Qtable
-    subquery->exec("SELECT ID, TName, TSurname FROM teacher;");
+    subquery->exec("SELECT ID, TName, TSurname FROM teachers;");
 
     // Error Handling
     if(!subquery->isActive()) {
@@ -85,7 +85,7 @@ void upTS::loadTeachers() {
     submodel->setHeaderData(2, Qt::Horizontal, tr("Teacher Surname"));
 
     // Now do the same thing with the other QObject
-    cbnquery->exec("SELECT TSurname FROM teacher;");
+    cbnquery->exec("SELECT TSurname FROM teachers;");
 
     if(!cbnquery->isActive()) {
         ui->lblQueryStatus->setText("Can't load teacher list, try to add a new record first!");
@@ -147,7 +147,7 @@ void upTS::on_btnSubUpdate_clicked() {
     // Our query
     QSqlQuery query;
 
-    query.prepare("SELECT ID FROM teacher WHERE TSurname = :surname LIMIT 1;");
+    query.prepare("SELECT ID FROM teachers WHERE TSurname = :surname LIMIT 1;");
     query.bindValue(":surname", this->tcName);
     
 
@@ -168,7 +168,7 @@ void upTS::on_btnSubUpdate_clicked() {
         ui->lblQueryStatus->setText("Plase fill the input boxes!");
         return;
     } else if(ui->lnSubName->text().isEmpty()) {
-        query.prepare("UPDATE subject SET CodTeacher = :tcid WHERE ID = :id;");
+        query.prepare("UPDATE subjects SET CodTeacher = :tcid WHERE ID = :id;");
         query.bindValue(":tcid", id);
         query.bindValue(":id", this->id);
 
@@ -183,7 +183,7 @@ void upTS::on_btnSubUpdate_clicked() {
         }
 
     } else {
-        query.prepare("UPDATE subject SET CodTeacher = :tcid, SubName = :sbname WHERE ID = :id;");
+        query.prepare("UPDATE subjects SET CodTeacher = :tcid, SubName = :sbname WHERE ID = :id;");
         query.bindValue(":tcid", id);
         query.bindValue(":sbname", this->subName);
         query.bindValue(":id", this->id);
@@ -241,7 +241,7 @@ void upTS::on_btnTeacherUpdate_clicked() {
 
     if(ui->lnTeachName->text().isEmpty()) {
         // Prepare the query
-        query.prepare("UPDATE teacher SET TSurname = :surname WHERE ID = :id;");
+        query.prepare("UPDATE teachers SET TSurname = :surname WHERE ID = :id;");
         query.bindValue(":surname", this->tcSurname);
         query.bindValue(":id", this->id);
 
@@ -256,7 +256,7 @@ void upTS::on_btnTeacherUpdate_clicked() {
         }
     } else if(ui->lnTeachSurname->text().isEmpty()) {
         // Prepare the query
-        query.prepare("UPDATE teacher SET TName = :name WHERE ID = :id;");
+        query.prepare("UPDATE teachers SET TName = :name WHERE ID = :id;");
         query.bindValue(":name", this->tcName);
         query.bindValue(":id", this->id);
 
@@ -271,7 +271,7 @@ void upTS::on_btnTeacherUpdate_clicked() {
         }
     } else {
         // Prepare the query
-        query.prepare("UPDATE teacher SET TName = :name, TSurname = :surname WHERE ID = :id;");
+        query.prepare("UPDATE teachers SET TName = :name, TSurname = :surname WHERE ID = :id;");
         query.bindValue(":name", this->tcName);
         query.bindValue(":surname", this->tcSurname);
         query.bindValue(":id", this->id);
