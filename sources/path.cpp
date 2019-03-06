@@ -29,7 +29,7 @@ QString path::set_path_pdf() {
         tr("Save a new pdf"), "",
         tr("PDF File (*.pdf)"));
     #if OS == 0 // If platform is Linux add file extension manually
-        this->user_path += ".db";
+        this->user_path += ".pdf";
     #endif
     return this->user_path;
 }

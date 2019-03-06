@@ -377,10 +377,10 @@ void regMain::on_actionExportMarks_triggered() {
 
     // Execute the main query
     if(!query->exec("SELECT ROUND(m.mark, 2), s.SubName, m.MarkDate, m.Description, t.TSurname "
-                "FROM mark AS m "
-                "INNER JOIN subject AS s "
+                "FROM marks AS m "
+                "INNER JOIN subjects AS s "
                 "ON m.CodSub = s.ID "
-                "INNER JOIN teacher AS t "
+                "INNER JOIN teachers AS t "
                 "ON s.CodTeacher = t.ID;")) {
         ui->lblQueryStatus->setText(query->lastError().text());
         return;

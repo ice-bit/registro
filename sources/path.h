@@ -5,7 +5,7 @@
 #include <QString>
 #include <QFileDialog>
 #include <QObject>
-#include "../../config.h"
+#include "../../config.h" // Needed for OS recognition
 
 class path : public QMainWindow {
     Q_OBJECT
