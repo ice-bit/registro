@@ -17,9 +17,9 @@ QString path::set_path() {
     this->user_path = dialog.getSaveFileName(this,
         tr("Save an new database"), "",
         tr("Database files (*.db)"));
-    #if OS == 0 // If platform is Linux add file extension manually
+/*     #if OS == 0 // If platform is Linux add file extension manually
         this->user_path += ".db";
-    #endif
+    #endif */
     return this->user_path;
 }
 
@@ -28,8 +28,8 @@ QString path::set_path_pdf() {
     this->user_path = dialog.getSaveFileName(this,
         tr("Save a new pdf"), "",
         tr("PDF File (*.pdf)"));
-    #if OS == 0 // If platform is Linux add file extension manually
+/*     #if OS == 0 // If platform is Linux add file extension manually
         this->user_path += ".pdf";
-    #endif
+    #endif */
     return this->user_path;
 }

@@ -1,5 +1,6 @@
 #include <QApplication>
-#include <QDesktopWidget>
+//#include <QDesktopWidget>
+#include <QScreen>
 #include <iostream>
 #include <string>
 #include "config.h"
@@ -30,7 +31,7 @@ int main(int argc, char **argv) {
             Qt::LeftToRight,
             Qt::AlignCenter,
             win.size(),
-            qApp->desktop()->availableGeometry()
+            qApp->primaryScreen()->availableGeometry()
         )
     );
 

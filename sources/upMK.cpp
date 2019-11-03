@@ -43,7 +43,7 @@ void upMK::loadSubject() {
 
     // Error handling
     if(!query->isActive()) {
-        ui->lblQueryStatus->setText("Can't load subject list, try to add a new subject first!");
+        ui->lblQueryStatus->setText("Can't load subjects list, try to add a new subject first!");
         return;
     }
     
@@ -130,7 +130,7 @@ void upMK::on_btnUpdateMark_clicked() {
     }
 
     // Print a status message for 1.5 seconds(1500ms)
-    ui->lblQueryStatus->setText("Mark updated successfully!");
+    ui->lblQueryStatus->setText("Entry updated successfully!");
     QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
 
     // Close the connection to the database

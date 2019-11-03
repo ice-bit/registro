@@ -77,4 +77,5 @@ if(UNIX)
     add_executable(registro ${SOURCES} ${RES})
 endif()
 
+target_compile_options(registro PUBLIC -Wall -Wextra -Werror)
 target_link_libraries(registro Qt5::Widgets Qt5::Core Qt5::Sql Qt5::PrintSupport)

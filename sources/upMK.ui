@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Update a Mark</string>
+   <string>Update a grade</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../resources/res.qrc">
@@ -86,7 +86,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Mark</string>
+     <string>Grade</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>

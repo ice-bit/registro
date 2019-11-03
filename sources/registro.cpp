@@ -12,6 +12,10 @@ regMain::regMain(QWidget *parent) : QMainWindow(parent), ui(new Ui::regMainClass
     // Disable delete button before creating the QTableView
     ui->btnDelElements->setEnabled(false);
 
+    // Update window title with current version
+    std::string window_title = std::string("Registro ") + std::string(PROJECT_VERSION);
+    setWindowTitle(QString::fromStdString(window_title));
+
     // Custom Signal
     QObject::connect(ui->lnSearch, SIGNAL(textChanged(QString)), this, SLOT(searchSubject()));
 }
@@ -24,7 +28,7 @@ void regMain::on_actionCreateDB_triggered() {
             Qt::LeftToRight, 
             Qt::AlignCenter, 
             createDBWin->size(), 
-            qApp->desktop()->availableGeometry()
+            qApp->primaryScreen()->availableGeometry()
         )
     );
 }
@@ -67,7 +71,7 @@ void regMain::on_btnLoadElements_clicked() {
     ui->tbMain->horizontalHeader()->setStretchLastSection(true);
     // Configure column's labels with appropriate names
     model->setHeaderData(0, Qt::Horizontal, tr("ID"));
-    model->setHeaderData(1, Qt::Horizontal, tr("Mark"));
+    model->setHeaderData(1, Qt::Horizontal, tr("Grade"));
     model->setHeaderData(2, Qt::Horizontal, tr("Subject"));
     model->setHeaderData(3, Qt::Horizontal, tr("Date"));
     model->setHeaderData(4, Qt::Horizontal, tr("Description"));
@@ -109,7 +113,7 @@ void regMain::on_btnAddElements_clicked() {
             Qt::LeftToRight, 
             Qt::AlignCenter, 
             addMKWin->size(), 
-            qApp->desktop()->availableGeometry()
+            qApp->primaryScreen()->availableGeometry()
         )
     );
 }
@@ -122,7 +126,7 @@ void regMain::on_btnUpElements_clicked() {
             Qt::LeftToRight, 
             Qt::AlignCenter, 
             upMKWin->size(), 
-            qApp->desktop()->availableGeometry()
+            qApp->primaryScreen()->availableGeometry()
         )
     );
 }
@@ -177,7 +181,7 @@ void regMain::on_btnDelElements_clicked() {
     }
     
     // Print a status message for 1.5 seconds(1500ms)
-    ui->lblQueryStatus->setText("Mark deleted successfully!");
+    ui->lblQueryStatus->setText("Entry deleted successfully!");
     QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
 
     // Close the connection to the database
@@ -200,7 +204,6 @@ float regMain::avg(int operation, QString subname) {
         return 0;
     }
 
-    QSqlQueryModel *modle = new QSqlQueryModel();
     QSqlQuery *query = new QSqlQuery(db);
     if(operation == 1) {
         if(!query->exec("SELECT ROUND(AVG(Mark),1) FROM marks;")) {
@@ -284,7 +287,7 @@ void regMain::searchSubject() {
     ui->tbMain->horizontalHeader()->setStretchLastSection(true);
     // Configure column's labels with appropriate names
     model->setHeaderData(0, Qt::Horizontal, tr("ID"));
-    model->setHeaderData(1, Qt::Horizontal, tr("Mark"));
+    model->setHeaderData(1, Qt::Horizontal, tr("Grade"));
     model->setHeaderData(2, Qt::Horizontal, tr("Subject"));
     model->setHeaderData(3, Qt::Horizontal, tr("Date"));
     model->setHeaderData(4, Qt::Horizontal, tr("Description"));
@@ -360,15 +363,15 @@ void regMain::on_actionExportMarks_triggered() {
     // Basic html+css template
     *htmlTemplate = 
         "<body><div align='left'>"
-            "Number of marks: <b>" + QString::number(marks_count) + "</b>"
+            "Number of entries: <b>" + QString::number(marks_count) + "</b>"
         "<div align='right'>"
             "<i>" + date + "</i>"
         "</div><div align='left'>"
-            "<b>Summary of school marks<br /></b>"
+            "<b>Summary of school grades<br /></b>"
         "</div>"
         "<table border = 1 padding = 1>"
             "<tr>"
-                "<th>Mark</th>"
+                "<th>Grade</th>"
                 "<th>Subject</th>"
                 "<th>Date</th>"
                 "<th>Description</th>"
@@ -538,7 +541,7 @@ void regMain::on_actionAbout_triggered() {
             Qt::LeftToRight, 
             Qt::AlignCenter, 
             aboutWin->size(), 
-            qApp->desktop()->availableGeometry()
+            qApp->primaryScreen()->availableGeometry()
         )
     );
 }

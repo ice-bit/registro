@@ -124,7 +124,7 @@ void addMK::on_btnInsertMark_clicked() {
     }
 
     // Print a status message for 1.5 seconds(1500 ms)
-    ui->lblQueryStatus->setText("Mark added successfully!");
+    ui->lblQueryStatus->setText("Entry added successfully!");
     QTimer::singleShot(1500, ui->lblQueryStatus, [&](){ ui->lblQueryStatus->setText(" "); });
     
     // Close the connection to the database

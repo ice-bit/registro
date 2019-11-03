@@ -189,7 +189,8 @@ void createDB::on_actionUpdate_triggered() {
             Qt::LeftToRight, 
             Qt::AlignCenter, 
             upTSWin->size(), 
-            qApp->desktop()->availableGeometry()
+            qApp->primaryScreen()->availableGeometry()
+
         )
     );
 }
@@ -202,7 +203,8 @@ void createDB::on_actionDelete_triggered() {
             Qt::LeftToRight, 
             Qt::AlignCenter, 
             delSBTSWin->size(), 
-            qApp->desktop()->availableGeometry()
+            qApp->primaryScreen()->availableGeometry()
+
         )
     );
 }

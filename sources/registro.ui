@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Registro v1.3.3</string>
+   <string/>
   </property>
   <property name="windowIcon">
    <iconset resource="../resources/res.qrc">
@@ -199,7 +199,7 @@
      <x>0</x>
      <y>0</y>
      <width>754</width>
-     <height>22</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

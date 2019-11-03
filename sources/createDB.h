@@ -2,7 +2,7 @@
 #define CREATEDB_H 
 
 #include <QtWidgets/QMainWindow>
-#include <QDesktopWidget>
+#include <QScreen>
 #include <QSqlDatabase>
 #include <QSqlQueryModel>
 #include <QMessageBox>

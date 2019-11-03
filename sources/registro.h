@@ -2,7 +2,7 @@
 #define REGISTRO_H
 
 #include <QtWidgets/QMainWindow>
-#include <QDesktopWidget>
+#include <QScreen>
 #include <QSqlDatabase>
 #include <QSqlQueryModel>
 #include <QPrinter>
@@ -15,6 +15,7 @@
 #include "addMK.h"
 #include "upMK.h"
 #include "about.h"
+#include "../../config.h"
 #include "ui_registro.h"
 
 class regMain : public QMainWindow {
